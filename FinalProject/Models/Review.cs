@@ -21,7 +21,7 @@ namespace FinalProject.Models
         [Required]
         public int Rating { get; set; }
 
-        
+        [Display(Name = "Host Comments")]
         public string ReviewText { get; set; }
 
         public string HostComments { get; set;}
