@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Github\\Group-25\\",
+  "WorkspaceRootPath": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\models\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FinalProject\\Models\\Test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FinalProject\\Models\\Review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,9 +24,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Test1.cs",
-              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Models\\Test1.cs",
+              "DocumentMoniker": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Test1.cs",
-              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Models\\Test1.cs",
+              "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs",
               "RelativeToolTip": "FinalProject\\Models\\Test1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -37,14 +37,13 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Review.cs",
-              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Models\\Review.cs",
+              "DocumentMoniker": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Review.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
-              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Models\\Review.cs",
+              "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Review.cs",
               "RelativeToolTip": "FinalProject\\Models\\Review.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T18:30:29.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-03T18:30:29.055Z"
             }
           ]
         },

@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\datly\\.nuget\\packages\\": {}
+    "C:\\Users\\ma353\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
+      "projectUniqueName": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\FinalProject.csproj",
       "projectName": "FinalProject",
-      "projectPath": "E:\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
-      "packagesPath": "C:\\Users\\datly\\.nuget\\packages\\",
-      "outputPath": "E:\\Github\\Group-25\\FinalProject\\obj\\",
+      "projectPath": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\FinalProject.csproj",
+      "packagesPath": "C:\\Users\\ma353\\.nuget\\packages\\",
+      "outputPath": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\datly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ma353\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
