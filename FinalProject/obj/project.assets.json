@@ -8,27 +8,25 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ma353\\.nuget\\packages\\": {}
+    "/Users/stacevng/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\FinalProject.csproj",
+      "projectUniqueName": "/Users/stacevng/Documents/GitHub/Group-25/FinalProject/FinalProject.csproj",
       "projectName": "FinalProject",
-      "projectPath": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\FinalProject.csproj",
-      "packagesPath": "C:\\Users\\ma353\\.nuget\\packages\\",
-      "outputPath": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\obj\\",
+      "projectPath": "/Users/stacevng/Documents/GitHub/Group-25/FinalProject/FinalProject.csproj",
+      "packagesPath": "/Users/stacevng/.nuget/packages/",
+      "outputPath": "/Users/stacevng/Documents/GitHub/Group-25/FinalProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ma353\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/stacevng/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -41,11 +39,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -70,7 +63,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
