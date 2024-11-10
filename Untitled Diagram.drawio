@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Page-1" id="edf60f1a-56cd-e834-aa8a-f176f3a09ee4">
-    <mxGraphModel dx="5293" dy="3053" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="882" dy="509" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -424,6 +424,21 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1920" y="750" as="sourcePoint" />
             <mxPoint x="1970" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--119" value="Logged in Index" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="770" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--120" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gYn13_rnFWAkC_ZhPSv--68" target="gYn13_rnFWAkC_ZhPSv--119">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1240" y="870" as="sourcePoint" />
+            <mxPoint x="1290" y="820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--121" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="gYn13_rnFWAkC_ZhPSv--72" target="gYn13_rnFWAkC_ZhPSv--81">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1870" y="1250" as="sourcePoint" />
+            <mxPoint x="1920" y="1200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
