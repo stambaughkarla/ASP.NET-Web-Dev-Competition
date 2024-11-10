@@ -305,7 +305,7 @@
         <mxCell id="gYn13_rnFWAkC_ZhPSv--87" value="Checkout?" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2160" y="1220" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--88" value="Checkout?" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--88" value="Checkout Payment View" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2160" y="1287" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--89" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
@@ -313,6 +313,21 @@
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--90" value="Continue Shopping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2370" y="1218" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--91" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2230" y="1260" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--92" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2440" y="1258" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--93" value="Checkout Payment View" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2370" y="1290" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--94" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gYn13_rnFWAkC_ZhPSv--90" target="gYn13_rnFWAkC_ZhPSv--93">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2330" y="1320" as="sourcePoint" />
+            <mxPoint x="2380" y="1270" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
