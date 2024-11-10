@@ -12,11 +12,6 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="60e70716793133e9-37" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=none;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeWidth=1;fontFamily=Verdana;fontSize=8" parent="1" source="60e70716793133e9-5" target="60e70716793133e9-9" edge="1">
-          <mxGeometry x="-0.5" y="10" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="60e70716793133e9-5" value="Register Customer" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="1528" y="1277" width="100" height="60" as="geometry" />
         </mxCell>
@@ -30,9 +25,6 @@
         </mxCell>
         <mxCell id="60e70716793133e9-8" value="Properties View" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="1963" y="1337" width="100" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="60e70716793133e9-9" value="Want to be come a registered customer" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="1578" y="1437" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="60e70716793133e9-10" value="Have a Reservation" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="1778" y="1447" width="80" height="40" as="geometry" />
@@ -50,7 +42,7 @@
           <mxGeometry x="1858" y="1447" width="40" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Z8Qo_mUcmgDimk4ZtV1X-17" value="Checking on Reservations" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="1460" y="1439" width="80" height="40" as="geometry" />
+          <mxGeometry x="1778" y="1187" width="80" height="40" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--2" value="Logged in as Host" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" vertex="1" parent="1">
           <mxGeometry x="120" y="1177" width="100" height="60" as="geometry" />
