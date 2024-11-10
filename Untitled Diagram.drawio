@@ -270,7 +270,7 @@
           <mxGeometry x="1970" y="1070" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--76" value="Reserve Property" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1970" y="1145" width="120" height="40" as="geometry" />
+          <mxGeometry x="1970" y="1145" width="110" height="40" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--77" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="60e70716793133e9-8" target="gYn13_rnFWAkC_ZhPSv--75">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -284,11 +284,35 @@
             <mxPoint x="1980" y="1210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--81" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--81" value="Added to cart" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2160" y="1145" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--82" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="2100" y="1130" width="40" height="30" as="geometry" />
+          <mxGeometry x="2100" y="1140" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--85" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gYn13_rnFWAkC_ZhPSv--76" target="gYn13_rnFWAkC_ZhPSv--81">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2160" y="1230" as="sourcePoint" />
+            <mxPoint x="2210" y="1180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--86" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gYn13_rnFWAkC_ZhPSv--81" target="gYn13_rnFWAkC_ZhPSv--87">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2320" y="1170" as="sourcePoint" />
+            <mxPoint x="2340" y="1165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--87" value="Checkout?" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2160" y="1220" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--88" value="Checkout?" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2160" y="1287" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--89" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2310" y="1218" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--90" value="Continue Shopping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2370" y="1218" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
