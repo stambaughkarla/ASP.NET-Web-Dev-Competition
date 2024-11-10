@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Page-1" id="edf60f1a-56cd-e834-aa8a-f176f3a09ee4">
-    <mxGraphModel dx="882" dy="509" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2269" dy="1309" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -24,7 +24,7 @@
           <mxGeometry x="1580" y="1145" width="120" height="75" as="geometry" />
         </mxCell>
         <mxCell id="60e70716793133e9-8" value="Properties View" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="1785" y="1160" width="100" height="40" as="geometry" />
+          <mxGeometry x="1790" y="1162.5" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="60e70716793133e9-10" value="Have a Reservation" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="1748" y="1270" width="80" height="40" as="geometry" />
@@ -276,7 +276,7 @@
             <mxPoint x="1760" y="1220" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--75" value="Details" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--75" value="Property Details" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1970" y="1070" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--76" value="Reserve Property" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -440,6 +440,21 @@
             <mxPoint x="1870" y="1250" as="sourcePoint" />
             <mxPoint x="1920" y="1200" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--122" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="1318" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--123" value="Properties View" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1738" y="1360" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--124" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="60e70716793133e9-10" target="gYn13_rnFWAkC_ZhPSv--123">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1800" y="1310" as="sourcePoint" />
+            <mxPoint x="1850" y="1260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--125" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1690" y="1268" width="40" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
