@@ -36,10 +36,10 @@
           <mxGeometry x="120" y="1177" width="100" height="60" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--5" value="View Pending Property Approvals?" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="950" y="1357" width="110" height="30" as="geometry" />
+          <mxGeometry x="1010" y="1357" width="110" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--6" value="View the Review Disputes" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="785" y="1357" width="110" height="30" as="geometry" />
+          <mxGeometry x="755" y="1357" width="110" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--8" value="Unauthorized Home/Index" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="1060" y="150" width="100" height="40" as="geometry" />
@@ -69,32 +69,32 @@
             <mxPoint x="910" y="1360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--18" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--5" edge="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--18" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.381;entryY=-0.004;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--5" edge="1" target="gYn13_rnFWAkC_ZhPSv--19">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="870" y="1447" as="sourcePoint" />
             <mxPoint x="978" y="1427" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--19" value="Approve: Goes Live" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="930" y="1427" width="110" height="30" as="geometry" />
+          <mxGeometry x="1020" y="1427" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--20" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--5" edge="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--20" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--5" edge="1" target="gYn13_rnFWAkC_ZhPSv--21">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="988" y="1397" as="sourcePoint" />
             <mxPoint x="1110" y="1372" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--21" value="Deny: Send Feedback to Host" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="1110" y="1357" width="110" height="30" as="geometry" />
+          <mxGeometry x="1170" y="1357" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--23" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.164;exitY=1.096;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--6" edge="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--23" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.164;exitY=1.096;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.573;entryY=0.07;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--6" edge="1" target="gYn13_rnFWAkC_ZhPSv--24">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="790" y="1387" as="sourcePoint" />
             <mxPoint x="790" y="1427" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--24" value="Approve/Deny Unique Dispute" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="730" y="1427" width="110" height="30" as="geometry" />
+          <mxGeometry x="680" y="1427" width="110" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--25" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.322;exitY=0.871;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--2" target="gYn13_rnFWAkC_ZhPSv--26" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -430,6 +430,15 @@
         </mxCell>
         <mxCell id="fRhte83UtmDvdU7O5lQr-3" value="Create Disputes" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" vertex="1" parent="1">
           <mxGeometry x="300" y="1362" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fRhte83UtmDvdU7O5lQr-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.431;entryY=0.044;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="gYn13_rnFWAkC_ZhPSv--13" target="fRhte83UtmDvdU7O5lQr-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="906.5" y="1327" as="sourcePoint" />
+            <mxPoint x="910" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fRhte83UtmDvdU7O5lQr-6" value="Manage Users" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" vertex="1" parent="1">
+          <mxGeometry x="880" y="1357" width="110" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
