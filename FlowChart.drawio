@@ -448,6 +448,18 @@
         <mxCell id="fRhte83UtmDvdU7O5lQr-1" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1510" y="1207" width="40" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="fRhte83UtmDvdU7O5lQr-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gYn13_rnFWAkC_ZhPSv--26" target="fRhte83UtmDvdU7O5lQr-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="1325" as="sourcePoint" />
+            <mxPoint x="310" y="1360" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="260" y="1325" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fRhte83UtmDvdU7O5lQr-3" value="Create Disputes" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1362" width="110" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
