@@ -26,14 +26,8 @@
         <mxCell id="60e70716793133e9-8" value="Properties View" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="1790" y="1162.5" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="60e70716793133e9-10" value="Have a Reservation" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="1748" y="1270" width="80" height="40" as="geometry" />
-        </mxCell>
         <mxCell id="Z8Qo_mUcmgDimk4ZtV1X-5" value="Logged in as Admin" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="630" y="1275" width="100" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="Z8Qo_mUcmgDimk4ZtV1X-9" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1850" y="1260" width="40" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Z8Qo_mUcmgDimk4ZtV1X-17" value="Check on Reservation" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="1600" y="1270" width="80" height="40" as="geometry" />
@@ -130,17 +124,17 @@
         <mxCell id="gYn13_rnFWAkC_ZhPSv--29" value="Add new Property" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
           <mxGeometry x="280" y="1267" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--31" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.192;exitY=1.081;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--26" edge="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--31" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.192;exitY=1.081;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--26" edge="1" target="gYn13_rnFWAkC_ZhPSv--32">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="145" y="1317" as="sourcePoint" />
             <mxPoint x="150" y="1357" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="150" y="1327" />
+              <mxPoint x="150" y="1330" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--32" value="Create/Edit/Delete&amp;nbsp; Existing Properties" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="110" y="1357" width="110" height="30" as="geometry" />
+          <mxGeometry x="110" y="1375" width="110" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--37" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.31;exitY=1.018;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--32" target="gYn13_rnFWAkC_ZhPSv--38" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -246,10 +240,10 @@
             <mxPoint x="1580" y="1190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--67" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Z8Qo_mUcmgDimk4ZtV1X-17" target="60e70716793133e9-10" edge="1">
+        <mxCell id="gYn13_rnFWAkC_ZhPSv--67" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Z8Qo_mUcmgDimk4ZtV1X-17" target="gYn13_rnFWAkC_ZhPSv--72" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1530" y="1240" as="sourcePoint" />
-            <mxPoint x="1580" y="1190" as="targetPoint" />
+            <mxPoint x="1748" y="1290" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--68" value="Register View" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
@@ -269,12 +263,6 @@
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--72" value="Reservations View" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="1910" y="1250" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--73" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="60e70716793133e9-10" target="gYn13_rnFWAkC_ZhPSv--72" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1650" y="1260" as="sourcePoint" />
-            <mxPoint x="1760" y="1220" as="targetPoint" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--76" value="Click Reserve Property" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1970" y="1145" width="110" height="40" as="geometry" />
@@ -412,21 +400,6 @@
             <mxPoint x="1920" y="1200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--122" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1750" y="1318" width="40" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--123" value="Properties View" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" parent="1" vertex="1">
-          <mxGeometry x="1738" y="1352" width="100" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--124" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="60e70716793133e9-10" target="gYn13_rnFWAkC_ZhPSv--123" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1800" y="1310" as="sourcePoint" />
-            <mxPoint x="1850" y="1260" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="gYn13_rnFWAkC_ZhPSv--125" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1690" y="1268" width="40" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="gYn13_rnFWAkC_ZhPSv--126" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="gYn13_rnFWAkC_ZhPSv--68" target="gYn13_rnFWAkC_ZhPSv--106" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="810" y="1010" as="sourcePoint" />
@@ -452,9 +425,7 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="240" y="1325" as="sourcePoint" />
             <mxPoint x="310" y="1360" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="260" y="1325" />
-            </Array>
+            <Array as="points" />
           </mxGeometry>
         </mxCell>
         <mxCell id="fRhte83UtmDvdU7O5lQr-3" value="Create Disputes" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=8;align=center;" vertex="1" parent="1">
