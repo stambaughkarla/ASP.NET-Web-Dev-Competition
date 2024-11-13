@@ -1,23 +1,23 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Page-1" id="edf60f1a-56cd-e834-aa8a-f176f3a09ee4">
-    <mxGraphModel dx="118" dy="1852" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2318" dy="1854" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-243" value="Key Business Rules" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="1470" y="610" width="751" height="180" as="geometry" />
+        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-243" value="Key Business Rules" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="2809" y="790" width="850" height="280" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-244" value="Pricing:&#xa;            - Weekday vs Weekend&#xa;            - Length Discounts&#xa;            - Cleaning Fee" style="whiteSpace=wrap;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="Gl0--Jm81ZW1MnWWy5Dy-243">
-          <mxGeometry x="43" y="50" width="114" height="87.56" as="geometry" />
+          <mxGeometry x="48.66844207723035" y="77.77777777777777" width="129.02796271637814" height="136.20444444444445" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-245" value="Reservations:&#xa;            - No Same-day&#xa;            - No Past Dates&#xa;            - No Overlaps&#xa;            - Cancel &gt;24hrs" style="whiteSpace=wrap;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="Gl0--Jm81ZW1MnWWy5Dy-243">
-          <mxGeometry x="207" y="50" width="156" height="87.56" as="geometry" />
+          <mxGeometry x="234.28761651131822" y="77.77777777777777" width="176.56458055925432" height="136.20444444444445" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-246" value="Reviews:&#xa;            - Past Stays Only&#xa;            - One Per Stay&#xa;            - Rating Required&#xa;            - Can Be Disputed" style="whiteSpace=wrap;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="Gl0--Jm81ZW1MnWWy5Dy-243">
-          <mxGeometry x="413" y="50" width="123" height="87.56" as="geometry" />
+          <mxGeometry x="467.4434087882822" y="77.77777777777777" width="139.21438082556588" height="136.20444444444445" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-247" value="Properties:&#xa;            - Admin Approval&#xa;            - No Deletion&#xa;            - Price Changes" style="whiteSpace=wrap;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="Gl0--Jm81ZW1MnWWy5Dy-243">
-          <mxGeometry x="586" y="50" width="139" height="87.56" as="geometry" />
+          <mxGeometry x="663.2490013315579" y="77.77777777777777" width="157.323568575233" height="136.20444444444445" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-326" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Gl0--Jm81ZW1MnWWy5Dy-248" target="Gl0--Jm81ZW1MnWWy5Dy-249">
           <mxGeometry relative="1" as="geometry" />
@@ -355,7 +355,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-496" value="&lt;font style=&quot;font-size: 50px;&quot;&gt;Dat Ly&lt;/font&gt;&lt;div style=&quot;font-size: 50px;&quot;&gt;&lt;font style=&quot;font-size: 50px;&quot;&gt;Karla Stambaugh&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 50px;&quot;&gt;&lt;font style=&quot;font-size: 50px;&quot;&gt;Sophia Ma&lt;/font&gt;&lt;/div&gt;" style="html=1;shadow=1;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#999999;strokeWidth=10;fillColor=#FFFFFF;fontColor=#6C767D;whiteSpace=wrap;align=left;verticalAlign=middle;spacingLeft=10;fontSize=14;spacing=10;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="1403" y="1590" width="470" height="247" as="geometry" />
+          <mxGeometry x="1260" y="790" width="470" height="247" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
