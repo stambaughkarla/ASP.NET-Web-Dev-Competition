@@ -30,9 +30,9 @@
               "Title": "Reservation.cs",
               "DocumentMoniker": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Reservation.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Reservation.cs",
-              "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Reservation.cs*",
-              "RelativeToolTip": "FinalProject\\Models\\Reservation.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
+              "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Reservation.cs",
+              "RelativeToolTip": "FinalProject\\Models\\Reservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-04T18:19:19.394Z",
               "EditorCaption": ""
@@ -47,8 +47,7 @@
               "RelativeToolTip": "FinalProject\\Models\\Review.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T18:30:29.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-03T18:30:29.055Z"
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "FinalProject\\Models\\Test1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T18:31:11.38Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-03T18:31:11.38Z"
             }
           ]
         }
