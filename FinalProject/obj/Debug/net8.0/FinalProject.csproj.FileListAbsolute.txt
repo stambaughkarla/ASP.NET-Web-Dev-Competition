@@ -1,0 +1,8 @@
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.GeneratedMSBuildEditorConfig.editorconfig
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.AssemblyInfoInputs.cache
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.AssemblyInfo.cs
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.csproj.CoreCompileInputs.cache
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.MvcApplicationPartsAssemblyInfo.cache
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.RazorAssemblyInfo.cache
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.RazorAssemblyInfo.cs
+G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.sourcelink.json

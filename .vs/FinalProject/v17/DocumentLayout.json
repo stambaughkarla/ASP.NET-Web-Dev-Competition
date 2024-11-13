@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FinalProject\\Models\\Test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|g:\\documents\\college\\fall24\\mis333k\\finalproject\\finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FinalProject\\Models\\Review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|g:\\documents\\college\\fall24\\mis333k\\finalproject\\finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|g:\\documents\\college\\fall24\\mis333k\\finalproject\\finalproject\\models\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Test1.cs",
-              "DocumentMoniker": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Test1.cs",
-              "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Test1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAALAAAAAAAAAA==",
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\Reservation.cs",
+              "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Reservation.cs*",
+              "RelativeToolTip": "FinalProject\\Models\\Reservation.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T18:31:11.38Z",
+              "WhenOpened": "2024-11-04T18:19:19.394Z",
               "EditorCaption": ""
             },
             {
@@ -41,19 +45,23 @@
               "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
               "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Review.cs",
               "RelativeToolTip": "FinalProject\\Models\\Review.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T18:30:29.055Z"
-            }
-          ]
-        },
-        {
-          "DockedHeight": 89,
-          "SelectedChildIndex": -1,
-          "Children": [
+              "WhenOpened": "2024-11-03T18:30:29.055Z",
+              "EditorCaption": ""
+            },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Test1.cs",
+              "DocumentMoniker": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\Test1.cs",
+              "ToolTip": "G:\\Documents\\College\\Fall24\\MIS333k\\FinalProject\\FinalProject\\Models\\Test1.cs",
+              "RelativeToolTip": "FinalProject\\Models\\Test1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T18:31:11.38Z",
+              "EditorCaption": ""
             }
           ]
         }
