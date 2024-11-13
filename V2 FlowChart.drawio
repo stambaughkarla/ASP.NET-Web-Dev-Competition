@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Page-1" id="edf60f1a-56cd-e834-aa8a-f176f3a09ee4">
-    <mxGraphModel dx="-438" dy="382" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="-166" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -221,7 +221,7 @@
         <mxCell id="nBESaj2UrZ36M0XSEKyE-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Gl0--Jm81ZW1MnWWy5Dy-263" target="Gl0--Jm81ZW1MnWWy5Dy-267">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-263" value="Customer Dashboard" style="whiteSpace=wrap;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-263" value="Customer " style="whiteSpace=wrap;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="1460" y="2506" width="207" height="48" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-455" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Gl0--Jm81ZW1MnWWy5Dy-264" target="Gl0--Jm81ZW1MnWWy5Dy-272" edge="1">
@@ -236,7 +236,7 @@
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-459" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Gl0--Jm81ZW1MnWWy5Dy-264" target="Gl0--Jm81ZW1MnWWy5Dy-278" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-264" value="Host Dashboard" style="whiteSpace=wrap;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-264" value="Host " style="whiteSpace=wrap;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="2239.5" y="2710" width="171" height="48" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-464" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Gl0--Jm81ZW1MnWWy5Dy-265" target="Gl0--Jm81ZW1MnWWy5Dy-279" edge="1">
@@ -254,7 +254,7 @@
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-468" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Gl0--Jm81ZW1MnWWy5Dy-265" target="Gl0--Jm81ZW1MnWWy5Dy-283" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-265" value="Admin Dashboard" style="whiteSpace=wrap;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-265" value="Admin " style="whiteSpace=wrap;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="3160.5" y="2506" width="185" height="48" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-266" value="Profile Management&#xa;        - Edit Profile&#xa;        - Change Password" style="whiteSpace=wrap;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
