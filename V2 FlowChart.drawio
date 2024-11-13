@@ -1,11 +1,11 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.6">
   <diagram name="Page-1" id="edf60f1a-56cd-e834-aa8a-f176f3a09ee4">
-    <mxGraphModel dx="344" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1547" dy="1527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-243" value="Key Business Rules" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="2809" y="790" width="850" height="280" as="geometry" />
+          <mxGeometry x="2850" y="1402" width="850" height="280" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-244" value="Pricing:&#xa;            - Weekday vs Weekend&#xa;            - Length Discounts&#xa;            - Cleaning Fee" style="whiteSpace=wrap;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" parent="Gl0--Jm81ZW1MnWWy5Dy-243" vertex="1">
           <mxGeometry x="48.66844207723035" y="77.77777777777777" width="129.02796271637814" height="136.20444444444445" as="geometry" />
@@ -68,7 +68,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-254" value="Book Property?" style="rhombus;strokeWidth=2;whiteSpace=wrap;fillColor=#b0e3e6;strokeColor=#0e8088;" parent="1" vertex="1">
-          <mxGeometry x="2046" y="1460" width="150" height="150" as="geometry" />
+          <mxGeometry x="2048" y="1460" width="150" height="150" as="geometry" />
         </mxCell>
         <mxCell id="Gl0--Jm81ZW1MnWWy5Dy-447" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Gl0--Jm81ZW1MnWWy5Dy-255" target="Gl0--Jm81ZW1MnWWy5Dy-259" edge="1">
           <mxGeometry relative="1" as="geometry" />
