@@ -4,14 +4,14 @@ namespace FinalProject.Models
 {
     public class Reservation
     {
-        public const Decimal TAX = 0.07m;
-        public Int32 ReservationId { get; set; }
+        public Decimal TAX { get; internal set; }=0.07m;
+        public Int32 ReservationID { get; set; }
 
-        public Int32 PropertyId { get; set; }
+        public Int32 PropertyID { get; set; }
 
         public Property Property { get; set; }
         
-        public Int32 CustomerId { get; set; }
+        public Int32 CustomerID { get; set; }
 
         public Customer Customer { get; set; }
 

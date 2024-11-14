@@ -9,31 +9,31 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FinalProject
 build_property.RootNamespace = FinalProject
-build_property.ProjectDir = G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject\
+build_property.ProjectDir = C:\mis333k\Final Project\FinalProject\FinalProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = G:\Documents\College\Fall24\MIS333k\FinalProject\FinalProject
+build_property.MSBuildProjectDirectory = C:\mis333k\Final Project\FinalProject\FinalProject
 build_property._RazorSourceGeneratorDebug = 
 
-[G:/Documents/College/Fall24/MIS333k/FinalProject/FinalProject/Views/Shared/Error.cshtml]
+[C:/mis333k/Final Project/FinalProject/FinalProject/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/Documents/College/Fall24/MIS333k/FinalProject/FinalProject/Views/Shared/_Layout.cshtml]
+[C:/mis333k/Final Project/FinalProject/FinalProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/Documents/College/Fall24/MIS333k/FinalProject/FinalProject/Views/Shared/_LoginPartial.cshtml]
+[C:/mis333k/Final Project/FinalProject/FinalProject/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/Documents/College/Fall24/MIS333k/FinalProject/FinalProject/Views/_ViewImports.cshtml]
+[C:/mis333k/Final Project/FinalProject/FinalProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/Documents/College/Fall24/MIS333k/FinalProject/FinalProject/Views/_ViewStart.cshtml]
+[C:/mis333k/Final Project/FinalProject/FinalProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
