@@ -18,6 +18,10 @@ namespace FinalProject.Models
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
 
+        
+        [Display(Name = "Middle Name")]
+        public String? MI { get; set; }
+
         [Required(ErrorMessage = "Last name is required")]
         [Display(Name = "Last Name")]
         public String LastName { get; set; }
@@ -25,12 +29,13 @@ namespace FinalProject.Models
         [Required(ErrorMessage = "Birthday is required")]
         [DataType(DataType.Date)]
         [Display(Name = "Birthday")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
 
         [Required(ErrorMessage = "Address is required")]
         [Display(Name = "Address")]
         public String Address { get; set; }
+
+        public string? ZipCode { get; set; }
 
         // Computed property for displaying full name
         [Display(Name = "Full Name")]
@@ -45,7 +50,7 @@ namespace FinalProject.Models
 
         //Admin -specific
         [Display(Name = "Social Secruity Number")]
-        public Int32? SSN { get; set; }
+        public String? SSN { get; set; }
 
         // Navigational Properties
         // These properties represent relationships to other entities in the database

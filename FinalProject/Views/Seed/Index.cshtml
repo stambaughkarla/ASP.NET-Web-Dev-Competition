@@ -1,5 +1,11 @@
 <h2>Press these buttons to seed your roles and users!</h2>
 
+<h2>Press these buttons to seed your roles and users!</h2>
+
+<!-- Button to seed roles -->
 <a asp-action="SeedRoles" asp-controller="Seed" class="btn btn-primary">Seed Roles</a>
 
-<a asp-action="SeedPeople" asp-controller="Seed" class="btn btn-info">Seed People</a>
+<!-- Button to seed users (with Excel file) -->
+<form asp-action="SeedUsersFromExcel" asp-controller="Seed" method="post">
+    <button type="submit" class="btn btn-info">Seed People</button>
+</form>
