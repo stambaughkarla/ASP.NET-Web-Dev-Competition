@@ -43,6 +43,10 @@ namespace FinalProject.Models
         [Display(Name = "Employment Status")]
         public Boolean? HireStatus { get; set; }
 
+        //Admin -specific
+        [Display(Name = "Social Secruity Number")]
+        public Int32? SSN { get; set; }
+
         // Navigational Properties
         // These properties represent relationships to other entities in the database
         // They allow us to "navigate" from one entity to related entities
