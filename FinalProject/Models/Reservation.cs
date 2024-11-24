@@ -1,54 +1,55 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
 {
     public class Reservation
     {
-        public Decimal TAX { get; internal set; }=0.07m;
-        public Int32 ReservationID { get; set; }
+        public decimal TAX { get; internal set; } = 0.07m;
+        public int ReservationID { get; set; }
 
-        public Int32 PropertyID { get; set; }
-
+        // Explicitly define the foreign key for Property
+        [Required]
+        [ForeignKey("Property")]
+        public int PropertyID { get; set; }
         public Property Property { get; set; }
-        
-        public Int32 CustomerID { get; set; }
 
         public AppUser Customer { get; set; }
 
         [Required]
         [Display(Name = "CheckIn Date")]
         public DateTime CheckIn { get; set; }
-        
+
         [Required]
         [Display(Name = "CheckOut Date")]
         public DateTime CheckOut { get; set; }
-        
+
         [Required]
         [Display(Name = "Number of Guests")]
-        public Int32 NumOfGuests { get; set; }
+        public int NumOfGuests { get; set; }
 
         [Required]
         [Display(Name = "Weekday Price")]
-        public Decimal WeekdayPrice { get; set; }
+        public decimal WeekdayPrice { get; set; }
 
         [Required]
         [Display(Name = "Weekend Price")]
-        public Decimal WeekendPrice { get; set; }
+        public decimal WeekendPrice { get; set; }
 
         [Required]
         [Display(Name = "Cleaning Fee")]
-        public Decimal CleaningFee { get; set; }
+        public decimal CleaningFee { get; set; }
 
         [Required]
         [Display(Name = "Discount Rate")]
-        public Decimal DiscountRate { get; set; }
+        public decimal DiscountRate { get; set; }
 
         [Required]
         [Display(Name = "Confirmation Number")]
-        public Int32 ConfirmationNumber { get; set; }
+        public int ConfirmationNumber { get; set; }
 
         [Required]
         [Display(Name = "Reserved")]
-        public Boolean ReservationStatus { get; set; }
+        public bool ReservationStatus { get; set; }
     }
 }
