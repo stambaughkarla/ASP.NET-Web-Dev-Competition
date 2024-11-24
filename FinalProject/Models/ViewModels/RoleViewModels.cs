@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 //TODO: Change this namespace to match your project
-namespace fa22RelationalDataDemo.Models
+namespace FinalProject.Models
 {
     public class RoleEditModel
     {

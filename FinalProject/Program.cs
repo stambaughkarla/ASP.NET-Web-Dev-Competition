@@ -2,11 +2,11 @@
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-
-//TODO: Update these namespaces to match your project name 
-//Be sure to remove the []
 using FinalProject.DAL;
 using FinalProject.Models;
+
+
+
 
 //create a web application builder
 var builder = WebApplication.CreateBuilder(args);
@@ -91,6 +91,6 @@ app.Use(async (context, next) =>
 //third segment of the URL that's a parameter named id.
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Seed}/{action=Index}/{id?}");
 
 app.Run();

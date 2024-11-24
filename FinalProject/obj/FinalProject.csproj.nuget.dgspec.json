@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\mis333k\\Final Project\\FinalProject\\FinalProject\\FinalProject.csproj": {}
   },
   "projects": {
@@ -16,22 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\JeksEnterprises\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-    "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
-        "projectName": "FinalProject",
-        "projectPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
-        "packagesPath": "C:\\Users\\Dat Ly\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Dat Ly\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 1517552fc5434383b11302f18bf566a26d989e21
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,6 +45,34 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[7.5.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
