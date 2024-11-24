@@ -13,7 +13,7 @@ namespace FinalProject.Models
         
         public Int32 CustomerID { get; set; }
 
-        public Customer Customer { get; set; }
+        public AppUser Customer { get; set; }
 
         [Required]
         [Display(Name = "CheckIn Date")]

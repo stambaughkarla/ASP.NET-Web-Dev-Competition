@@ -11,7 +11,7 @@ namespace FinalProject.Models
 
         // Navigational Property - Foreign Key for Customer ID
         [Required]
-        public Customer Customer { get; set; }
+        public AppUser Customer { get; set; }
 
         // Navigational Property - Foreign Key for Property ID
         [Required]
