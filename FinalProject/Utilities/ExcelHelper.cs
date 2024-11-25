@@ -22,7 +22,7 @@ public class ExcelHelper
 
         using (var package = new ExcelPackage(new FileInfo(filePath)))
         {
-            var worksheet = package.Workbook.Worksheets[1];  // Assuming data is in the first worksheet
+            var worksheet = package.Workbook.Worksheets[0];  // Assuming data is in the first worksheet
             var rowCount = worksheet.Dimension.Rows;
 
             for (int row = 2; row <= rowCount; row++) // Assuming the first row is headers
@@ -49,7 +49,7 @@ public class ExcelHelper
                         Birthday = DateTime.Parse(birthdayText) // Parse the Birthday field
                     },
                     Password = worksheet.Cells[row, 6].Text,  // Assuming the Excel password column is the 5th column
-                    RoleName = "Admin"  // You can assign the role here or from Excel if you have a role column
+                    RoleName = worksheet.Cells[row, 12].Text  // You can assign the role here or from Excel if you have a role column
                 };
 
                 addUserModels.Add(addUserModel);
