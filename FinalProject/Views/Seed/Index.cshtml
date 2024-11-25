@@ -1,6 +1,14 @@
-<h2>Press these buttons to seed your roles and users!</h2>
+@{
+    ViewData["Title"] = "Seed Database";
+}
 
-<!-- Button to seed users (with Excel file) -->
-<form asp-action="SeedUsersFromExcel" asp-controller="Seed" method="post">
-    <button type="submit" class="btn btn-info">Seed People</button>
-</form>
+<h1>Seed Database</h1>
+<p>Click on an option below to populate the database with default data:</p>
+<ul>
+    <li><a asp-controller="Seed" asp-action="SeedRoles">Seed Roles</a></li>
+    <li><a asp-controller="Seed" asp-action="SeedPeople">Seed Users</a></li>
+    <li><a asp-controller="Seed" asp-action="SeedCategories">Seed Categories</a></li>
+    <li><a asp-controller="Seed" asp-action="SeedProperties">Seed Properties</a></li>
+    <li><a asp-controller="Seed" asp-action="SeedReservations">Seed Reservations</a></li>
+    <li><a asp-controller="Seed" asp-action="SeedReviews">Seed Reviews</a></li>
+</ul>
