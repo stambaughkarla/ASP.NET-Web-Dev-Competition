@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using FinalProject.Models;
 using FinalProject.Utilities;
+using FinalProject.DAL;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,19 +12,25 @@ public class SeedController : Controller
     private readonly UserManager<AppUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IWebHostEnvironment _environment;
+    private readonly AppDbContext _context;
 
-    public SeedController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment environment)
+    public SeedController(
+        UserManager<AppUser> userManager,
+        RoleManager<IdentityRole> roleManager,
+        IWebHostEnvironment environment,
+        AppDbContext context)
     {
         _userManager = userManager;
         _roleManager = roleManager;
         _environment = environment;
+        _context = context;
     }
-
 
     public IActionResult Index()
     {
         return View();
     }
+
     // Action method to trigger the user seeding
     [HttpPost]
     public async Task<IActionResult> SeedUsersFromExcel()
@@ -35,7 +42,7 @@ public class SeedController : Controller
         string filePath = Path.Combine(_environment.WebRootPath, "Data", "SeedingDataBevoBnB.xlsx");
 
         // Create an instance of ExcelHelper
-        var excelHelper = new ExcelHelper(_environment);
+        var excelHelper = new ExcelHelper(_environment, _context);
 
         // Read the data from the Excel file
         var addUserModels = excelHelper.ReadAdminDataFromExcel(filePath);
@@ -43,7 +50,7 @@ public class SeedController : Controller
         // Add users to the database
         foreach (var model in addUserModels)
         {
-            var result = await AddUser.AddUserWithRoleAsync(model, _userManager);
+            var result = await AddUser.AddUserWithRoleAsync(model, _userManager, _context);
 
             if (result.Succeeded)
             {
@@ -57,13 +64,13 @@ public class SeedController : Controller
 
         // Optionally, you can show a success message on the page
         TempData["Message"] = "Users have been successfully seeded!";
-        return View("Confirm"); 
+        return View("Confirm");
     }
 
     // Ensure roles exist
     private async Task EnsureRolesAsync(RoleManager<IdentityRole> roleManager)
     {
-        string[] roleNames = { "Admin", "User" };  // Add other roles here
+        string[] roleNames = { "Admin", "Customer", "Host" };  // Updated roles based on project requirements
         foreach (var roleName in roleNames)
         {
             var roleExist = await roleManager.RoleExistsAsync(roleName);

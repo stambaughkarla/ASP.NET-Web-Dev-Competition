@@ -4,17 +4,23 @@ using System.Collections.Generic;
 using System.IO;
 using FinalProject.Utilities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using FinalProject.DAL;
 
 public class ExcelHelper
 
 {
 
     private readonly IWebHostEnvironment _environment;
+    private readonly AppDbContext _context; 
+
 
     // Constructor with IWebHostEnvironment injected
-    public ExcelHelper(IWebHostEnvironment environment)
+    public ExcelHelper(IWebHostEnvironment environment, AppDbContext context)  
     {
         _environment = environment;
+        _context = context; 
+
     }
     public List<AddUserModel> ReadAdminDataFromExcel(string filePath)
     {
@@ -76,12 +82,12 @@ public class ExcelHelper
         // Ensure roles exist before adding users
         await EnsureRolesAsync(roleManager);
 
-        var excelHelper = new ExcelHelper(_environment);
+        var excelHelper = new ExcelHelper(_environment, _context);
         var addUserModels = excelHelper.ReadAdminDataFromExcel(filePath);
 
         foreach (var model in addUserModels)
         {
-            var result = await AddUser.AddUserWithRoleAsync(model, userManager);
+            var result = await AddUser.AddUserWithRoleAsync(model, userManager, _context); 
 
             if (result.Succeeded)
             {

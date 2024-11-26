@@ -24,10 +24,11 @@ namespace FinalProject.Seeding
                         PhoneNumber = "5125551234",
                         FirstName = "Admin",
                         LastName = "User",
-                        Address = "123 Main St"
+                        Address = "123 Main St",
+                        Birthday = new DateTime(1990, 1, 1) // Added birthday field
                     },
-                    Password = "Admin123!", 
-                    RoleName = "Admin" 
+                    Password = "Admin123!",
+                    RoleName = "Admin"
                 },
                 new AddUserModel
                 {
@@ -39,9 +40,10 @@ namespace FinalProject.Seeding
                         FirstName = "Customer",
                         LastName = "User",
                         Address = "123 Main St",
+                        Birthday = new DateTime(1990, 1, 1) // Added birthday field
                     },
-                    Password = "Customer123!", 
-                    RoleName = "Customer" 
+                    Password = "Customer123!",
+                    RoleName = "Customer"
                 }
             };
 
