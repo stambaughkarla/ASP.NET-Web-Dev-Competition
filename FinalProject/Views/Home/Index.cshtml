@@ -1,0 +1,140 @@
+﻿@model IEnumerable<Property>
+
+@{
+    ViewData["Title"] = "BevoBnB - Book Unique Places to Stay";
+}
+
+<div class="container-fluid">
+    <!-- Search Form -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h2 class="h4 mb-3">Search Properties</h2>
+            <form asp-controller="Property" asp-action="Search" method="get">
+                <div class="row g-3">
+                    <!-- Basic Search Fields -->
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <input type="text" name="location" class="form-control" id="location" placeholder="Where to?" />
+                            <label for="location">Location</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="date" name="checkIn" class="form-control" id="checkIn" />
+                            <label for="checkIn">Check-in</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="date" name="checkOut" class="form-control" id="checkOut" />
+                            <label for="checkOut">Check-out</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="number" name="guests" class="form-control" id="guests" placeholder="Guests" min="1" />
+                            <label for="guests">Guests</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex gap-2">
+                        <button type="submit" class="btn btn-primary flex-grow-1">
+                            <i class="bi bi-search"></i> Search
+                        </button>
+                        <a asp-controller="Property" asp-action="Search" class="btn btn-outline-secondary" title="Advanced Search">
+                            <i class="bi bi-sliders"></i> Filters
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Quick Links -->
+    <div class="mb-4">
+        <div class="d-flex gap-3 overflow-auto">
+            @foreach (var category in ViewBag.Categories)
+            {
+                <a asp-controller="Property"
+                   asp-action="Search"
+                   asp-route-category="@category.CategoryID"
+                   class="text-decoration-none">
+                    <div class="text-center">
+                        <div class="mb-2">
+                            <i class="bi bi-house-door h3"></i>
+                        </div>
+                        <div>@category.CategoryName</div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Featured Property -->
+    <h2 class="mb-4">Featured Places to Stay</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        @foreach (var property in Model.Where(p => p.PropertyStatus && p.AdminApproved))
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/api/placeholder/400/300" class="card-img-top" alt="Property Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@property.City, @property.State</h5>
+                        <p class="card-text">
+                            <span class="badge bg-secondary">@property.Category.CategoryName</span>
+                            <span class="ms-2">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                @{
+                                    var validReviews = property.Reviews?.Where(r => !r.DisputeStatus);
+                                    var averageRating = validReviews != null && validReviews.Any()
+                                    ? validReviews.Average(r => r.Rating).ToString("F1")
+                                    : "New";
+                                }
+                                @averageRating
+                            </span>
+                        </p>
+                        <p class="card-text">
+                            <i class="bi bi-people"></i> @property.GuestsAllowed guests
+                            <i class="bi bi-door-closed ms-2"></i> @property.Bedrooms BD
+                            <i class="bi bi-water ms-2"></i> @property.Bathrooms BA
+                        </p>
+                        <p class="card-text">
+                            <strong>@property.WeekdayPrice.ToString("C")</strong> / night
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="Property"
+                           asp-action="Details"
+                           asp-route-id="@property.PropertyID"
+                           class="btn btn-outline-primary w-100">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Record Count -->
+    <div class="mt-4 text-muted">
+        Showing @Model.Count(p => p.PropertyStatus && p.AdminApproved) of @Model.Count() Property
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Set minimum date for check-in to today
+        const checkInInput = document.querySelector('input[name="checkIn"]');
+        const checkOutInput = document.querySelector('input[name="checkOut"]');
+
+        const today = new Date().toISOString().split('T')[0];
+        checkInInput.min = today;
+
+        // Update check-out minimum date when check-in is selected
+        checkInInput.addEventListener('change', function () {
+            checkOutInput.min = this.value;
+            if (checkOutInput.value && checkOutInput.value < this.value) {
+                checkOutInput.value = this.value;
+            }
+        });
+    </script>
+}
