@@ -57,7 +57,7 @@ public class SeedController : Controller
 
         // Optionally, you can show a success message on the page
         TempData["Message"] = "Users have been successfully seeded!";
-        return RedirectToAction("Index");
+        return View("Confirm"); 
     }
 
     // Ensure roles exist

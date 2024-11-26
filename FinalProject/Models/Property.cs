@@ -8,6 +8,8 @@ namespace FinalProject.Models
     /// Represents a property listing in the BevoBnB system.
     /// Properties are created by Hosts and can be booked by Customers.
     /// </summary>
+    /// 
+
     public class Property
     {
         // Constant for generating property numbers
@@ -87,7 +89,7 @@ namespace FinalProject.Models
 
         // Property availability and status
         [Display(Name = "Unavailable Dates")]
-        public String UnavailableDates { get; set; }
+        public String? UnavailableDates { get; set; }
 
         [Display(Name = "Property Status")]
         public Boolean PropertyStatus { get; set; }

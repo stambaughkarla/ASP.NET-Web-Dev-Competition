@@ -4,6 +4,7 @@ using FinalProject.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241125183820_cleanup0033332")]
+    partial class cleanup0033332
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,9 +142,6 @@ namespace FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PropertyID"));
 
-                    b.Property<bool>("AdminApproved")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Bathrooms")
                         .HasColumnType("int");
 
@@ -175,10 +175,6 @@ namespace FinalProject.Migrations
 
                     b.Property<bool>("PetsAllowed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("PropertyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PropertyNumber")
                         .HasColumnType("int");
@@ -236,8 +232,7 @@ namespace FinalProject.Migrations
                     b.Property<int>("ConfirmationNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("CustomerID")
-                        .IsRequired()
+                    b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("DiscountRate")
@@ -252,6 +247,9 @@ namespace FinalProject.Migrations
                     b.Property<bool>("ReservationStatus")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("TAX")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("WeekdayPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -260,7 +258,7 @@ namespace FinalProject.Migrations
 
                     b.HasKey("ReservationID");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("PropertyID");
 
@@ -269,22 +267,21 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.Models.Review", b =>
                 {
-                    b.Property<int>("ReviewID")
+                    b.Property<int>("ReviewId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
 
-                    b.Property<string>("CustomerID")
+                    b.Property<string>("CustomerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-
-                    b.Property<string>("DisputeStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("DisputeStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("HostComments")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -295,13 +292,13 @@ namespace FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ReviewText")
-
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.HasKey("ReviewID");
+                    b.HasKey("ReviewId");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("PropertyID");
 
@@ -466,9 +463,7 @@ namespace FinalProject.Migrations
                 {
                     b.HasOne("FinalProject.Models.AppUser", "Customer")
                         .WithMany("Reservations")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("FinalProject.Models.Property", "Property")
                         .WithMany("Reservations")
@@ -485,7 +480,7 @@ namespace FinalProject.Migrations
                 {
                     b.HasOne("FinalProject.Models.AppUser", "Customer")
                         .WithMany("Reviews")
-                        .HasForeignKey("CustomerID")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
