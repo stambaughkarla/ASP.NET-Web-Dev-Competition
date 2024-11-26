@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
 {
@@ -22,10 +23,8 @@ namespace FinalProject.Models
         [Display(Name = "Property Number")]
         public Int32 PropertyNumber { get; set; }
 
-        // Property name for searching
-        [Required(ErrorMessage = "Property name is required")]
-        [Display(Name = "Property Name")]
-        public String PropertyName { get; set; }
+        [NotMapped] // Tells EF this isn't a database column
+        public string PropertyName => $"{Street}, {City}, {State}";
 
         // Location details
         [Required(ErrorMessage = "Street address is required")]
