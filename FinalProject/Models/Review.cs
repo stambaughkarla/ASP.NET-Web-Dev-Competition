@@ -25,14 +25,14 @@ namespace FinalProject.Models
         // Review Text range??
         [Display(Name = "Host Comments")]
         [StringLength(1000, ErrorMessage = "Review Text cannot exceed 1000 characters.")]
-        public string ReviewText { get; set; }
+        public string? ReviewText { get; set; }
 
         // Host Comments range??
         [StringLength(500, ErrorMessage = "Host Comments cannot exceed 500 characters.")]
-        public string HostComments { get; set; }
+        public string? HostComments { get; set; }
 
         // Dispute Status with required validation
         [Required]
-        public bool DisputeStatus { get; set; }
+        public String DisputeStatus { get; set; }
     }
 }
