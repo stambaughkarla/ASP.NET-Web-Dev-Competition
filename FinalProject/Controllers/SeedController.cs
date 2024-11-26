@@ -1,89 +1,83 @@
-﻿using Microsoft.AspNetCore.Identity;  // Required for UserManager and RoleManager
-using FinalProject.DAL;               // Your data access layer (AppDbContext)
-using FinalProject.Models;            // Your models (AppUser, etc.)
-using FinalProject.Seeding;           // For seeding methods (SeedRoles, SeedUsers)
-using Microsoft.AspNetCore.Mvc;       // For Controller and IActionResult
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using FinalProject.Models;
+using FinalProject.Utilities;
+using FinalProject.DAL;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace FinalProject.Controllers
+public class SeedController : Controller
 {
-    public class SeedController : Controller
+    private readonly UserManager<AppUser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IWebHostEnvironment _environment;
+    private readonly AppDbContext _context;
+
+    public SeedController(
+        UserManager<AppUser> userManager,
+        RoleManager<IdentityRole> roleManager,
+        IWebHostEnvironment environment,
+        AppDbContext context)
     {
-        private readonly AppDbContext _context;
-        private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        _userManager = userManager;
+        _roleManager = roleManager;
+        _environment = environment;
+        _context = context;
+    }
 
-        public SeedController(AppDbContext db, UserManager<AppUser> um, RoleManager<IdentityRole> rm)
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    // Action method to trigger the user seeding
+    [HttpPost]
+    public async Task<IActionResult> SeedUsersFromExcel()
+    {
+        // Ensure roles exist
+        await EnsureRolesAsync(_roleManager);
+
+        // Get the file path of the Excel file located in wwwroot/Data/
+        string filePath = Path.Combine(_environment.WebRootPath, "Data", "SeedingDataBevoBnB.xlsx");
+
+        // Create an instance of ExcelHelper
+        var excelHelper = new ExcelHelper(_environment, _context);
+
+        // Read the data from the Excel file
+        var addUserModels = excelHelper.ReadAdminDataFromExcel(filePath);
+
+        // Add users to the database
+        foreach (var model in addUserModels)
         {
-            _context = db;
-            _userManager = um;
-            _roleManager = rm;
+            var result = await AddUser.AddUserWithRoleAsync(model, _userManager, _context);
+
+            if (result.Succeeded)
+            {
+                Console.WriteLine($"User {model.User.FirstName} {model.User.LastName} added successfully.");
+            }
+            else
+            {
+                Console.WriteLine($"Failed to add {model.User.FirstName} {model.User.LastName}: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+            }
         }
 
-        public IActionResult Index()
+        // Optionally, you can show a success message on the page
+        TempData["Message"] = "Users have been successfully seeded!";
+        return View("Confirm");
+    }
+
+    // Ensure roles exist
+    private async Task EnsureRolesAsync(RoleManager<IdentityRole> roleManager)
+    {
+        string[] roleNames = { "Admin", "Customer", "Host" };  // Updated roles based on project requirements
+        foreach (var roleName in roleNames)
         {
-            return View();
-        }
-
-        public async Task<IActionResult> SeedRoles() // Updated name to avoid conflict
-        {
-            try
+            var roleExist = await roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
             {
-                await Seeding.SeedRoles.AddAllRoles(_roleManager);
+                await roleManager.CreateAsync(new IdentityRole(roleName));
             }
-            catch (Exception ex)
-            {
-                List<string> errorList = new List<string>
-                {
-                    ex.Message
-                };
-
-                if (ex.InnerException != null)
-                {
-                    errorList.Add(ex.InnerException.Message);
-
-                    if (ex.InnerException.InnerException != null)
-                    {
-                        errorList.Add(ex.InnerException.InnerException.Message);
-                    }
-                }
-
-                return View("Error", errorList);
-            }
-
-            return View("Confirm");
-        }
-
-        public async Task<IActionResult> SeedPeople()
-        {
-            try
-            {
-                // Call the SeedUsers method to seed users
-                await SeedUsers.SeedAllUsers(_userManager, _context);
-            }
-            catch (Exception ex)
-            {
-                List<string> errorList = new List<string>
-                {
-                    ex.Message
-                };
-
-                if (ex.InnerException != null)
-                {
-                    errorList.Add(ex.InnerException.Message);
-
-                    if (ex.InnerException.InnerException != null)
-                    {
-                        errorList.Add(ex.InnerException.InnerException.Message);
-                    }
-                }
-
-                return View("Error", errorList);
-            }
-
-            return View("Confirm");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
 {
@@ -8,6 +9,8 @@ namespace FinalProject.Models
     /// Represents a property listing in the BevoBnB system.
     /// Properties are created by Hosts and can be booked by Customers.
     /// </summary>
+    /// 
+
     public class Property
     {
         // Constant for generating property numbers
@@ -19,6 +22,9 @@ namespace FinalProject.Models
         // Auto-generated number for property identification
         [Display(Name = "Property Number")]
         public Int32 PropertyNumber { get; set; }
+
+        [NotMapped] // Tells EF this isn't a database column
+        public string PropertyName => $"{Street}, {City}, {State}";
 
         // Location details
         [Required(ErrorMessage = "Street address is required")]
@@ -82,10 +88,14 @@ namespace FinalProject.Models
 
         // Property availability and status
         [Display(Name = "Unavailable Dates")]
-        public String UnavailableDates { get; set; }
+        public String? UnavailableDates { get; set; }
 
         [Display(Name = "Property Status")]
         public Boolean PropertyStatus { get; set; }
+
+        // Admin approval tracking
+        [Display(Name = "Approval Status")]
+        public Boolean AdminApproved { get; set; }
 
         // Navigational Properties
         // These establish relationships between the Property and other entities:
@@ -113,6 +123,9 @@ namespace FinalProject.Models
 
             // Set default property status to active
             PropertyStatus = true;
+
+            // Properties start as unapproved by default
+            AdminApproved = false;
         }
     }
 }

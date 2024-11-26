@@ -21,6 +21,9 @@ String connectionString = "Server=tcp:fa24group25finalproject.database.windows.n
 //NOTE: This tells your application how to get a connection to the database
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
+builder.Services.AddSingleton<IWebHostEnvironment>(builder.Environment);
+
+
 //NOTE: You need this line for including Identity in your project
 builder.Services.AddDefaultIdentity<AppUser>()
     .AddRoles<IdentityRole>()
@@ -57,6 +60,13 @@ builder.Services.ConfigureApplicationCookie(options =>
 //build the app
 var app = builder.Build();
 
+// Ensure roles exist (call EnsureRolesAsync)
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await ExcelHelper.EnsureRolesAsync(roleManager);  // Ensure roles are created if they don't exist
+}
+
 //These lines allow you to see more detailed error messages
 app.UseDeveloperExceptionPage();
 app.UseStatusCodePages();
@@ -91,6 +101,6 @@ app.Use(async (context, next) =>
 //third segment of the URL that's a parameter named id.
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Seed}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

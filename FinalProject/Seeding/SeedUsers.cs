@@ -23,10 +23,12 @@ namespace FinalProject.Seeding
                         Email = "admin@example.com",
                         PhoneNumber = "5125551234",
                         FirstName = "Admin",
-                        LastName = "User"
+                        LastName = "User",
+                        Address = "123 Main St",
+                        Birthday = new DateTime(1990, 1, 1) // Added birthday field
                     },
-                    Password = "Admin123!", // Replace with a strong password
-                    RoleName = "Admin" // Ensure this role exists in your database
+                    Password = "Admin123!",
+                    RoleName = "Admin"
                 },
                 new AddUserModel
                 {
@@ -36,10 +38,12 @@ namespace FinalProject.Seeding
                         Email = "customer@example.com",
                         PhoneNumber = "5125555678",
                         FirstName = "Customer",
-                        LastName = "User"
+                        LastName = "User",
+                        Address = "123 Main St",
+                        Birthday = new DateTime(1990, 1, 1) // Added birthday field
                     },
-                    Password = "Customer123!", // Replace with a strong password
-                    RoleName = "Customer" // Ensure this role exists in your database
+                    Password = "Customer123!",
+                    RoleName = "Customer"
                 }
             };
 
