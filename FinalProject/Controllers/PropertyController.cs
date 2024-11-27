@@ -22,7 +22,7 @@ namespace FinalProject.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.Reviews)
                 .Include(p => p.Host)
-                .Where(p => p.PropertyStatus && p.AdminApproved)
+                .Where(p => p.PropertyStatus)
                 .ToListAsync();
 
             ViewBag.TotalCount = await _context.Properties.CountAsync();
@@ -73,7 +73,7 @@ namespace FinalProject.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.Reviews)
                 .Include(p => p.Host)
-                .Where(p => p.PropertyStatus && p.AdminApproved);
+                .Where(p => p.PropertyStatus);
 
             // Apply search filters
             if (!string.IsNullOrEmpty(location))

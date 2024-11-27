@@ -72,7 +72,7 @@
     <!-- Featured Property -->
     <h2 class="mb-4">Featured Places to Stay</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-        @foreach (var property in Model.Where(p => p.PropertyStatus && p.AdminApproved))
+        @foreach (var property in Model.Where(p => p.PropertyStatus))
         {
             <div class="col">
                 <div class="card h-100">
@@ -116,7 +116,7 @@
 
     <!-- Record Count -->
     <div class="mt-4 text-muted">
-        Showing @Model.Count(p => p.PropertyStatus && p.AdminApproved) of @Model.Count() Property
+        Showing @Model.Count(p => p.PropertyStatus) of @Model.Count() Property
     </div>
 </div>
 
