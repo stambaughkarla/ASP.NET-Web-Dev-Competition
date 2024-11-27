@@ -12,9 +12,9 @@
             <img src="/api/placeholder/800/600" class="img-fluid rounded mb-4" alt="Property Image" />
 
             <div class="mb-4">
-                <h1>@Model.PropertyName</h1>
+                <h1>@Model.Street</h1>
                 <p class="lead">
-                    <i class="bi bi-geo-alt"></i> @Model.City, @Model.State
+                    <i class="bi bi-geo-alt"></i> @Model.City, @Model.State @Model.Zip
                     <span class="badge bg-secondary">@Model.Category.CategoryName</span>
                     @if (validReviews?.Any() == true)
                     {

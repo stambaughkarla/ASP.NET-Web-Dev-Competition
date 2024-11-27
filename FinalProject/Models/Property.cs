@@ -24,7 +24,7 @@ namespace FinalProject.Models
         public Int32 PropertyNumber { get; set; }
 
         [NotMapped] // Tells EF this isn't a database column
-        public string PropertyName => $"{Street}, {City}, {State}";
+        public string PropertyName => $"{Street}, {City}, {State} {Zip}";
 
         // Location details
         [Required(ErrorMessage = "Street address is required")]
