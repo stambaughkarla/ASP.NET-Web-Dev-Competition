@@ -227,14 +227,35 @@ namespace FinalProject.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: RoleAdmin/ResetPassword/5
+        public async Task<IActionResult> ResetPassword(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new IndexViewModel
+            {
+                UserID = user.Id,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+
+            return View(model);
+        }
+
         // POST: RoleAdmin/ResetPassword/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(string id, string newPassword)
         {
-            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(newPassword))
+            if (string.IsNullOrEmpty(newPassword))
             {
-                return BadRequest();
+                ModelState.AddModelError("", "Password is required");
+                return View();
             }
 
             var user = await _userManager.FindByIdAsync(id);
@@ -246,12 +267,19 @@ namespace FinalProject.Controllers
             string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
             var result = await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
 
-            if (!result.Succeeded)
+            if (result.Succeeded)
             {
-                AddErrorsFromResult(result);
+                TempData["SuccessMessage"] = "Password has been reset successfully";
+                return RedirectToAction(nameof(Index));
             }
 
-            return RedirectToAction(nameof(Index));
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+
+            var model = new IndexViewModel { UserID = id, Email = user.Email };
+            return View(model);
         }
 
         // Helper method to add Identity errors to ModelState

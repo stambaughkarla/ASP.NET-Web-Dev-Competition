@@ -56,7 +56,7 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a asp-action="Edit" asp-route-id="@user.Id" 
+                                        <a asp-action="Edit" asp-route-id="@user.Id"
                                            class="btn btn-sm btn-outline-primary">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
@@ -77,12 +77,10 @@
                                                 </button>
                                             </form>
                                         }
-                                        <button type="button" class="btn btn-sm btn-outline-secondary ms-1"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#resetPasswordModal"
-                                                data-user-id="@user.Id">
+                                        <a asp-action="ResetPassword" asp-route-id="@user.Id"
+                                           class="btn btn-sm btn-outline-secondary ms-1">
                                             <i class="bi bi-key"></i> Reset Password
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -92,7 +90,6 @@
             </div>
         </div>
     </div>
-</div>
 
     @if (!Model.Any())
     {
@@ -104,38 +101,21 @@
     }
 </div>
 
-<!-- Reset Password Modal -->
-<div class="modal fade" id="resetPasswordModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form asp-action="ResetPassword" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title">Reset Password</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="userIdInput" />
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="newPassword" name="newPassword" required />
-                        <label for="newPassword">New Password</label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Reset Password</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 @section Scripts {
     <script>
-        document.getElementById('resetPasswordModal').addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            var userId = button.getAttribute('data-user-id');
-            document.getElementById('userIdInput').value = userId;
+        // Alert auto-close
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function (alert) {
+            var closeButton = alert.querySelector('.btn-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', function () {
+                    alert.remove();
+                });
+            }
+            // Auto hide after 2 seconds
+            setTimeout(function () {
+                alert.remove();
+            }, 2000);
         });
-
     </script>
 }
