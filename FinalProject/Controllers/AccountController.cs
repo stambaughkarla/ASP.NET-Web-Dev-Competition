@@ -4,6 +4,7 @@ using FinalProject.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinalProject.Controllers
 {
@@ -120,12 +121,41 @@ namespace FinalProject.Controllers
 
             if (result.Succeeded)
             {
+                var user = await _userManager.FindByEmailAsync(lvm.Email);
+                if (await _userManager.IsInRoleAsync(user, "Host"))
+                {
+                    return RedirectToAction("HostDashboard"); // Redirect to Host Dashboard
+                }
                 return Redirect(returnUrl ?? "/");
             }
 
             ModelState.AddModelError("", "Invalid login attempt.");
             return View(lvm);
         }
+
+        public async Task<IActionResult> HostDashboard()
+        {
+            // Assuming `User.Identity.Name` holds the current user's identifier (email, username, etc.)
+            var user = _context.Users
+                .Include(u => u.Properties)    // Eagerly load Properties
+                .Include(u => u.Reservations)  // Eagerly load Reservations
+                .Include(u => u.Reviews)       // Eagerly load Reviews
+                .FirstOrDefault(u => u.Email == User.Identity.Name); // Adjust if not using Email
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            return View(user);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> HostInfo()
+        {
+            return View();
+        }
+
 
         public async Task<IActionResult> Index()
         {

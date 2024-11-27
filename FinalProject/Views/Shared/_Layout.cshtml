@@ -23,6 +23,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+                            <a asp-controller="Account" asp-action="HostInfo" class="nav-link">BevoBnB Your Home</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -35,7 +36,10 @@
                             @if (User.IsInRole("Host"))
                             {
                                 <li class="nav-item">
-                                    <a asp-controller="Properties" asp-action="MyProperties" class="nav-link">My Properties</a>
+                                    <a asp-controller="Properties" asp-action="Profile" class="nav-link">Profile</a>
+                                    
+
+
                                 </li>
                             }
                             @if (User.IsInRole("Customer"))
