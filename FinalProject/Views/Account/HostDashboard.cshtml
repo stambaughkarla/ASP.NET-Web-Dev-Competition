@@ -1,0 +1,94 @@
+﻿@model FinalProject.Models.AppUser
+
+@{
+    var totalProperties = Model.Properties.Count();
+    var totalBookings = Model.Reservations.Count();
+    var totalReviews = Model.Reviews.Count();
+    var totalProfit = Model.Properties.Sum(p => p.WeekendPrice); // Assuming price is a property on Property
+}
+
+<div class="container">
+    <h1 class="text-center">Welcome, @Model.FullName</h1>
+  
+
+    <!-- Stats Section with Cards -->
+    <div class="row my-4">
+        <!-- Personal Profit Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title">Personal Profit</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Total Profit: <strong>@String.Format("{0:C}", totalProfit)</strong></p>
+                    <button class="btn btn-info" data-toggle="collapse" data-target="#profitDetails">See Details</button>
+                    <div id="profitDetails" class="collapse mt-3">
+                        <ul>
+                            @foreach (var property in Model.Properties)
+                            {
+                                <li>@property.PropertyName - @String.Format("{0:C}", property.WeekdayPrice)</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Properties Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="card-title">Your Properties</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Total Properties: <strong>@totalProperties</strong></p>
+                    <button class="btn btn-success" data-toggle="collapse" data-target="#propertiesDetails">View Properties</button>
+                    <div id="propertiesDetails" class="collapse mt-3">
+                        <ul>
+                            @foreach (var property in Model.Properties)
+                            {
+                                <li>@property.PropertyName</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-white">
+                    <h4 class="card-title">Your Reports</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Total Bookings: <strong>@totalBookings</strong></p>
+                    <p class="card-text">Total Reviews: <strong>@totalReviews</strong></p>
+                    <button class="btn btn-warning" data-toggle="collapse" data-target="#reportsDetails">See Reports</button>
+                    <div id="reportsDetails" class="collapse mt-3">
+                        <h5>Bookings</h5>
+                        <ul>
+                            @foreach (var booking in Model.Reservations)
+                            {
+                                <li>@booking.Property.PropertyName </li>
+                            }
+                        </ul>
+                        <h5>Reviews</h5>
+                        <ul>
+                            @foreach (var review in Model.Reviews)
+                            {
+                                <li>@review.ReviewText - Rating: @review.Rating</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add any other sections here -->
+</div>
+
+<!-- Bootstrap JS & jQuery for toggle effect -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

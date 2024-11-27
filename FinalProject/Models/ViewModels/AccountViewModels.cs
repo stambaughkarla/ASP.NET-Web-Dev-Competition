@@ -63,6 +63,8 @@ namespace FinalProject.Models
         public bool RememberMe { get; set; }
     }
 
+    
+
     public class ChangePasswordViewModel
     {
         [Required]
