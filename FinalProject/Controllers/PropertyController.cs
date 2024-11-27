@@ -18,12 +18,14 @@ namespace FinalProject.Controllers
         // GET: /Property/
         public async Task<IActionResult> Index()
         {
-            var properties = await _context.Properties
-                .Include(p => p.Category)
-                .Include(p => p.Reviews)
-                .Include(p => p.Host)
-                .Where(p => p.PropertyStatus && p.AdminApproved)
-                .ToListAsync();
+
+         
+            var properties = await _context.Properties.ToListAsync();
+            //.Include(p => p.Category)
+            //.Include(p => p.Reviews)
+            //.Include(p => p.Host)
+            //.Where(p => p.PropertyStatus && p.AdminApproved)
+
 
             ViewBag.TotalCount = await _context.Properties.CountAsync();
             ViewBag.Categories = await _context.Categories.ToListAsync();
