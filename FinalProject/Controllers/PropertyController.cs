@@ -25,6 +25,7 @@ namespace FinalProject.Controllers
                 .Where(p => p.PropertyStatus)
                 .ToListAsync();
 
+
             ViewBag.TotalCount = await _context.Properties.CountAsync();
             ViewBag.Categories = await _context.Categories.ToListAsync();
 

@@ -25,6 +25,8 @@ namespace FinalProject.Controllers
                 .Where(p => p.PropertyStatus)
                 .ToListAsync();
 
+
+
             // Get all categories for the search filters
             ViewBag.Categories = await _context.Categories.ToListAsync();
 
