@@ -75,15 +75,40 @@ namespace FinalProject.Controllers
                 .Include(p => p.Host)
                 .Where(p => p.PropertyStatus);
 
-            // Apply search filters
+
+
+            // Apply search filters function
             if (!string.IsNullOrEmpty(location))
             {
-                location = location.ToLower().Trim();
-                query = query.Where(p =>
-                    p.City.ToLower().Contains(location) ||
-                    p.State.ToLower().Contains(location) ||
-                    (p.City.ToLower() + ", " + p.State.ToLower()).Contains(location) ||
-                    p.PropertyName.ToLower().Contains(location));
+                var searchTerms = location.ToLower()
+                    .Split(',')
+                    .SelectMany(term => term.Trim().Split(' '))
+                    .Where(term => !string.IsNullOrWhiteSpace(term))
+                    .ToArray();
+
+                // If single search term, use original logic
+                if (searchTerms.Length == 1)
+                {
+                    var singleTerm = searchTerms[0];
+                    query = query.Where(p =>
+                        p.City.ToLower().Contains(singleTerm) ||
+                        p.State.ToLower().Contains(singleTerm) ||
+                        p.Street.ToLower().Contains(singleTerm) ||
+                        p.Zip.Contains(singleTerm)
+                    );
+                }
+                // If multiple terms, check each part separately
+                else
+                {
+                    query = query.Where(p =>
+                        searchTerms.All(term =>
+                            p.Street.ToLower().Contains(term) ||
+                            p.City.ToLower().Contains(term) ||
+                            p.State.ToLower().Contains(term) ||
+                            p.Zip.Contains(term)
+                        )
+                    );
+                }
             }
 
             if (guests.HasValue)
