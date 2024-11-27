@@ -93,6 +93,8 @@ namespace FinalProject.Models
         [Display(Name = "Property Status")]
         public Boolean PropertyStatus { get; set; }
 
+        public string ImageURL {get; set;}
+
 
         // Navigational Properties
         // These establish relationships between the Property and other entities:
