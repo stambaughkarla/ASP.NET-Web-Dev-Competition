@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class setup5555566334 : Migration
+    public partial class photoproperttyyy : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,10 +31,13 @@ namespace FinalProject.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MI = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HireStatus = table.Column<bool>(type: "bit", nullable: true),
+                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -183,6 +186,7 @@ namespace FinalProject.Migrations
                     PropertyNumber = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Zip = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Bedrooms = table.Column<int>(type: "int", nullable: false),
@@ -195,8 +199,9 @@ namespace FinalProject.Migrations
                     CleaningFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiscountRate = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     MinNightsForDiscount = table.Column<int>(type: "int", nullable: true),
-                    UnavailableDates = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UnavailableDates = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PropertyStatus = table.Column<bool>(type: "bit", nullable: false),
+                    AdminApproved = table.Column<bool>(type: "bit", nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
                     HostId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -222,9 +227,8 @@ namespace FinalProject.Migrations
                 {
                     ReservationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TAX = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PropertyID = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CustomerID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumOfGuests = table.Column<int>(type: "int", nullable: false),
@@ -239,10 +243,11 @@ namespace FinalProject.Migrations
                 {
                     table.PrimaryKey("PK_Reservations", x => x.ReservationID);
                     table.ForeignKey(
-                        name: "FK_Reservations_AspNetUsers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_Reservations_AspNetUsers_CustomerID",
+                        column: x => x.CustomerID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reservations_Properties_PropertyID",
                         column: x => x.PropertyID,
@@ -255,21 +260,21 @@ namespace FinalProject.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    ReviewId = table.Column<int>(type: "int", nullable: false)
+                    ReviewID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CustomerID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PropertyID = table.Column<int>(type: "int", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
-                    ReviewText = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    HostComments = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    ReviewText = table.Column<string>(type: "nvarchar(280)", maxLength: 280, nullable: false),
+                    HostComments = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     DisputeStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reviews", x => x.ReviewId);
+                    table.PrimaryKey("PK_Reviews", x => x.ReviewID);
                     table.ForeignKey(
-                        name: "FK_Reviews_AspNetUsers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_Reviews_AspNetUsers_CustomerID",
+                        column: x => x.CustomerID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -331,9 +336,9 @@ namespace FinalProject.Migrations
                 column: "HostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_CustomerId",
+                name: "IX_Reservations_CustomerID",
                 table: "Reservations",
-                column: "CustomerId");
+                column: "CustomerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_PropertyID",
@@ -341,9 +346,9 @@ namespace FinalProject.Migrations
                 column: "PropertyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_CustomerId",
+                name: "IX_Reviews_CustomerID",
                 table: "Reviews",
-                column: "CustomerId");
+                column: "CustomerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_PropertyID",

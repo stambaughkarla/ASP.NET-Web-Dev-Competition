@@ -170,15 +170,14 @@ namespace FinalProject.Migrations
                     b.Property<string>("HostId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ImageURL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("MinNightsForDiscount")
                         .HasColumnType("int");
 
                     b.Property<bool>("PetsAllowed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("PropertyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PropertyNumber")
                         .HasColumnType("int");
@@ -279,10 +278,8 @@ namespace FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-
-                    b.Property<string>("DisputeStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("DisputeStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("HostComments")
                         .HasMaxLength(500)
@@ -295,9 +292,9 @@ namespace FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ReviewText")
-
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .IsRequired()
+                        .HasMaxLength(280)
+                        .HasColumnType("nvarchar(280)");
 
                     b.HasKey("ReviewID");
 

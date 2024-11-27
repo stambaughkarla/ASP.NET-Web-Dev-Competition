@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241125183820_cleanup0033332")]
-    partial class cleanup0033332
+    [Migration("20241127054613_photoproperttyyy")]
+    partial class photoproperttyyy
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,6 +142,9 @@ namespace FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PropertyID"));
 
+                    b.Property<bool>("AdminApproved")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Bathrooms")
                         .HasColumnType("int");
 
@@ -169,6 +172,9 @@ namespace FinalProject.Migrations
 
                     b.Property<string>("HostId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ImageURL")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MinNightsForDiscount")
                         .HasColumnType("int");
@@ -232,7 +238,8 @@ namespace FinalProject.Migrations
                     b.Property<int>("ConfirmationNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("CustomerId")
+                    b.Property<string>("CustomerID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("DiscountRate")
@@ -247,9 +254,6 @@ namespace FinalProject.Migrations
                     b.Property<bool>("ReservationStatus")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("TAX")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("WeekdayPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -258,7 +262,7 @@ namespace FinalProject.Migrations
 
                     b.HasKey("ReservationID");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerID");
 
                     b.HasIndex("PropertyID");
 
@@ -267,13 +271,13 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.Models.Review", b =>
                 {
-                    b.Property<int>("ReviewId")
+                    b.Property<int>("ReviewID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewID"));
 
-                    b.Property<string>("CustomerId")
+                    b.Property<string>("CustomerID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -281,7 +285,6 @@ namespace FinalProject.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("HostComments")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -293,12 +296,12 @@ namespace FinalProject.Migrations
 
                     b.Property<string>("ReviewText")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(280)
+                        .HasColumnType("nvarchar(280)");
 
-                    b.HasKey("ReviewId");
+                    b.HasKey("ReviewID");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerID");
 
                     b.HasIndex("PropertyID");
 
@@ -463,7 +466,9 @@ namespace FinalProject.Migrations
                 {
                     b.HasOne("FinalProject.Models.AppUser", "Customer")
                         .WithMany("Reservations")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FinalProject.Models.Property", "Property")
                         .WithMany("Reservations")
@@ -480,7 +485,7 @@ namespace FinalProject.Migrations
                 {
                     b.HasOne("FinalProject.Models.AppUser", "Customer")
                         .WithMany("Reviews")
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

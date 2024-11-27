@@ -34,6 +34,8 @@ namespace FinalProject.Models
         [Required(ErrorMessage = "City is required")]
         public String City { get; set; }
 
+        public String? ImageURL { get; set; }
+
         [Required(ErrorMessage = "State is required")]
         public String State { get; set; }
 

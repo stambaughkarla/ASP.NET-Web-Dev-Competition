@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Data\\SeedingDataBevoBnB.xlsx"
     },
     {
+      "Id": "C:\\mis333k\\Final Project\\FinalProject\\FinalProject\\wwwroot\\images\\properties\\Home1.jpg",
+      "PackagePath": "staticwebassets\\images\\properties\\Home1.jpg"
+    },
+    {
+      "Id": "C:\\mis333k\\Final Project\\FinalProject\\FinalProject\\wwwroot\\images\\properties\\Home2.jpg",
+      "PackagePath": "staticwebassets\\images\\properties\\Home2.jpg"
+    },
+    {
       "Id": "C:\\mis333k\\Final Project\\FinalProject\\FinalProject\\wwwroot\\lib\\font-awesome\\css\\all.css",
       "PackagePath": "staticwebassets\\lib\\font-awesome\\css\\all.css"
     },
