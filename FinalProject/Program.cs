@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 
 //TODO: Add database on Azure so you have a connection string
 //TODO: Add a connection string here once you have created it on Azure
@@ -77,6 +78,7 @@ app.UseStaticFiles();
 //This marks the position in the middleware pipeline where a routing decision
 //is made for a URL.
 app.UseRouting();
+app.UseSession();
 
 //TODO: (HW4 & Beyond) Once you have added Identity into your project, you will 
 //need to uncomment these lines
