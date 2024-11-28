@@ -173,6 +173,8 @@ namespace FinalProject.Controllers
 
             var properties = await query.ToListAsync();
 
+
+
             // Populate ViewBag data for the view
             ViewBag.TotalCount = await _context.Properties.CountAsync();
             ViewBag.FilteredCount = properties.Count;
@@ -180,6 +182,160 @@ namespace FinalProject.Controllers
 
             // Return the search view with results
             return View(properties);
+        }
+
+        // GET: Property/ManageProperties  
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ManageProperties()
+        {
+            var properties = await _context.Properties
+                .Include(p => p.Category)
+                .Include(p => p.Reviews)
+                .Include(p => p.Host)
+                .ToListAsync();
+
+            ViewBag.TotalProperties = properties.Count;
+            ViewBag.ActiveProperties = properties.Count(p => p.PropertyStatus);
+            ViewBag.PendingProperties = properties.Count(p => !p.PropertyStatus);
+
+            return View(properties);
+        }
+
+        // GET: Property/PendingApprovals
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> PendingApprovals()
+        {
+            var pendingProperties = await _context.Properties
+                .Include(p => p.Host)
+                .Include(p => p.Category)
+                .Where(p => !p.PropertyStatus)
+                .ToListAsync();
+
+            return View(pendingProperties);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ApproveProperty(int id)
+        {
+            var property = await _context.Properties.FindAsync(id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            property.PropertyStatus = true; // Mark as approved
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Property has been approved successfully.";
+            return RedirectToAction(nameof(PendingApprovals));
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RejectProperty(int id)
+        {
+            var property = await _context.Properties.FindAsync(id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            // We don't delete the property, just mark it as inactive
+            property.PropertyStatus = false;
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Property has been rejected successfully.";
+            return RedirectToAction(nameof(PendingApprovals));
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TogglePropertyStatus(int id)
+        {
+            var property = await _context.Properties.FindAsync(id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            // Toggle the status
+            property.PropertyStatus = !property.PropertyStatus;
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = $"Property has been {(property.PropertyStatus ? "activated" : "deactivated")} successfully.";
+            return RedirectToAction(nameof(ManageProperties));
+        }
+
+
+
+
+        // GET: Property/Categories
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Categories()
+        {
+            var categories = await _context.Categories
+                .Include(c => c.Properties)
+                .ToListAsync();
+            return View(categories);
+        }
+
+        // POST: Property/CreateCategory
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateCategory([Bind("CategoryName")] Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                // Check if category already exists
+                if (await _context.Categories.AnyAsync(c =>
+                    c.CategoryName.ToLower() == category.CategoryName.ToLower()))
+                {
+                    ModelState.AddModelError("CategoryName", "This category already exists.");
+                    return RedirectToAction(nameof(Categories));
+                }
+
+                _context.Add(category);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Category created successfully.";
+            }
+            return RedirectToAction(nameof(Categories));
+        }
+
+        // POST: Property/EditCategory/5
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditCategory(int id, string categoryName)
+        {
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            // Check if category name already exists (excluding current category)
+            if (await _context.Categories.AnyAsync(c =>
+                c.CategoryName.ToLower() == categoryName.ToLower() &&
+                c.CategoryID != id))
+            {
+                TempData["ErrorMessage"] = "This category name already exists.";
+                return RedirectToAction(nameof(Categories));
+            }
+
+            category.CategoryName = categoryName;
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Category updated successfully.";
+            return RedirectToAction(nameof(Categories));
         }
     }
 }
