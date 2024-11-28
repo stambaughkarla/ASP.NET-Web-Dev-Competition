@@ -97,6 +97,7 @@ namespace FinalProject.Controllers
             return View(category);
         }
 
+
         private bool CategoryExists(int id)
         {
             return _context.Categories.Any(e => e.CategoryID == id);

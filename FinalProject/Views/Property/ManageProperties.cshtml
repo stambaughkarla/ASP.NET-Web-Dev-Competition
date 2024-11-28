@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Property>
+@{
+    ViewData["Title"] = "Manage Properties";
+}
+
+<div class="container">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="mb-4 p-4 bg-light rounded shadow-sm">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="h4 mb-0">Manage Properties</h2>
+                <p class="text-muted mb-0">
+                    @ViewBag.ActiveProperties active of @ViewBag.TotalProperties total properties
+                    (@ViewBag.PendingProperties pending approval)
+                </p>
+            </div>
+            <div>
+                <a asp-action="Categories" class="btn btn-outline-primary me-2">
+                    <i class="bi bi-tags"></i> Manage Categories
+                </a>
+                <a asp-action="PendingApprovals" class="btn btn-primary">
+                    <i class="bi bi-clock"></i> Pending Approvals
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Property ID</th>
+                            <th>Host</th>
+                            <th>Location</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Price Range</th>
+                            <th>Reviews</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var property in Model)
+                        {
+                            <tr>
+                                <td>@property.PropertyID</td>
+                                <td>@property.Host.FullName</td>
+                                <td>@property.City, @property.State</td>
+                                <td>@property.Category.CategoryName</td>
+                                <td>
+                                    <span class="badge @(property.PropertyStatus ? "bg-success" : "bg-warning")">
+                                        @(property.PropertyStatus ? "Approved" : "Pending")
+                                    </span>
+                                </td>
+                                <td>$@property.WeekdayPrice - $@property.WeekendPrice</td>
+                                <td>
+                                    @if (property.Reviews?.Any() == true)
+                                    {
+                                        <span class="badge bg-primary">
+                                            @property.Reviews.Count Reviews
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">No Reviews</span>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <a asp-action="Details" asp-route-id="@property.PropertyID"
+                                       class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <form asp-action="TogglePropertyStatus" asp-route-id="@property.PropertyID"
+                                          method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm @(property.PropertyStatus ? "btn-warning" : "btn-success")"
+                                                onclick="return confirm('Are you sure you want to @(property.PropertyStatus ? "deactivate" : "activate") this property?')">
+                                            <i class="bi @(property.PropertyStatus ? "bi-x-lg" : "bi-check-lg")"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        setTimeout(() => {
+            const alert = document.querySelector('.alert');
+            if (alert) {
+                alert.remove();
+            }
+        }, 3000);
+    </script>
+}

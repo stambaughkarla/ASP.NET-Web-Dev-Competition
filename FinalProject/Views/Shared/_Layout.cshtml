@@ -35,7 +35,14 @@
                                 <li class="nav-item">
                                     <a asp-controller="RoleAdmin" asp-action="Index" class="nav-link">Manage Users</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Property" asp-action="PendingApprovals" class="nav-link">Pending Approvals</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Property" asp-action="ManageProperties" class="nav-link">Manage Properties</a>
+                                </li>
                             }
+
                             @if (User.IsInRole("Host"))
                             {
                                 <li class="nav-item">
@@ -72,6 +79,8 @@
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
