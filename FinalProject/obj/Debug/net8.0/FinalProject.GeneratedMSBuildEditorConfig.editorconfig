@@ -9,123 +9,139 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FinalProject
 build_property.RootNamespace = FinalProject
-build_property.ProjectDir = C:\Users\JeksEnterprises\Source\Repos\Group-25\FinalProject\
+build_property.ProjectDir = C:\Users\Dat Ly\Desktop\Github\Group-25\FinalProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\JeksEnterprises\Source\Repos\Group-25\FinalProject
+build_property.MSBuildProjectDirectory = C:\Users\Dat Ly\Desktop\Github\Group-25\FinalProject
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Account/ChangePassword.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Account/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Account/HostDashboard.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Account/HostDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxIb3N0RGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Account/HostInfo.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Account/HostInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxIb3N0SW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Account/Index.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Account/Login.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Account/Register.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Category/Create.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Category/Edit.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Category/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Category/Index.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Home/Index.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Property/Details.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Property/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydHlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Property/Index.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Property/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydHlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Property/Search.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Property/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydHlcU2VhcmNoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Reservation/Cart.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Reservation/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQ2FydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Reservation/Confirmation.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Reservation/Confirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Reservation/Create.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Reservation/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Reservation/Index.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Reservation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Review/Create.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Review/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Review/Edit.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Review/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Review/Index.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Review/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Seed/Confirm.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/RoleAdmin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZUFkbWluXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/RoleAdmin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZUFkbWluXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/RoleAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZUFkbWluXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/RoleAdmin/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZUFkbWluXFJlc2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Seed/Confirm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VlZFxDb25maXJtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Seed/Index.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Seed/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VlZFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Shared/Error.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Shared/_Layout.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/_ViewImports.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/JeksEnterprises/Source/Repos/Group-25/FinalProject/Views/_ViewStart.cshtml]
+[C:/Users/Dat Ly/Desktop/Github/Group-25/FinalProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
