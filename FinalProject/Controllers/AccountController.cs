@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace FinalProject.Controllers
 {
@@ -155,6 +156,24 @@ namespace FinalProject.Controllers
         {
             return View();
         }
+
+        // GET: Reviews/Dispute
+        [HttpGet]
+        [Authorize(Roles = "Host")]
+        public async Task<IActionResult> Reports()
+        {
+            // Get the current user's ID
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            // Retrieve all properties owned by the host
+            var properties = await _context.Properties
+                .Where(p => p.Host.Id == userId)
+                .ToListAsync();
+
+            return View(properties);
+        }
+
+
 
 
         public async Task<IActionResult> Index()

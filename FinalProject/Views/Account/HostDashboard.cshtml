@@ -42,15 +42,10 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">Total Properties: <strong>@totalProperties</strong></p>
-                    <button class="btn btn-success" data-toggle="collapse" data-target="#propertiesDetails">View Properties</button>
-                    <div id="propertiesDetails" class="collapse mt-3">
-                        <ul>
-                            @foreach (var property in Model.Properties)
-                            {
-                                <li>@property.PropertyName</li>
-                            }
-                        </ul>
-                    </div>
+                    <!-- Button wrapped in a link to navigate to the Reports action -->
+                    <a asp-controller="Account" asp-action="Reports" class="btn btn-warning">
+                        See Reports
+                    </a>
                 </div>
             </div>
         </div>
