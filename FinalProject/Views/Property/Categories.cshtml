@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Manage Categories";
+}
+
+<div class="container">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="mb-4">
+        <h2>Manage Categories</h2>
+        <p class="text-muted">Add and manage property categories</p>
+    </div>
+
+    <!-- Add New Category Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Add New Category</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="CreateCategory" method="post">
+                @Html.AntiForgeryToken()
+                <div class="row align-items-end">
+                    <div class="col-md-8">
+                        <label class="form-label">Category Name</label>
+                        <input type="text" name="CategoryName" class="form-control" required />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-plus-circle"></i> Add Category
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Categories List -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Properties</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model)
+                        {
+                            <tr>
+                                <td>@category.CategoryName</td>
+                                <td>
+                                    <span class="badge bg-primary">
+                                        @category.Properties?.Count() Properties
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

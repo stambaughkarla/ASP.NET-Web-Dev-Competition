@@ -310,8 +310,6 @@ namespace FinalProject.Controllers
             return RedirectToAction(nameof(Categories));
         }
 
-        // POST: Property/EditCategory/5
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCategory(int id, string categoryName)
@@ -322,7 +320,6 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            // Check if category name already exists (excluding current category)
             if (await _context.Categories.AnyAsync(c =>
                 c.CategoryName.ToLower() == categoryName.ToLower() &&
                 c.CategoryID != id))
