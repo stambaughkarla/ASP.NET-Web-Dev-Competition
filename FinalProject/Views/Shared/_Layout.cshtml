@@ -44,6 +44,9 @@
                                 <li class="nav-item">
                                     <a asp-controller="Property" asp-action="ManageProperties" class="nav-link">Manage Properties</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Report" asp-action="AdminReport" class="nav-link">Admin Report</a>
+                                </li>
                             }
 
                             @if (User.IsInRole("Host"))
