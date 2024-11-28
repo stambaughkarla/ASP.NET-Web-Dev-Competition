@@ -201,14 +201,14 @@ namespace FinalProject.Controllers
             return View(properties);
         }
 
-        // GET: Property/PendingApprovals
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PendingApprovals()
         {
+            // Only get properties that haven't been processed yet
             var pendingProperties = await _context.Properties
                 .Include(p => p.Host)
                 .Include(p => p.Category)
-                .Where(p => !p.PropertyStatus)
+                .Where(p => !p.PropertyStatus) // False = not yet approved/rejected
                 .ToListAsync();
 
             return View(pendingProperties);
@@ -242,16 +242,15 @@ namespace FinalProject.Controllers
 
             if (property == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Property not found" });
             }
 
-            // We don't delete the property, just mark it as inactive
             property.PropertyStatus = false;
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Property has been rejected successfully.";
-            return RedirectToAction(nameof(PendingApprovals));
+            return Json(new { success = true, message = "Property rejected successfully" });
         }
+
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
@@ -272,8 +271,6 @@ namespace FinalProject.Controllers
             TempData["SuccessMessage"] = $"Property has been {(property.PropertyStatus ? "activated" : "deactivated")} successfully.";
             return RedirectToAction(nameof(ManageProperties));
         }
-
-
 
 
         // GET: Property/Categories
