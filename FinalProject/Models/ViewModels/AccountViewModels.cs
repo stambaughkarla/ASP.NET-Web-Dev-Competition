@@ -84,6 +84,29 @@ namespace FinalProject.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangeAccountDetails
+    {
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Birthday")]
+        public DateTime Birthday { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Current Password")]
+        public string CurrentPassword { get; set; }
+    }
+
+
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }

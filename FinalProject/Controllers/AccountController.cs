@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace FinalProject.Controllers
 {
@@ -156,6 +157,24 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        // GET: Reviews/Dispute
+        [HttpGet]
+        [Authorize(Roles = "Host")]
+        public async Task<IActionResult> Reports()
+        {
+            // Get the current user's ID
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            // Retrieve all properties owned by the host
+            var properties = await _context.Properties
+                .Where(p => p.Host.Id == userId)
+                .ToListAsync();
+
+            return View(properties);
+        }
+
+
+
 
         public async Task<IActionResult> Index()
         {
@@ -209,6 +228,60 @@ namespace FinalProject.Controllers
 
             return View(cpvm);
         }
+
+        public IActionResult ChangeAccountDetails()
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+
+            var model = new ChangeAccountDetails
+            {
+                Address = user.Address,
+                PhoneNumber = user.PhoneNumber,
+                Birthday = user.Birthday
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeAccountDetails(ChangeAccountDetails model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+
+            // Verify current password
+            var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, model.CurrentPassword, false);
+            if (!passwordCheck.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, "Incorrect password.");
+                return View(model);
+            }
+
+            // Update user properties
+            user.Address = model.Address;
+            user.PhoneNumber = model.PhoneNumber;
+            user.Birthday = model.Birthday;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

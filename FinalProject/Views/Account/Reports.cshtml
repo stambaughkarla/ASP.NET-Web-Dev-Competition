@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Property> 
+
+@{
+    ViewData["Title"] = "Your Properties - Host Dashboard";
+
+    // Calculate the top property dynamically by the number of reservations
+    var topProperty = Model.OrderByDescending(p => p.Reservations?.Count ?? 0).FirstOrDefault();
+}
+
+<h2 class="mb-4">Host Dashboard</h2>
+
+@if (topProperty != null)
+{
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3>🏆 Top Reserved Property</h3>
+        </div>
+        <div class="card-body">
+            <h4>@topProperty.PropertyName</h4>
+            <img src="@topProperty.ImageURL" class="card-img-top" alt="" />
+            <p><strong>Total Reservations:</strong> @topProperty.Reservations?.Count ?? 0</p>
+            <a class="btn btn-success" asp-action="Details" asp-controller="Property" asp-route-id="@topProperty.PropertyID">View Details</a>
+        </div>
+    </div>
+}
+else
+{
+    <p>No top property available yet!</p>
+}
+
+<h4 class="mt-5">All Properties</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Total Reservations</th>
+            <th>Revenue</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var property in Model.OrderByDescending(p => p.Reservations?.Count ?? 0))
+        {
+            <tr>
+                <td>@property.PropertyName</td>
+                <td>@property.Reservations?.Count ?? 0</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Property" asp-route-id="@property.PropertyID">View</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
