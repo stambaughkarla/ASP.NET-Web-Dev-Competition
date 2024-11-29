@@ -9,11 +9,24 @@
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>User Name:</dt>
+        <dt>User Name & Email:</dt>
         <dd>@Model.UserName</dd>
 
-        <dt>Email:</dt>
-        <dd>@Model.Email</dd>
+        <dt>Personal Address:</dt>
+        <dd>@Model.Address</dd>
+
+        <dt>Phone</dt>
+        <dd>@Model.PhoneNumber</dd>
+
+        <dt>Birthday</dt>
+        <dd>@Model.Birthday</dd>
+
+        <dd>
+            [@Html.ActionLink("Edit your Account", "ChangeAccountDetails")]
+        </dd>
+
+
+
 
         <dt>Password:</dt>
         <dd>
