@@ -19,10 +19,10 @@
                 <div class="card-header bg-primary text-white">
                     <h4 class="card-title">Create A New Property Listing</h4>
                 </div>
-                <div class="card-body">
-                    <button class="btn btn-info" data-toggle="collapse" data-target="#profitDetails">Create New</button>
-                    
-                </div>
+                <!-- Button wrapped in a link to navigate to the Reports action -->
+                <a asp-controller="Property" asp-action="Create" class="btn btn-warning">
+                    Create New
+                </a>
             </div>
         </div>
 

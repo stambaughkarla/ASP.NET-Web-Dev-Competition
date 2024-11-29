@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
+﻿using FinalProject.DAL;
 using FinalProject.Models;
-using FinalProject.DAL;
+using FinalProject.Utilities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace FinalProject.Controllers
 {
     public class PropertyController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
         public PropertyController(AppDbContext context)
         {
@@ -333,6 +338,38 @@ namespace FinalProject.Controllers
 
             TempData["SuccessMessage"] = "Category updated successfully.";
             return RedirectToAction(nameof(Categories));
+        }
+
+        // GET: Property/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Property/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Property property)
+        {
+            if (ModelState.IsValid)
+            {
+                // Get the current host's ID
+                var currentUser = _userManager.GetUserAsync(User).Result;
+                if (currentUser == null) return Unauthorized();
+
+                property.Host.Id = currentUser.Id;
+
+                // Assign PropertyID
+                property.PropertyID = _context.Properties.Any()
+                    ? _context.Properties.Max(p => p.PropertyID) + 1
+                    : 3001;
+
+                // Save property to the database
+                _context.Properties.Add(property);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index"); // Redirect as needed
+            }
+            return View(property);
         }
     }
 }

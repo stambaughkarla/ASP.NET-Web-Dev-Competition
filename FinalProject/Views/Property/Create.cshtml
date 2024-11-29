@@ -1,0 +1,74 @@
+﻿@model Property
+
+@{
+    ViewData["Title"] = "Create Property";
+}
+
+<h2>Create Property</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Street"></label>
+        <input asp-for="Street" class="form-control" />
+        <span asp-validation-for="Street" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="City"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="State"></label>
+        <input asp-for="State" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Zip"></label>
+        <input asp-for="Zip" class="form-control" />
+        <span asp-validation-for="Zip" class="text-danger"></span>
+    </div>
+   
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <input asp-for="Category" class="form-control" />
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Bedrooms"></label>
+        <input asp-for="Bedrooms" type="number" class="form-control" />
+        <span asp-validation-for="Bedrooms" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Bathrooms"></label>
+        <input asp-for="Bathrooms" type="number" class="form-control" />
+        <span asp-validation-for="Bathrooms" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PetsAllowed"></label>
+        <input asp-for="PetsAllowed" type="checkbox" />
+        <span asp-validation-for="PetsAllowed" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FreeParking"></label>
+        <input asp-for="FreeParking" type="checkbox" />
+    </div>
+   
+    <div class="form-group">
+        <label asp-for="WeekdayPrice"></label>
+        <input asp-for="WeekdayPrice" type="number" class="form-control" step="0.01" />
+        <span asp-validation-for="WeekdayPrice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="WeekendPrice"></label>
+        <input asp-for="WeekendPrice" type="number" class="form-control" step="0.01" />
+        <span asp-validation-for="WeekendPrice" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Property</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
