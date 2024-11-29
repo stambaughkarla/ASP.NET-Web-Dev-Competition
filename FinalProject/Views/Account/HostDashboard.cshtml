@@ -13,23 +13,15 @@
 
     <!-- Stats Section with Cards -->
     <div class="row my-4">
-        <!-- Personal Profit Card -->
+        <!-- Create New Proprtty card maybe cahnge styles later-->
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h4 class="card-title">Personal Profit</h4>
+                    <h4 class="card-title">Create A New Property Listing</h4>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Total Profit: <strong>@String.Format("{0:C}", totalProfit)</strong></p>
-                    <button class="btn btn-info" data-toggle="collapse" data-target="#profitDetails">See Details</button>
-                    <div id="profitDetails" class="collapse mt-3">
-                        <ul>
-                            @foreach (var property in Model.Properties)
-                            {
-                                <li>@property.PropertyName - @String.Format("{0:C}", property.WeekdayPrice)</li>
-                            }
-                        </ul>
-                    </div>
+                    <button class="btn btn-info" data-toggle="collapse" data-target="#profitDetails">Create New</button>
+                    
                 </div>
             </div>
         </div>
@@ -44,7 +36,7 @@
                     <p class="card-text">Total Properties: <strong>@totalProperties</strong></p>
                     <!-- Button wrapped in a link to navigate to the Reports action -->
                     <a asp-controller="Account" asp-action="Reports" class="btn btn-warning">
-                        See Reports
+                        Manage Poperties
                     </a>
                 </div>
             </div>
@@ -59,7 +51,9 @@
                 <div class="card-body">
                     <p class="card-text">Total Bookings: <strong>@totalBookings</strong></p>
                     <p class="card-text">Total Reviews: <strong>@totalReviews</strong></p>
-                    <button class="btn btn-warning" data-toggle="collapse" data-target="#reportsDetails">See Reports</button>
+                    <p class="card-text">Total Profit: <strong>@String.Format("{0:C}", totalProfit)</strong></p>
+
+                    <button class="btn btn-warning" data-toggle="collapse" data-target="#reportsDetails">Report Details</button>
                     <div id="reportsDetails" class="collapse mt-3">
                         <h5>Bookings</h5>
                         <ul>
