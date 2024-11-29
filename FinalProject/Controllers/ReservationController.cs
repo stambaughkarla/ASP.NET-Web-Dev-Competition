@@ -107,12 +107,27 @@ namespace FinalProject.Controllers
             return View(await _context.Properties.FindAsync(reservation.PropertyID));
         }
 
+
         // GET: Reservations/Cart
+        private const string CartSessionKey = "Cart";
+
+        
         [Authorize]
         public IActionResult Cart()
         {
-            var cart = HttpContext.Session.GetObjectFromJson<List<Reservation>>("Cart") ?? new List<Reservation>();
-            return View(cart);
+            var cart = GetCart();
+            return View(cart); // Pass the cart to the view
+        }
+
+        private List<Reservation> GetCart()
+        {
+            return HttpContext.Session.GetObjectFromJson<List<Reservation>>(CartSessionKey) ?? new List<Reservation>();
+        }
+
+        // Helper method: Save the cart to the session
+        private void SaveCart(List<Reservation> cart)
+        {
+            HttpContext.Session.SetObjectAsJson(CartSessionKey, cart);
         }
 
         // POST: Reservations/Checkout
