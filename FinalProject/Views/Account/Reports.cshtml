@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Property> 
+﻿@model IEnumerable<Property>
 
 @{
     ViewData["Title"] = "Your Properties - Host Dashboard";
 
     // Calculate the top property dynamically by the number of reservations
-    var topProperty = Model.OrderByDescending(p => p.Reservations?.Count).FirstOrDefault();
+    var topProperty = Model.OrderByDescending(p => p.Reservations?.Count ?? 0).FirstOrDefault();
 }
 
 <h2 class="mb-4">Host Dashboard</h2>
@@ -35,7 +35,6 @@ else
             <th>Property</th>
             <th>Total Reservations</th>
             <th>Actions</th>
-            <th>Unavailable Dates</th>
             <th>Disable Property</th>
         </tr>
     </thead>
@@ -44,11 +43,21 @@ else
         {
             <tr>
                 <td>@property.PropertyName</td>
-                <td>@property.Reservations?.Count </td>
-               
+                <td>@property.Reservations?.Count</td>
                 <td>
                     <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Property" asp-route-id="@property.PropertyID">View</a>
                     <a class="btn btn-warning btn-sm" asp-action="Edit" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
+                </td>
+                <td>
+                    <form asp-action="ToggleStatus" asp-controller="Property" method="post" class="d-inline">
+                        <input type="hidden" name="propertyId" value="@property.PropertyID" />
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="propertystatus"
+                                   value="true" @(property.PropertyStatus ? "checked" : "")
+                                   onchange="this.form.submit()" />
+                            <label class="form-check-label">@((property.PropertyStatus ? "Active" : "Disabled"))</label>
+                        </div>
+                    </form>
                 </td>
             </tr>
         }

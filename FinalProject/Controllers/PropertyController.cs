@@ -371,5 +371,19 @@ namespace FinalProject.Controllers
             }
             return View(property);
         }
+
+        [HttpPost]
+        public IActionResult ToggleStatus(int propertyId)
+        {
+            var property = _context.Properties.FirstOrDefault(p => p.PropertyID == propertyId);
+            if (property != null)
+            {
+                property.PropertyStatus = !property.PropertyStatus; // Toggle the value
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Reports", "Account");
+        }
+
+
     }
 }
