@@ -64,8 +64,7 @@
                     <h5 class="card-title">Book this property</h5>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <form asp-controller="Reservation" asp-action="Create" method="get">
-                            <input type="hidden" name="id" value="@Model.PropertyID" />
+                        <form asp-controller="Reservation" asp-action="Create" asp-route-id="@Model.PropertyID" method="get">
                             <button type="submit" class="btn btn-primary w-100">Reserve Now</button>
                         </form>
                     }
@@ -110,4 +109,5 @@
             <p>No reviews yet</p>
         }
     </div>
+    <a asp-controller = "Home" asp-action="Index">Back to home</a>
 </div>

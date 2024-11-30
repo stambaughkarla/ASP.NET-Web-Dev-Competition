@@ -6,31 +6,32 @@
 
 <div class="container-fluid p-0">
     <!-- Sticky Search Header -->
-    <div class="sticky-top bg-white shadow-sm py-3">
+    <div class="sticky-top bg-white py-3">
         <div class="container">
+            <h2 class="h4 mb-3">Search Properties</h2>
             <form asp-controller="Property" asp-action="Search" method="get">
                 <div class="row g-3">
                     <div class="col-md-3">
                         <div class="form-floating">
-                            <input type="text" name="location" class="form-control rounded-pill" id="location" placeholder="Where to?" />
+                            <input type="text" name="location" class="form-control rounded-pill" id="location" placeholder="Where to?" value="@Context.Request.Query["location"]" />
                             <label for="location">Where to?</label>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-floating">
-                            <input type="date" name="checkIn" class="form-control rounded-pill" id="checkIn" />
+                            <input type="date" name="checkIn" class="form-control rounded-pill" id="checkIn" value="@Context.Request.Query["checkIn"]" />
                             <label for="checkIn">Check-in</label>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-floating">
-                            <input type="date" name="checkOut" class="form-control rounded-pill" id="checkOut" />
+                            <input type="date" name="checkOut" class="form-control rounded-pill" id="checkOut" value="@Context.Request.Query["checkOut"]" />
                             <label for="checkOut">Check-out</label>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-floating">
-                            <input type="number" name="guests" class="form-control rounded-pill" id="guests" placeholder="Guests" min="1" />
+                            <input type="number" name="guests" class="form-control rounded-pill" id="guests" placeholder="Guests" min="1" value="@Context.Request.Query["guests"]" />
                             <label for="guests">Guests</label>
                         </div>
                     </div>
@@ -39,15 +40,17 @@
                             <i class="bi bi-search" style="font-size: 0.9rem;"></i>
                             <span>Search</span>
                         </button>
-                        <button type="button" class="btn btn-outline-secondary rounded-pill d-flex align-items-center justify-content-center" style="width: 42px;" title="Advanced Search">
+                        <button type="button" class="btn btn-outline-secondary rounded-pill d-flex align-items-center justify-content-center" style="width: 42px;" id="toggleFilters">
                             <i class="bi bi-sliders" style="font-size: 1rem;"></i>
                         </button>
                     </div>
                 </div>
             </form>
+            </div>
+            </div>
 
             <!-- Category Tabs -->
-            <div class="mt-4 border-bottom">
+            <div class="container mt-4 border-bottom">
                 <div class="d-flex gap-4 overflow-auto pb-2 scrollbar-hide">
                     <a asp-controller="Property"
                        asp-action="Search"
@@ -75,6 +78,64 @@
                     }
                 </div>
             </div>
+        
+
+    <!-- Advanced Search Fields -->
+    <div class="col-12" >
+        <div class="search-filters" id="advancedSearch" style="display: none;">
+            <form asp-controller="Property" asp-action="Search" method="get" class="container shadow-sm py-3">
+                <div class="container">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Price Range (per night)</label>
+                            <div class="input-group">
+                                <input type="number" name="minPrice" class="form-control"
+                                       placeholder="Min" min="0" value="@Context.Request.Query["minPrice"]" />
+                                <input type="number" name="maxPrice" class="form-control"
+                                       placeholder="Max" min="0" value="@Context.Request.Query["maxPrice"]" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Minimum Bedrooms</label>
+                            <input type="number" name="minBedrooms" class="form-control" min="1"
+                                   value="@Context.Request.Query["minBedrooms"]" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Minimum Bathrooms</label>
+                            <input type="number" name="minBathrooms" class="form-control" min="1"
+                                   value="@Context.Request.Query["minBathrooms"]" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Minimum Rating</label>
+                            <input type="number" name="minRating" class="form-control"
+                                   min="1" max="5" step="0.1" value="@Context.Request.Query["minRating"]" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Amenities</label>
+                            <div class="form-check">
+                                <input type="checkbox" name="petsAllowed" class="form-check-input" value="true"
+                                @(Context.Request.Query["petsAllowed"] == "true" ? "checked" : "") />
+                                <label class="form-check-label">Pets Allowed</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="freeParking" class="form-check-input" value="true"
+                                @(Context.Request.Query["freeParking"] == "true" ? "checked" : "") />
+                                <label class="form-check-label">Free Parking</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
+                </div>
+            </form>
+            </div>
         </div>
     </div>
 
@@ -89,7 +150,7 @@
             {
                 <div class="col">
                     <div class="card h-100 border-0 shadow-sm property-card">
-                        <img src="@property.ImageURL" class="card-img-top" alt="@property.PropertyName" />
+                        <img src="@property.ImageURL" class="card-img-top" Height="32%" alt="@property.PropertyName" />
                             <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <h5 class="card-title mb-0">@property.Street</h5>
@@ -98,10 +159,10 @@
                                     if (validReviews?.Any() == true)
                                     {
                                         var avgRating = validReviews.Average(r => r.Rating);
-                                        <div class="text-end">
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <span>@avgRating.ToString("F1")</span>
-                                        </div>
+                                                <div class="text-end">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <span>@avgRating.ToString("F1")</span>
+                                                </div>
                                     }
                                 }
                             </div>
@@ -197,5 +258,57 @@
                 checkOutInput.value = this.value;
             }
         });
+
+        // Advanced search toggle functionality
+        const toggleFilters = document.getElementById('toggleFilters');
+        const advancedSearch = document.getElementById('advancedSearch');
+        let filtersVisible = false;
+
+        toggleFilters.addEventListener('click', function () {
+            filtersVisible = !filtersVisible;
+            advancedSearch.style.display = filtersVisible ? 'block' : 'none';
+            toggleFilters.classList.toggle('active', filtersVisible);
+        });
+
+        // Check URL parameters to show/hide filters
+        window.addEventListener('load', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hasAdvancedFilters = ['minPrice', 'maxPrice', 'minBedrooms', 'minBathrooms',
+                'minRating', 'petsAllowed', 'freeParking']
+                .some(param => urlParams.has(param));
+
+            if (hasAdvancedFilters) {
+                filtersVisible = true;
+                advancedSearch.style.display = 'block';
+                toggleFilters.classList.add('active');
+            }
+        });
+
+        // Clear filters function
+        function clearFilters() {
+            const form = document.getElementById('searchForm');
+            const inputs = form.querySelectorAll('input:not([type="submit"])');
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    input.checked = false;
+                } else if (input.type !== 'button') {
+                    input.value = '';
+                }
+            });
+            form.submit();
+        }
+
+        // Prevent form submission if check-out date is before check-in date
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
+            const checkIn = new Date(checkInInput.value);
+            const checkOut = new Date(checkOutInput.value);
+
+            if (checkOut < checkIn) {
+                event.preventDefault();
+                alert('Check-out date must be after check-in date');
+                checkOutInput.value = checkInInput.value;
+            }
+        });
     </script>
 }
+     
