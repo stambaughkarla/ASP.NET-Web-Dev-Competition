@@ -25,30 +25,108 @@
                 <div class="col-md-6">
                     <label class="form-label">Check-in Date</label>
                     <input type="date" name="CheckIn" class="form-control" required
-                           min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                           min="@DateTime.Now.ToString("yyyy-MM-dd")" 
+                           id="checkInDate"
+                           value="@Context.Request.Query["checkInDate"]"   />
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Check-out Date</label>
-                    <input type="date" name="CheckOut" class="form-control" required />
+                    <input type="date" name="CheckOut" class="form-control" required
+                           id="checkOutDate"
+                           value="@Context.Request.Query["checkOutDate"]" />
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Number of Guests</label>
                     <input type="number" name="NumOfGuests" class="form-control" required
-                           min="1" max="@Model.GuestsAllowed" />
-                </div>
-
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                    <a asp-controller="Properties" asp-action="Details" asp-route-id="@Model.PropertyID"
-                       class="btn btn-secondary">Cancel</a>
+                           min="1" max="@Model.GuestsAllowed" 
+                           id="numOfGuests"
+                           value="@Context.Request.Query["numOfGuests"]" />
                 </div>
             </form>
         </div>
 
-        <div class="col-md-4">
-            <div class="card sticky-top" style="top: 20px;">
-                <div class="card-body">
-                    <h5 class="card-title">Price Details</h5>
-                    <ul class="list-unstyled">
+                <!-- Display price details -->
+                <div class="col-md-4">
+                    <div class="card sticky-top" style="top: 20px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Price Details</h5>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <strong>Average Cost Per Night:</strong> <span id="costPerNightDisplay"></span>
+                                </li>
+                                <li>
+                                    <strong>Number of Nights:</strong> <span id="numNightsDisplay"></span>
+                                </li>
+                                <li>
+                                    <strong>Cleaning Fee:</strong> <span id="cleaningFeeDisplay"></span>
+                                </li>
+                                <li>
+                                    <strong>Tax:</strong> <span id="taxDisplay"></span>
+                                </li>
+                                <li>
+                                    <strong>Total Amount:</strong> <span id="totalAmountDisplay"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    <a asp-controller="Property" asp-action="Details" asp-route-id="@Model.PropertyID"
+                       class="btn btn-secondary">Cancel</a>
+                </div>
+         
+    </div>
+</div>
+
+        @section Scripts {
+            <script>
+                weekdayPrice = @Model.WeekdayPrice; // Assuming weekday price is in the model
+                weekendPrice = @Model.WeekendPrice; // Assuming weekend price is in the model
+                cleaningFee = @Model.CleaningFee; // Adjust as needed
+                const taxRate = 0.07; // Tax rate (e.g., 10%)
+
+                document.getElementById('checkInDate').addEventListener('change', updatePriceDetails);
+                document.getElementById('checkOutDate').addEventListener('change', updatePriceDetails);
+
+                function updatePriceDetails() {
+                    const checkInDate = new Date(document.getElementById('checkInDate').value);
+                    const checkOutDate = new Date(document.getElementById('checkOutDate').value);
+
+                    if (checkInDate && checkOutDate && checkOutDate > checkInDate) {
+                        let numNights = Math.floor((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+                        let totalPrice = 0;
+
+                        for (let i = 0; i < numNights; i++) {
+                            let currentDate = new Date(checkInDate);
+                            currentDate.setDate(checkInDate.getDate() + i);
+                    if (currentDate.getDay() === 4 || currentDate.getDay() === 5 || currentDate.getDay() === 6) { // Sunday (0) or Saturday (6)
+                                totalPrice += weekendPrice;
+                            } else {
+                                totalPrice += weekdayPrice;
+                            }
+                        }
+
+                        const tax = totalPrice * taxRate;
+                        const totalAmount = totalPrice + tax + cleaningFee;
+
+                        // Display values
+                        document.getElementById('costPerNightDisplay').textContent = `$${(totalPrice / numNights).toFixed(2)}`;
+                        document.getElementById('numNightsDisplay').textContent = numNights;
+                        document.getElementById('cleaningFeeDisplay').textContent = `$${cleaningFee.toFixed(2)}`;
+                        document.getElementById('taxDisplay').textContent = `$${tax.toFixed(2)}`;
+                        document.getElementById('totalAmountDisplay').textContent = `$${totalAmount.toFixed(2)}`;
+                    } else {
+                        // Reset displayed values if dates are not valid
+                        document.getElementById('costPerNightDisplay').textContent = '';
+                        document.getElementById('numNightsDisplay').textContent = '';
+                        document.getElementById('cleaningFeeDisplay').textContent = '';
+                        document.getElementById('taxDisplay').textContent = '';
+                        document.getElementById('totalAmountDisplay').textContent = '';
+                    }
+                }
+            </script>
+        }
