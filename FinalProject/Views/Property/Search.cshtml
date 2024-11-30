@@ -142,12 +142,12 @@
         <p class="text-muted">Showing @ViewBag.FilteredCount of @ViewBag.TotalCount Properties</p>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         @foreach (var property in Model)
         {
             <div class="col">
                 <div class="card h-100 shadow-sm">
-                    <img src="@property.ImageURL" class="card-img-top" alt="@property.PropertyName" />
+                    <img src="@property.ImageURL" class="card-img-top" Height="32%" alt="@property.PropertyName" />
                     <div class="card-body">
                         <h5 class="card-title">@property.PropertyName</h5>
                         <p class="card-text">
