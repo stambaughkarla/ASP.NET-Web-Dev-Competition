@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JeksEnterprises\\Source\\Repos\\Group-25\\FinalProject\\FinalProject.csproj": {}
+    "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JeksEnterprises\\Source\\Repos\\Group-25\\FinalProject\\FinalProject.csproj": {
+    "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JeksEnterprises\\Source\\Repos\\Group-25\\FinalProject\\FinalProject.csproj",
+        "projectUniqueName": "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj",
         "projectName": "FinalProject",
-        "projectPath": "C:\\Users\\JeksEnterprises\\Source\\Repos\\Group-25\\FinalProject\\FinalProject.csproj",
+        "projectPath": "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj",
         "packagesPath": "C:\\Users\\JeksEnterprises\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JeksEnterprises\\Source\\Repos\\Group-25\\FinalProject\\obj\\",
+        "outputPath": "C:\\mis333k\\final\\FinalProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\JeksEnterprises\\AppData\\Roaming\\NuGet\\NuGet.Config",
