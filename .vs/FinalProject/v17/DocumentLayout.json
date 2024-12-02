@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\mis333k\\final\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\seed\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\seed\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -88,21 +83,8 @@
         },
         {
           "DockedHeight": 606,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Seed\\Index.cshtml",
-              "RelativeDocumentMoniker": "FinalProject\\Views\\Seed\\Index.cshtml",
-              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Seed\\Index.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\Seed\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-02T03:00:49.495Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:22:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
