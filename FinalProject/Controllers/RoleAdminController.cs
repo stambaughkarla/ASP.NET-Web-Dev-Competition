@@ -380,7 +380,7 @@ namespace FinalProject.Controllers
 
                 if (validReviews.Any())
                 {
-                    return Math.Round(validReviews.Average(r => r.Rating), 1);
+                    return Math.Round((decimal)validReviews.Average(r => r.Rating), 1);
                 }
             }
 
