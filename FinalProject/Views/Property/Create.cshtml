@@ -29,10 +29,19 @@
     </div>
    
     <div class="form-group">
-        <label asp-for="Category"></label>
-        <input asp-for="Category" class="form-control" />
-        <span asp-validation-for="Category" class="text-danger"></span>
+        <label asp-for="Category.CategoryName"></label>
+        <select asp-for="Category.CategoryName" class="form-control" asp-items="ViewBag.CategorySelectList">
+            <option value="">-- Select a Category --</option>
+        </select>
+        <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
     </div>
+
+
+    <input type="hidden" asp-for="Host.Id" value="@ViewBag.Host" />
+    <input type="hidden" asp-for="Host.Address" value="@ViewBag.Host" />
+    <input type="hidden" asp-for="Host.LastName" value="@ViewBag.Host" />
+    <input type="hidden" asp-for="Host.FirstName" value="@ViewBag.Host" />
+
     <div class="form-group">
         <label asp-for="Bedrooms"></label>
         <input asp-for="Bedrooms" type="number" class="form-control" />
@@ -62,6 +71,11 @@
         <label asp-for="WeekendPrice"></label>
         <input asp-for="WeekendPrice" type="number" class="form-control" step="0.01" />
         <span asp-validation-for="WeekendPrice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GuestsAllowed"></label>
+        <input asp-for="GuestsAllowed" type="number" class="form-control" />
+        <span asp-validation-for="GuestsAllowed" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Create Property</button>

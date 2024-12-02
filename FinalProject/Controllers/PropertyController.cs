@@ -2,8 +2,10 @@
 using FinalProject.Models;
 using FinalProject.Utilities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -15,10 +17,13 @@ namespace FinalProject.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public PropertyController(AppDbContext context)
+        public PropertyController(AppDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
+
 
         // GET: /Property/
         public async Task<IActionResult> Index()
@@ -279,6 +284,21 @@ namespace FinalProject.Controllers
         }
 
 
+        private MultiSelectList GetCategorySelectList(List<int> selectedCategoryIDs)
+        {
+            // Retrieve all categories from the database
+            List<Category> allCategories = _context.Categories.ToList();
+
+            // Create and return the MultiSelectList
+            return new MultiSelectList(
+                allCategories.OrderBy(c => c.CategoryName),  // Replace with the correct property
+                "CategoryID",
+                "CategoryName",
+                selectedCategoryIDs
+            );
+        }
+
+
 
 
         // GET: Property/Categories
@@ -290,6 +310,8 @@ namespace FinalProject.Controllers
                 .ToListAsync();
             return View(categories);
         }
+
+        
 
         // POST: Property/CreateCategory
         [Authorize(Roles = "Admin")]
@@ -343,6 +365,27 @@ namespace FinalProject.Controllers
         // GET: Property/Create
         public IActionResult Create()
         {
+
+            // Ensure user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            // Get the current user
+            var currentUser = _userManager.GetUserAsync(User).Result;
+            if (currentUser == null)
+            {
+                // Handle unauthenticated user, e.g., redirect to login page
+                return RedirectToAction("Login", "Account"); // Or another appropriate action
+            }
+            if (currentUser != null)
+            {
+                ViewBag.Host = currentUser;  // Pass Host's ID to the View
+                
+            }
+            // Pass selected category IDs (if any) to ViewBag
+            var selectedIDs = new List<int>(); // No initial selection
+            ViewBag.CategorySelectList = new SelectList(_context.Categories, "CategoryID", "CategoryName", selectedIDs);
             return View();
         }
 
@@ -351,25 +394,38 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Property property)
         {
+            // Ensure user is authenticated
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (ModelState.IsValid)
             {
-                // Get the current host's ID
-                var currentUser = _userManager.GetUserAsync(User).Result;
+                // Ensure current user is retrieved correctly
+                var currentUser = await _userManager.GetUserAsync(User);
                 if (currentUser == null) return Unauthorized();
 
-                property.Host.Id = currentUser.Id;
+                property.Host = currentUser;  // Set the current user as Host
 
-                // Assign PropertyID
-                property.PropertyID = _context.Properties.Any()
-                    ? _context.Properties.Max(p => p.PropertyID) + 1
-                    : 3001;
+               
 
-                // Save property to the database
+                // Save the property to the database
                 _context.Properties.Add(property);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index"); // Redirect as needed
+                return RedirectToAction("Index");
             }
-            return View(property);
+
+            // If validation fails, pass the list again
+            ViewBag.CategorySelectList = new SelectList(_context.Categories, "CategoryID", "CategoryName", property.Category?.CategoryID);
+            return BadRequest(ModelState); // Redisplay the form with validation errors
+        }
+
+
+
+
+        private async Task<AppUser> GetCurrentUser()
+        {
+            return await _userManager.GetUserAsync(HttpContext.User);
         }
 
         [HttpPost]
