@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "E:\\Github\\Group-25\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\report\\hostreport.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\report\\hostreport.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\controllers\\roleadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\roleadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\report\\adminreport.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\report\\adminreport.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\models\\viewmodels\\reportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\viewmodels\\reportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +22,48 @@
       "DocumentGroups": [
         {
           "DockedHeight": 239,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RoleAdminController.cs",
-              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Controllers\\RoleAdminController.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Controllers\\RoleAdminController.cs",
-              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Controllers\\RoleAdminController.cs",
-              "RelativeToolTip": "FinalProject\\Controllers\\RoleAdminController.cs",
-              "ViewState": "AgIAACQBAAAAAAAAAAAIwCQBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T03:49:50.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HostDashboard.cshtml",
-              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "AdminReport.cshtml",
+              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Views\\Report\\AdminReport.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Report\\AdminReport.cshtml",
+              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Report\\AdminReport.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Report\\AdminReport.cshtml",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-02T03:42:49.707Z",
+              "WhenOpened": "2024-12-02T03:25:59.725Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "FinalProject\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAGAAAAAAAAAA==",
+              "Title": "HostReport.cshtml",
+              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Views\\Report\\HostReport.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Report\\HostReport.cshtml",
+              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Report\\HostReport.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Report\\HostReport.cshtml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAwEAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-02T03:28:43.694Z",
+              "WhenOpened": "2024-12-02T03:26:02.816Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReportViewModel.cs",
+              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Models\\ViewModels\\ReportViewModel.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\ViewModels\\ReportViewModel.cs",
+              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Models\\ViewModels\\ReportViewModel.cs",
+              "RelativeToolTip": "FinalProject\\Models\\ViewModels\\ReportViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T03:26:09.38Z",
+              "IsPinned": true,
               "EditorCaption": ""
             }
           ]

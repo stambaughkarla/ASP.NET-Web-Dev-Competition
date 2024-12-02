@@ -24,12 +24,12 @@
                         <li class="nav-item">
                             <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
                         </li>
-                         @if (!User.IsInRole("Host"))
-                         {
+                        @if (!User.IsInRole("Host") && !User.IsInRole("Admin"))
+                        {
                             <li class="nav-item">
                                 <a asp-controller="Account" asp-action="HostInfo" class="nav-link">BevoBnB Your Home</a>
                             </li>
-                         }
+                        }
 
                         @if (User.Identity.IsAuthenticated)
                         {
