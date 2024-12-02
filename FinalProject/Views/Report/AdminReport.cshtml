@@ -47,3 +47,20 @@
         </div>
     </div>
 </div>
+
+<div class="mb-3">
+    @if (Model.IsAllTime)
+    {
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            Showing all-time statistics. Use the date filters above to view specific time periods.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            Showing statistics from @Model.StartDate?.ToString("MMM d, yyyy") to @Model.EndDate?.ToString("MMM d, yyyy")
+        </div>
+    }
+</div>

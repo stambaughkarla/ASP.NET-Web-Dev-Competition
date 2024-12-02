@@ -28,6 +28,9 @@ namespace FinalProject.Models
         public decimal TotalRevenue { get; set; }
         public int TotalCompletedReservations { get; set; }
 
+        public bool IsAllTime { get; set; }
+
+
         // Host-specific Properties
         public decimal TotalStayRevenue { get; set; }
         public decimal TotalCleaningFees { get; set; }
@@ -42,5 +45,6 @@ namespace FinalProject.Models
         {
             PropertyDetails = new List<PropertyReportDetail>();
         }
+
     }
 }
