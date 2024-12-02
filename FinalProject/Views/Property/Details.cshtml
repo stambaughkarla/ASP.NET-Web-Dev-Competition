@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = Model.PropertyName;
-    var validReviews = Model.Reviews?.Where(r => !r.DisputeStatus);
+    var validReviews = Model.Reviews?.Where(r => r.DisputeStatus != DisputeStatus.ValidDispute);
     var averageRating = validReviews?.Any() == true ? validReviews.Average(r => r.Rating) : 0;
 }
 

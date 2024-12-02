@@ -172,7 +172,7 @@ namespace FinalProject.Controllers
             {
                 query = query.Where(p =>
                     p.Reviews.Any() &&
-                    p.Reviews.Where(r => !r.DisputeStatus)
+                    p.Reviews.Where(r => r.DisputeStatus != DisputeStatus.ValidDispute)
                              .Average(r => (decimal)r.Rating) >= minRating.Value);
             }
 

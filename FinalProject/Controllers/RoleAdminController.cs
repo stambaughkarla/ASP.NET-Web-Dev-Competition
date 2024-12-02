@@ -304,7 +304,7 @@ namespace FinalProject.Controllers
 
             // Quick summary stats
             ViewBag.PendingProperties = await _context.Properties.CountAsync(p => !p.PropertyStatus);  // false = unapproved
-            ViewBag.DisputedReviews = await _context.Reviews.CountAsync(r => r.DisputeStatus);  // true = disputed
+            ViewBag.DisputedReviews = await _context.Reviews.CountAsync(r => r.DisputeStatus == DisputeStatus.Disputed); 
 
             // Get current month's stats using existing report logic
             var firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
@@ -329,5 +329,65 @@ namespace FinalProject.Controllers
 
             return View();
         }
+
+
+        // GET: RoleAdmin/DisputedReviews
+        public async Task<IActionResult> DisputedReviews()
+        {
+            var disputedReviews = await _context.Reviews
+                .Include(r => r.Property)
+                .Include(r => r.Customer)
+                .Where(r => r.DisputeStatus == DisputeStatus.Disputed)
+                .ToListAsync();
+
+            return View(disputedReviews);
+        }
+
+        // POST: RoleAdmin/ResolveDispute
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResolveDispute(int reviewId, bool acceptDispute)
+        {
+            var review = await _context.Reviews
+                .Include(r => r.Property)
+                .FirstOrDefaultAsync(r => r.ReviewID == reviewId);
+
+            if (review == null)
+            {
+                return NotFound();
+            }
+
+            review.DisputeStatus = acceptDispute ?
+                DisputeStatus.ValidDispute :
+                DisputeStatus.InvalidDispute;
+
+            await _context.SaveChangesAsync();
+            TempData["SuccessMessage"] = $"Dispute has been {(acceptDispute ? "accepted" : "rejected")} successfully.";
+            return RedirectToAction(nameof(DisputedReviews));
+        }
+
+        private async Task<decimal> CalculatePropertyRating(int propertyId)
+        {
+            var property = await _context.Properties
+                .Include(p => p.Reviews)
+                .FirstOrDefaultAsync(p => p.PropertyID == propertyId);
+
+            if (property != null && property.Reviews.Any())
+            {
+                var validReviews = property.Reviews
+                    .Where(r => r.DisputeStatus != DisputeStatus.ValidDispute)
+                    .ToList();
+
+                if (validReviews.Any())
+                {
+                    return Math.Round((decimal)validReviews.Average(r => r.Rating), 1);
+                }
+            }
+
+            return 0;
+        }
+
+
     }
+
 }
