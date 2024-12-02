@@ -27,7 +27,8 @@ namespace FinalProject.Controllers
             var reviews = await _context.Reviews
                 .Include(r => r.Customer)
                 .Include(r => r.Property)
-                .Where(r => r.PropertyID == propertyId && !r.DisputeStatus)
+                .Where(r => r.PropertyID == propertyId &&
+                           r.DisputeStatus != DisputeStatus.ValidDispute)
                 .ToListAsync();
 
             return View(reviews);
@@ -76,7 +77,7 @@ namespace FinalProject.Controllers
             if (ModelState.IsValid)
             {
                 review.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                review.DisputeStatus = false;
+                review.DisputeStatus = DisputeStatus.NoDispute;
                 _context.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Properties", new { id = review.PropertyID });
@@ -124,7 +125,7 @@ namespace FinalProject.Controllers
                 var existingReview = await _context.Reviews.FindAsync(id);
                 existingReview.Rating = review.Rating;
                 existingReview.ReviewText = review.ReviewText;
-                existingReview.DisputeStatus = false;
+                existingReview.DisputeStatus = DisputeStatus.NoDispute;
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Properties", new { id = existingReview.PropertyID });
@@ -153,7 +154,8 @@ namespace FinalProject.Controllers
                 return Forbid();
             }
 
-            review.DisputeStatus = true;
+            // Change the status to Disputed when a host disputes it
+            review.DisputeStatus = DisputeStatus.Disputed;
             review.HostComments = disputeDescription;
             await _context.SaveChangesAsync();
 

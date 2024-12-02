@@ -3,6 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
+    public enum DisputeStatus
+    {
+        NoDispute,
+        Disputed,
+        ValidDispute,
+        InvalidDispute
+    }
+
     public class Review
     {
         // Primary key
@@ -29,6 +37,6 @@ namespace FinalProject.Models
 
         // Dispute Status with required validation
         [Required]
-        public bool DisputeStatus { get; set; }
+        public DisputeStatus DisputeStatus { get; set; }
     }
 }

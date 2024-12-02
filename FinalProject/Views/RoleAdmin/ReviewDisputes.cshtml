@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FinalProject.Models.Review>
+
+@{
+    ViewData["Title"] = "Disputed Reviews";
+}
+
+<div class="container">
+    <h2>Disputed Reviews</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Customer</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Host Comments</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var review in Model)
+                {
+                    <tr>
+                        <td>
+                            @review.Property.Street<br />
+                            @review.Property.City, @review.Property.State @review.Property.Zip
+                        </td>
+                        <td>@review.Customer.Email</td>
+                        <td>@review.Rating / 5</td>
+                        <td>@review.ReviewText</td>
+                        <td>@review.HostComments</td>
+                        <td>
+                            <form asp-action="ResolveDispute" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="reviewId" value="@review.ReviewID" />
+                                <div class="btn-group-vertical">
+                                    <button type="submit" name="acceptDispute" value="true"
+                                            class="btn btn-success mb-1">
+                                        <i class="bi bi-check-circle"></i> Accept
+                                    </button>
+                                    <button type="submit" name="acceptDispute" value="false"
+                                            class="btn btn-danger">
+                                        <i class="bi bi-x-circle"></i> Reject
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No disputed reviews found.
+        </div>
+    }
+</div>

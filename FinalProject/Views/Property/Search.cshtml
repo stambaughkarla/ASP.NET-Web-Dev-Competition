@@ -155,7 +155,7 @@
                             <br />
                             <span class="badge bg-secondary">@property.Category.CategoryName</span>
                             @{
-                                var validReviews = property.Reviews?.Where(r => !r.DisputeStatus);
+                                var validReviews = property.Reviews?.Where(r => r.DisputeStatus != DisputeStatus.ValidDispute);
                                 if (validReviews?.Any() == true)
                                 {
                                     var avgRating = validReviews.Average(r => r.Rating);

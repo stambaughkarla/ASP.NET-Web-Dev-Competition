@@ -155,7 +155,7 @@
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <h5 class="card-title mb-0">@property.Street</h5>
                                 @{
-                                    var validReviews = property.Reviews?.Where(r => !r.DisputeStatus);
+                                    var validReviews = property.Reviews?.Where(r => r.DisputeStatus != DisputeStatus.ValidDispute);
                                     if (validReviews?.Any() == true)
                                     {
                                         var avgRating = validReviews.Average(r => r.Rating);
