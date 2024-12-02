@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zw6lTWH/Abib0B0ugs+MoO/NuuEhmqfGToZ64jWKmBk=",
+  "Hash": "cAlGKllry5Ie5RspoNBAvx+sLmcEWHddc61Cqz+kShQ=",
   "Source": "FinalProject",
   "BasePath": "_content/FinalProject",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Data\\SeedingDataBevoBnB.xlsx"
+    },
+    {
+      "Identity": "C:\\mis333k\\final\\FinalProject\\wwwroot\\images\\bevo.png",
+      "SourceId": "FinalProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\mis333k\\final\\FinalProject\\wwwroot\\",
+      "BasePath": "_content/FinalProject",
+      "RelativePath": "images/bevo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\bevo.png"
     },
     {
       "Identity": "C:\\mis333k\\final\\FinalProject\\wwwroot\\images\\HostInfo\\destinationHome.jpg",

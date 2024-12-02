@@ -412,7 +412,7 @@ namespace FinalProject.Controllers
                 // Save the property to the database
                 _context.Properties.Add(property);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("HostDashboard", "Account");
             }
 
             // If validation fails, pass the list again
