@@ -202,70 +202,76 @@
 
 @section Scripts {
     <script>
-        // Set minimum date for check-in to today
-        const checkInInput = document.getElementById('checkIn');
-        const checkOutInput = document.getElementById('checkOut');
-        const today = new Date().toISOString().split('T')[0];
-        
-        checkInInput.min = today;
-        
-        // Update check-out minimum date when check-in is selected
-        checkInInput.addEventListener('change', function() {
-            checkOutInput.min = this.value;
-            if (checkOutInput.value && checkOutInput.value < this.value) {
-                checkOutInput.value = this.value;
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkInInput = document.getElementById('checkIn');
+            const checkOutInput = document.getElementById('checkOut');
+            const searchForm = document.getElementById('searchForm');
+            const toggleFilters = document.getElementById('toggleFilters');
+            const advancedSearch = document.getElementById('advancedSearch');
+
+            if (checkInInput && checkOutInput) {
+                const today = new Date().toISOString().split('T')[0];
+                checkInInput.min = today;
+
+                checkInInput.addEventListener('change', function () {
+                    checkOutInput.min = this.value;
+                    if (checkOutInput.value && checkOutInput.value < this.value) {
+                        checkOutInput.value = this.value;
+                    }
+                });
             }
-        });
 
-        // Advanced search toggle functionality
-        const toggleFilters = document.getElementById('toggleFilters');
-        const advancedSearch = document.getElementById('advancedSearch');
-        let filtersVisible = false;
-
-        toggleFilters.addEventListener('click', function() {
-            filtersVisible = !filtersVisible;
-            advancedSearch.style.display = filtersVisible ? 'block' : 'none';
-            toggleFilters.classList.toggle('active', filtersVisible);
-        });
-
-        // Check URL parameters to show/hide filters
-        window.addEventListener('load', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const hasAdvancedFilters = ['minPrice', 'maxPrice', 'minBedrooms', 'minBathrooms', 
-                                      'minRating', 'petsAllowed', 'freeParking']
-                                     .some(param => urlParams.has(param));
-            
-            if (hasAdvancedFilters) {
-                filtersVisible = true;
-                advancedSearch.style.display = 'block';
-                toggleFilters.classList.add('active');
+            if (toggleFilters && advancedSearch) {
+                let filtersVisible = false;
+                toggleFilters.addEventListener('click', function () {
+                    filtersVisible = !filtersVisible;
+                    advancedSearch.style.display = filtersVisible ? 'block' : 'none';
+                    toggleFilters.classList.toggle('active', filtersVisible);
+                });
             }
-        });
 
-        // Clear filters function
-        function clearFilters() {
-            const form = document.getElementById('searchForm');
-            const inputs = form.querySelectorAll('input:not([type="submit"])');
-            inputs.forEach(input => {
-                if (input.type === 'checkbox') {
-                    input.checked = false;
-                } else if (input.type !== 'button') {
-                    input.value = '';
+            if (searchForm) {
+                searchForm.addEventListener('submit', function (event) {
+                    if (checkInInput && checkOutInput) {
+                        const checkIn = new Date(checkInInput.value);
+                        const checkOut = new Date(checkOutInput.value);
+
+                        if (checkOut < checkIn) {
+                            event.preventDefault();
+                            alert('Check-out date must be after check-in date');
+                            checkOutInput.value = checkInInput.value;
+                        }
+                    }
+                });
+            }
+
+            window.addEventListener('load', function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const hasAdvancedFilters = ['minPrice', 'maxPrice', 'minBedrooms', 'minBathrooms',
+                    'minRating', 'petsAllowed', 'freeParking']
+                    .some(param => urlParams.has(param));
+
+                if (hasAdvancedFilters && toggleFilters && advancedSearch) {
+                    filtersVisible = true;
+                    advancedSearch.style.display = 'block';
+                    toggleFilters.classList.add('active');
                 }
             });
-            form.submit();
-        }
-
-        // Prevent form submission if check-out date is before check-in date
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            const checkIn = new Date(checkInInput.value);
-            const checkOut = new Date(checkOutInput.value);
-            
-            if (checkOut < checkIn) {
-                event.preventDefault();
-                alert('Check-out date must be after check-in date');
-                checkOutInput.value = checkInInput.value;
-            }
         });
+
+        function clearFilters() {
+            const form = document.getElementById('searchForm');
+            if (form) {
+                const inputs = form.querySelectorAll('input:not([type="submit"])');
+                inputs.forEach(input => {
+                    if (input.type === 'checkbox') {
+                        input.checked = false;
+                    } else if (input.type !== 'button') {
+                        input.value = '';
+                    }
+                });
+                form.submit();
+            }
+        }
     </script>
 }
