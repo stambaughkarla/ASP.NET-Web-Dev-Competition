@@ -284,21 +284,7 @@ namespace FinalProject.Controllers
         }
 
 
-        private MultiSelectList GetCategorySelectList(List<int> selectedCategoryIDs)
-        {
-            // Retrieve all categories from the database
-            List<Category> allCategories = _context.Categories.ToList();
-
-            // Create and return the MultiSelectList
-            return new MultiSelectList(
-                allCategories.OrderBy(c => c.CategoryName),  // Replace with the correct property
-                "CategoryID",
-                "CategoryName",
-                selectedCategoryIDs
-            );
-        }
-
-
+        
 
 
         // GET: Property/Categories
@@ -383,9 +369,9 @@ namespace FinalProject.Controllers
                 ViewBag.Host = currentUser;  // Pass Host's ID to the View
                 
             }
-            // Pass selected category IDs (if any) to ViewBag
-            var selectedIDs = new List<int>(); // No initial selection
-            ViewBag.CategorySelectList = new SelectList(_context.Categories, "CategoryID", "CategoryName", selectedIDs);
+
+            ViewBag.CategorySelectList = new SelectList(_context.Categories, "CategoryID", "CategoryName");
+
             return View();
         }
 
@@ -407,16 +393,18 @@ namespace FinalProject.Controllers
 
                 property.Host = currentUser;  // Set the current user as Host
 
-               
 
-                // Save the property to the database
+                property.Category = _context.Categories.Find(property.CategoryID);
+
+                // Add the property to the database context
                 _context.Properties.Add(property);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction("HostDashboard", "Account");
             }
 
             // If validation fails, pass the list again
-            ViewBag.CategorySelectList = new SelectList(_context.Categories, "CategoryID", "CategoryName", property.Category?.CategoryID);
+            ViewBag.CategorySelectList = new SelectList(_context.Categories, "CategoryID", "CategoryName");
+
             return BadRequest(ModelState); // Redisplay the form with validation errors
         }
 

@@ -99,8 +99,9 @@ namespace FinalProject.Models
         // Navigational Properties
         // These establish relationships between the Property and other entities:
 
-        // Many-to-One: Each property belongs to one category
-        public Category Category { get; set; }
+        [ForeignKey("Category")]
+        public int CategoryID { get; set; }  // Foreign key to Category
+        public Category? Category { get; set; }
 
         // Many-to-One: Each property is owned by one host
         public AppUser Host { get; set; }
