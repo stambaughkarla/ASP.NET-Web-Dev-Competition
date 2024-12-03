@@ -116,21 +116,40 @@
                 </div>
             </div>
         </div>
+
+        <!-- Reservations Card -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-warning bg-opacity-10 p-3 rounded-3 me-3">
+                            <i class="bi bi-journal-check text-warning fs-4"></i>
+                        </div>
+                        <h5 class="card-title mb-0">Manage Reservations</h5>
+                    </div>
+                    <p class="card-text text-muted">Create and manage customer reservations</p>
+                    <a asp-action="ManageReservations" class="btn btn-outline-warning">
+                        <i class="bi bi-arrow-right"></i> Manage Reservations
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @section Styles {
-    <style>
-        .text-purple { color: #6f42c1; }
-        .btn-outline-purple {
-            color: #6f42c1;
-            border-color: #6f42c1;
-        }
-        .btn-outline-purple:hover {
-            color: #fff;
-            background-color: #6f42c1;
-            border-color: #6f42c1;
-        }
-        .bg-purple { background-color: #6f42c1; }
-    </style>
+<style>
+    .text-purple { color: #6f42c1 !important; }
+    .btn-outline-purple {
+        color: #6f42c1;
+        border-color: #6f42c1;
+    }
+    .btn-outline-purple:hover {
+        color: #fff;
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+    }
+    .bg-purple { background-color: #6f42c1; }
+</style>
+
 }

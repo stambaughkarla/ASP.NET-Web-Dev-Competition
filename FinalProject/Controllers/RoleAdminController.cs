@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using FinalProject.Models;
 using FinalProject.DAL;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FinalProject.Controllers
 {
@@ -13,6 +14,8 @@ namespace FinalProject.Controllers
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ReservationController _reservationController;
+
 
         public RoleAdminController(AppDbContext context,
                                  UserManager<AppUser> userManager,
@@ -21,6 +24,8 @@ namespace FinalProject.Controllers
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _reservationController = new ReservationController(context);
+
         }
 
 
@@ -386,6 +391,123 @@ namespace FinalProject.Controllers
 
             return 0;
         }
+
+        // GET: RoleAdmin/ManageReservations
+        public async Task<IActionResult> ManageReservations()
+        {
+            var reservations = await _context.Reservations
+                .Include(r => r.Property)
+                .Include(r => r.Customer)
+                .OrderByDescending(r => r.CheckIn)
+                .ToListAsync();
+
+            // Populate customer dropdown with proper value - ensure it matches UserId
+            ViewBag.Customers = new SelectList(
+                await _userManager.Users
+                    .Where(u => !u.Email.EndsWith("@bevobnb.com"))
+                    .Select(u => new
+                    {
+                        Id = u.Id,  // This should match CustomerID in Reservation
+                        Text = $"{u.Email} ({u.FirstName} {u.LastName})"
+                    })
+                    .ToListAsync(),
+                "Id",
+                "Text"
+            );
+
+            // Populate property dropdown
+            ViewBag.Properties = new SelectList(
+                await _context.Properties
+                    .Where(p => p.PropertyStatus)
+                    .Select(p => new
+                    {
+                        Id = p.PropertyID,  // This should match PropertyID in Reservation
+                        Text = $"{p.Street}, {p.City}"
+                    })
+                    .ToListAsync(),
+                "Id",
+                "Text"
+            );
+
+            return View(reservations);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateReservation([Bind("CustomerID,PropertyID,CheckIn,CheckOut,NumOfGuests")] Reservation reservation)
+        {
+            // Explicitly check if CustomerID and PropertyID were received
+            if (string.IsNullOrEmpty(reservation.CustomerID) || reservation.PropertyID == 0)
+            {
+                TempData["ErrorMessage"] = "Must select both a customer and property.";
+                return RedirectToAction(nameof(ManageReservations));
+            }
+
+            // Get property details
+            var property = await _context.Properties.FindAsync(reservation.PropertyID);
+            if (property == null)
+            {
+                TempData["ErrorMessage"] = "Selected property not found.";
+                return RedirectToAction(nameof(ManageReservations));
+            }
+
+            // Set the basic reservation details
+            reservation.WeekdayPrice = property.WeekdayPrice;
+            reservation.WeekendPrice = property.WeekendPrice;
+            reservation.CleaningFee = property.CleaningFee;
+            reservation.DiscountRate = 0m; // Default to no discount
+            reservation.ReservationStatus = true;
+
+            // Get next confirmation number
+            int lastConfirmationNumber = await _context.Reservations
+                .MaxAsync(r => (int?)r.ConfirmationNumber) ?? 21900;
+            reservation.ConfirmationNumber = lastConfirmationNumber + 1;
+
+            try
+            {
+                _context.Reservations.Add(reservation);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"Reservation #{reservation.ConfirmationNumber} created successfully.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Failed to create reservation.";
+            }
+
+            return RedirectToAction(nameof(ManageReservations));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelReservation(int id)
+        {
+            var reservation = await _context.Reservations.FindAsync(id);
+            if (reservation == null)
+            {
+                TempData["ErrorMessage"] = "Reservation not found.";
+                return RedirectToAction(nameof(ManageReservations));
+            }
+
+            if (reservation.CheckIn <= DateTime.Now.AddDays(1))
+            {
+                TempData["ErrorMessage"] = "Cannot cancel reservations within 24 hours of check-in.";
+                return RedirectToAction(nameof(ManageReservations));
+            }
+
+            try
+            {
+                reservation.ReservationStatus = false;
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Reservation cancelled successfully.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Failed to cancel reservation.";
+            }
+
+            return RedirectToAction(nameof(ManageReservations));
+        }
+
 
 
     }
