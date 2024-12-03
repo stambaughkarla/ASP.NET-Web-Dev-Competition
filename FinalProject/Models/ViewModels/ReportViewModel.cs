@@ -4,16 +4,6 @@ using System.Collections.Generic;
 
 namespace FinalProject.Models
 {
-    public class PropertyReportDetail
-    {
-        public int PropertyID { get; set; }
-        public string PropertyAddress { get; set; }
-        public decimal StayRevenue { get; set; }
-        public decimal CleaningFees { get; set; }
-        public decimal TotalRevenue { get; set; }
-        public int CompletedReservations { get; set; }
-    }
-
     public class ReportViewModel
     {
         [Display(Name = "Start Date")]
@@ -26,10 +16,7 @@ namespace FinalProject.Models
 
         // Common Properties
         public decimal TotalRevenue { get; set; }
-        public int TotalCompletedReservations { get; set; }
-
-        public bool IsAllTime { get; set; }
-
+        public int TotalCompletedReservations { get; set; }  // Changed from TotalReservations
 
         // Host-specific Properties
         public decimal TotalStayRevenue { get; set; }
@@ -45,6 +32,15 @@ namespace FinalProject.Models
         {
             PropertyDetails = new List<PropertyReportDetail>();
         }
+    }
 
+    public class PropertyReportDetail
+    {
+        public int PropertyID { get; set; }
+        public string PropertyAddress { get; set; }  // Changed from PropertyName
+        public decimal StayRevenue { get; set; }
+        public decimal CleaningFees { get; set; }
+        public decimal TotalRevenue { get; set; }
+        public int CompletedReservations { get; set; }
     }
 }
