@@ -459,14 +459,16 @@ namespace FinalProject.Controllers
                 reservation.WeekendPrice = property.WeekendPrice;
                 reservation.CleaningFee = property.CleaningFee;
 
-                // Check if property has discount and convert to non-nullable decimal
-                if (nights >= property.MinNightsForDiscount && property.DiscountRate.HasValue)
+                // Use existing model calculations
+                if (property.MinNightsForDiscount.HasValue &&
+                    property.DiscountRate.HasValue &&
+                    (reservation.CheckOut - reservation.CheckIn).Days >= property.MinNightsForDiscount)
                 {
-                    reservation.DiscountRate = property.DiscountRate.Value / 100m; // Convert percentage to decimal
+                    reservation.DiscountRate = property.DiscountRate.Value / 100m;
                 }
                 else
                 {
-                    reservation.DiscountRate = 0m; // No discount
+                    reservation.DiscountRate = 0m;
                 }
 
                 // Generate sequential confirmation number
