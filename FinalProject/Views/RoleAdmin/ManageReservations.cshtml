@@ -1,0 +1,142 @@
+﻿@model IEnumerable<FinalProject.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Manage Reservations";
+}
+
+<div class="container">
+    <h2>Manage Customer Reservations</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Create New Reservation</h5>
+            <form asp-action="CreateReservation" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select name="CustomerID" class="form-control" asp-items="ViewBag.Customers" required>
+                                <option value="">Select a Customer</option>
+                            </select>
+                            <label>Customer</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select name="PropertyID" class="form-control" asp-items="ViewBag.Properties" required>
+                                <option value="">Select a Property</option>
+                            </select>
+                            <label>Property</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                            <input type="date" name="CheckIn" class="form-control" required min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            <label>Check-in Date</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                            <input type="date" name="CheckOut" class="form-control" required />
+                            <label>Check-out Date</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-floating mb-3">
+                            <input type="number" name="NumOfGuests" class="form-control" required min="1" />
+                            <label>Number of Guests</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Confirmation #</th>
+                    <th>Customer</th>
+                    <th>Property</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reservation in Model)
+
+                {
+                    <tr>
+                        <td>@reservation.ConfirmationNumber</td>
+                        <td>@reservation.Customer.Email</td>
+                        <td>@reservation.Property.Street, @reservation.Property.City</td>
+                        <td>@reservation.CheckIn.ToShortDateString()</td>
+                        <td>@reservation.CheckOut.ToShortDateString()</td>
+                        <td>
+                            @if (reservation.ReservationStatus)
+
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+
+                            else
+
+                            {
+                                <span class="badge bg-danger">Cancelled</span>
+                            }
+                        </td>
+                        <td>
+                            @if (reservation.ReservationStatus && reservation.CheckIn > DateTime.Now.AddDays(1))
+
+                            {
+                                <form asp-action="CancelReservation" method="post" style="display: inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@reservation.ReservationID" />
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to cancel this reservation?')">
+                                        Cancel
+                                    </button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (!Model.Any())
+
+    {
+        <div class="alert alert-info">
+            No reservations found.
+        </div>
+    }
+</div>
