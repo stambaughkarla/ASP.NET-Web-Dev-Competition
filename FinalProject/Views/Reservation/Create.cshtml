@@ -1,5 +1,5 @@
 ﻿@* Views/Reservation/Create.cshtml *@
-@model Property
+@model Reservation
 
 @{
     ViewData["Title"] = "Create Reservation";
@@ -11,16 +11,16 @@
             <h2>Book Your Stay</h2>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">@Model.PropertyName</h5>
+                    <h5 class="card-title">@Model.Property.PropertyName</h5>
                     <p class="card-text">
-                        <i class="bi bi-geo-alt"></i> @Model.City, @Model.State<br />
-                        <i class="bi bi-people"></i> Up to @Model.GuestsAllowed guests
+                        <i class="bi bi-geo-alt"></i> @Model.Property.City, @Model.Property.State<br />
+                        <i class="bi bi-people"></i> Up to @Model.Property.GuestsAllowed guests
                     </p>
                 </div>
             </div>
 
             <form asp-action="Create" class="row g-3">
-                <input type="hidden" name="PropertyID" value="@Model.PropertyID" />
+                <input type="hidden" name="PropertyID" value="@Model.Property.PropertyID" />
 
                 <div class="col-md-6">
                     <label class="form-label">Check-in Date</label>
@@ -40,9 +40,13 @@
                     <label class="form-label">Number of Guests</label>
                     <input type="number" name="NumOfGuests" id="numOfGuests"
                            value="@Context.Request.Query["numOfGuests"]" class="form-control" required
-                           min="1" max="@Model.GuestsAllowed"
-                            />
+                           min="1" max="@Model.Property.GuestsAllowed" />
                 </div>
+                
+                <input type="hidden" name="Customer" value="@ViewBag.Customer" />
+                <input type="hidden" name="CustomerID" value="@ViewBag.Customer" />
+                
+
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                     <a asp-controller="Property" asp-action="Details" asp-route-id="@Model.PropertyID"
@@ -82,9 +86,9 @@
 
 @section Scripts {
     <script>
-        weekdayPrice = @Model.WeekdayPrice; // Assuming weekday price is in the model
-        weekendPrice = @Model.WeekendPrice; // Assuming weekend price is in the model
-        cleaningFee = @Model.CleaningFee; // Adjust as needed
+        weekdayPrice = @Model.Property.WeekdayPrice; // Assuming weekday price is in the model
+        weekendPrice = @Model.Property.WeekendPrice; // Assuming weekend price is in the model
+        cleaningFee = @Model.Property.CleaningFee; // Adjust as needed
         const taxRate = 0.07; // Tax rate (e.g., 10%)
 
         document.getElementById('checkInDate').addEventListener('change', updatePriceDetails);

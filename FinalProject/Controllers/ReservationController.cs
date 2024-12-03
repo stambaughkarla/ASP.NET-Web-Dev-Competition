@@ -5,18 +5,25 @@ using FinalProject.Models;
 using FinalProject.DAL;
 using System.Security.Claims;
 using System.Text.Json;
+using Microsoft.AspNetCore.Identity;
 
 namespace FinalProject.Controllers
 {
     public class ReservationController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private const Int32 FIRST_CONFIRMATION_NUMBER = 21901;
 
-        public ReservationController(AppDbContext context)
+        public ReservationController(AppDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
+
+
 
         // GET: Reservations - Show user's reservations
         [Authorize]
@@ -38,13 +45,26 @@ namespace FinalProject.Controllers
         [Authorize]
         public async Task<IActionResult> Create(int? id)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (currentUser != null)
+            {
+                ViewBag.Customer = currentUser;  // Pass Host's ID to the View
+
+            }
+
             if (id == null)
             {
                 return NotFound();
             }
 
+            // Fetch the property details
             var property = await _context.Properties
-                .Include(p => p.Category)
+                .Include(p => p.Category) // Include related data if necessary
                 .FirstOrDefaultAsync(p => p.PropertyID == id);
 
             if (property == null)
@@ -52,7 +72,15 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            return View(property);
+            // Create a Reservation model to pass to the view
+            var reservation = new Reservation
+            {
+                PropertyID = property.PropertyID, // Populate PropertyID
+                Property = property,             // Include property details
+                CustomerID = currentUser.Id      // Set the current user as the customer
+            };
+
+            return View(reservation);
         }
 
         // POST: Reservations/Create
@@ -61,9 +89,13 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PropertyID,CheckIn,CheckOut,NumOfGuests")] Reservation reservation)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                // Get property details
+                return BadRequest(ModelState);
+            }
+                if (ModelState.IsValid)
+            {
+                // Fetch the property details
                 var property = await _context.Properties
                     .FirstOrDefaultAsync(p => p.PropertyID == reservation.PropertyID);
 
@@ -72,39 +104,59 @@ namespace FinalProject.Controllers
                     return NotFound();
                 }
 
-                // Check for date conflicts
+                // Check for conflicts
                 bool hasConflict = await _context.Reservations
                     .AnyAsync(r => r.PropertyID == reservation.PropertyID &&
-                                 r.ReservationStatus &&
-                                 ((reservation.CheckIn >= r.CheckIn && reservation.CheckIn < r.CheckOut) ||
-                                  (reservation.CheckOut > r.CheckIn && reservation.CheckOut <= r.CheckOut) ||
-                                  (reservation.CheckIn <= r.CheckIn && reservation.CheckOut >= r.CheckOut)));
+                                   r.ReservationStatus &&
+                                   ((reservation.CheckIn >= r.CheckIn && reservation.CheckIn < r.CheckOut) ||
+                                    (reservation.CheckOut > r.CheckIn && reservation.CheckOut <= r.CheckOut) ||
+                                    (reservation.CheckIn <= r.CheckIn && reservation.CheckOut >= r.CheckOut)));
 
                 if (hasConflict)
                 {
-                    ModelState.AddModelError("", "Selected dates conflict with existing reservation.");
-                    return View(property);
+                    ModelState.AddModelError("", "Selected dates conflict with an existing reservation.");
+                    reservation.Property = property; // Populate the property before returning the view
+                    return View(reservation);
                 }
 
-                // Set prices from property
+                // Assign current user details
+                var currentUser = await _userManager.GetUserAsync(User);
+                if (currentUser == null) return Unauthorized();
+
+                //reservation.Customer = currentUser;
+                reservation.Customer = currentUser;
+                reservation.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                reservation.Property = property;
+
                 reservation.WeekdayPrice = property.WeekdayPrice;
                 reservation.WeekendPrice = property.WeekendPrice;
                 reservation.CleaningFee = property.CleaningFee;
-                reservation.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                //reservation.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
 
                 // Set confirmation number
                 int lastConfirmationNumber = await _context.Reservations
-                    .MaxAsync(r => (int?)r.ConfirmationNumber) ?? FIRST_CONFIRMATION_NUMBER - 1;
+                    .MaxAsync(r => (int?)r.ConfirmationNumber) ?? 9999;
                 reservation.ConfirmationNumber = lastConfirmationNumber + 1;
 
-                // Add to cart (session) instead of direct booking
+                // Add to cart (session)
                 var cart = HttpContext.Session.GetObjectFromJson<List<Reservation>>("Cart") ?? new List<Reservation>();
                 cart.Add(reservation);
                 HttpContext.Session.SetObjectAsJson("Cart", cart);
 
                 return RedirectToAction(nameof(Cart));
             }
-            return View(await _context.Properties.FindAsync(reservation.PropertyID));
+
+            // Fetch the property details to populate the view again
+            reservation.Property = await _context.Properties
+                .FirstOrDefaultAsync(p => p.PropertyID == reservation.PropertyID);
+
+            if (reservation.Property == null)
+            {
+                return NotFound();
+            }
+
+            return View(reservation);
         }
 
 
