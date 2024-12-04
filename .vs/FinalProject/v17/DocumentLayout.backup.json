@@ -3,12 +3,36 @@
   "WorkspaceRootPath": "C:\\mis333k\\final\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\viewmodels\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\viewmodels\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\hostsummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\hostsummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\property\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -43,10 +67,6 @@
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\category\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -71,10 +91,6 @@
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\roleadmin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\roleadmin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\property\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\property\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -89,12 +105,12 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 42,
+          "DockedHeight": 19,
           "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\HomeController.cs",
@@ -107,13 +123,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "PropertyController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\PropertyController.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\PropertyController.cs",
-              "ViewState": "AgIAAHIBAAAAAAAAAAAgwI0BAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAG0BAAAAAAAAAAAswIwBAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-02T05:33:36.166Z",
               "IsPinned": true,
@@ -121,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "AppUser.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\AppUser.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\AppUser.cs",
@@ -177,8 +193,28 @@
               "Name": "ST:14:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
+              "Title": "Review.cs",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
+              "RelativeToolTip": "FinalProject\\Models\\Review.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T04:58:30.357Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Program.cs",
               "RelativeDocumentMoniker": "FinalProject\\Program.cs",
@@ -190,35 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Dashboard.cshtml",
-              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleAdmin\\Dashboard.cshtml",
-              "RelativeDocumentMoniker": "FinalProject\\Views\\RoleAdmin\\Dashboard.cshtml",
-              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\RoleAdmin\\Dashboard.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\RoleAdmin\\Dashboard.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-02T04:23:35.33Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Review.cs",
-              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
-              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Review.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T04:58:30.357Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleAdmin\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleAdmin\\ResetPassword.cshtml",
@@ -230,7 +238,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Home\\Index.cshtml",
@@ -243,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "Search.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Search.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Search.cshtml",
@@ -255,20 +263,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "RoleAdminController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\RoleAdminController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\RoleAdminController.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Controllers\\RoleAdminController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\RoleAdminController.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAswE4AAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAswFMAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-02T05:06:23.529Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "ReviewController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\ReviewController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\ReviewController.cs",
@@ -281,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Index.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Index.cshtml",
@@ -293,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Details.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Details.cshtml",
@@ -302,33 +310,115 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-02T05:28:39.837Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         },
         {
-          "DockedHeight": 121,
-          "SelectedChildIndex": 0,
+          "DockedHeight": 144,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HostSummary.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostSummary.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostSummary.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostSummary.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Account\\HostSummary.cshtml",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAEwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T07:18:54.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountViewModels.cs",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "RelativeToolTip": "FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAUwDUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T02:06:34.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HostDashboard.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-02T17:31:16.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "FinalProject\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAEMBAAAAAAAAAAAiwD0BAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T01:31:10.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Reports.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\Reports.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\Reports.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\Reports.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Account\\Reports.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T01:33:42.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\Reservation.cs",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Reservation.cs",
+              "RelativeToolTip": "FinalProject\\Models\\Reservation.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAUwFQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T02:17:10.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:28:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:26:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Property.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Property.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Property.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Property.cs",
               "RelativeToolTip": "FinalProject\\Models\\Property.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAAwGoAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAAwHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-02T21:47:58.855Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "ReservationController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\ReservationController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\ReservationController.cs",
@@ -342,32 +432,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Categories.cshtml",
-              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Categories.cshtml",
-              "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Categories.cshtml",
-              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Categories.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\Property\\Categories.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-02T21:16:44.316Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Create.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Create.cshtml",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Create.cshtml",
               "RelativeToolTip": "FinalProject\\Views\\Property\\Create.cshtml",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAYwBAAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-02T21:13:21.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Category\\Edit.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Category\\Edit.cshtml",
@@ -384,7 +461,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
+              "Title": "Categories.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Categories.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Categories.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Categories.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Property\\Categories.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-02T21:16:44.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Category\\Create.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Category\\Create.cshtml",
@@ -396,25 +486,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "HostDashboard.cshtml",
-              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-02T17:31:16.886Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:22:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:26:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             },
             {
               "$type": "Bookmark",
