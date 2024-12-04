@@ -1,0 +1,126 @@
+﻿@model IEnumerable<HostSummaryViewModel>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Report Summary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <style>
+        /* idk where to put this we can move it later */
+        .container-centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .rounded-input {
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+
+        .custom-btn {
+            background-color: #FF6A00;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 30px;
+            border: none;
+        }
+
+            .custom-btn:hover {
+                background-color: #E65C00;
+            }
+
+        .table-container {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .no-data {
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    
+    <div class="container mt-5 container-centered">
+        <h1 class="text-center header-accent mb-4">Host Report Summary</h1>
+
+        <!-- Filterss -->
+        @using (Html.BeginForm("HostSummary", "Account", FormMethod.Post, new { @class = "w-50 mx-auto" }))
+
+        {
+            <div class="mb-3">
+                <input type="date" name="startDate" class="form-control rounded-input" placeholder="Start Date" />
+            </div>
+            <div class="mb-3">
+                <input type="date" name="endDate" class="form-control rounded-input" placeholder="End Date" />
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn custom-btn">
+                    Generate Report
+                </button>
+            </div>
+        }
+
+        <!-- Report Table -->
+        <div class="table-container">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Total Stay Revenue</th>
+                        <th>Total Cleaning Fees</th>
+                        <th>Combined Revenue</th>
+                        <th>Total Reservations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+
+                    {
+
+                        foreach (var item in Model)
+
+                        {
+                            <tr>
+                                <td>@item.PropertyName</td>
+                                <td>@item.TotalStayRevenue.ToString("C")</td>
+                                <td>@item.TotalCleaningFees.ToString("C")</td>
+                                <td>@item.CombinedRevenue.ToString("C")</td>
+                                <td>@item.TotalReservations</td>
+                            </tr>
+                        }
+
+                    }
+
+                    else
+
+                    {
+                        <tr>
+                            <td colspan="5" class="no-data">
+                                No data available for the selected date range.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

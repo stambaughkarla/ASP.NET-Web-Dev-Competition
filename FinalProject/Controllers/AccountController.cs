@@ -174,6 +174,59 @@ namespace FinalProject.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult HostSummary()
+        {
+            // Return an empty model on the initial GET request
+            return View(new List<HostSummaryViewModel>());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> HostSummary(DateTime? startDate, DateTime? endDate)
+        {
+            // Ensure the user is authenticated
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            // Retrieve properties owned by the host, including reservations
+            var properties = await _context.Properties
+                .Where(p => p.Host.Id == userId)
+                .Include(p => p.Reservations)
+                .ToListAsync();
+
+            // Filter reservations based on the date range if provided
+            if (startDate.HasValue && endDate.HasValue)
+            {
+                properties = properties
+                    .Where(p => p.Reservations.Any(r => r.CheckIn <= endDate && r.CheckOut >= startDate))
+                    .ToList();
+
+            }
+
+            // Generate the report data
+            var reportData = properties.Select(p => new HostSummaryViewModel
+            {
+                PropertyName = p.PropertyName,
+               
+                TotalStayRevenue = p.Reservations
+                    .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+                    .Sum(r => r.CalculateBaseTotal() *.90m), // Host gets 90% revenue
+                TotalCleaningFees = p.Reservations
+                    .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+                    .Sum(r => r.CleaningFee),
+                CombinedRevenue = p.Reservations
+                    .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+                    .Sum(r => (r.CalculateBaseTotal() *.90m) + r.CleaningFee),
+                TotalReservations = p.Reservations
+                    .Count(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+            }).ToList();
+
+            // Return the view with the generated data
+            return View(reportData);
+        }
 
 
         public async Task<IActionResult> Index()
@@ -254,7 +307,7 @@ namespace FinalProject.Controllers
 
             var user = await _userManager.GetUserAsync(User);
 
-            // Verify current password
+            // Verify  pass
             var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, model.CurrentPassword, false);
             if (!passwordCheck.Succeeded)
             {
@@ -262,7 +315,7 @@ namespace FinalProject.Controllers
                 return View(model);
             }
 
-            // Update user properties
+            // Update user
             user.Address = model.Address;
             user.PhoneNumber = model.PhoneNumber;
             user.Birthday = model.Birthday;
