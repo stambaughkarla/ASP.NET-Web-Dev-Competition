@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinalProject.Models
 {
@@ -12,15 +11,9 @@ namespace FinalProject.Models
 
         // Foreign keys and navigation properties
         public Int32 PropertyID { get; set; }
-
-        [Required]
         public Property Property { get; set; }
 
-        [ForeignKey("Category")]
-        [Required]
         public String CustomerID { get; set; }
-
-        [Required]
         public AppUser Customer { get; set; }
 
         [Required]
