@@ -47,6 +47,17 @@ namespace FinalProject.Models
         public string Role { get; set; }
     }
 
+    public class HostSummaryViewModel
+    {
+        public string PropertyName { get; set; } = "Unknown Property";
+
+        
+        public decimal TotalStayRevenue { get; set; } = 0;
+        public decimal TotalCleaningFees { get; set; } = 0;
+        public decimal CombinedRevenue { get; set; } = 0;
+        public int TotalReservations { get; set; } = 0;
+    }
+
     public class LoginViewModel
     {
         [Required]
