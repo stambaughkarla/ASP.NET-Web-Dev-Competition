@@ -44,7 +44,7 @@ namespace FinalProject.Controllers
                     LastName = user.LastName,
                     PhoneNumber = user.PhoneNumber,
                     Address = user.Address,
-                    HireStatus = user.HireStatus ?? false,
+                    HireStatus = user.HireStatus ?? true,
                     Roles = (await _userManager.GetRolesAsync(user)).ToList()
                 };
                 users.Add(model);
