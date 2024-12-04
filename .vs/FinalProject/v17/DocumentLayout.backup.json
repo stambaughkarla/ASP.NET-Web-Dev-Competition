@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dat Ly\\AppData\\Local\\Temp\\.vsdbgsrc\\198bf116f7049a2e3e03f29a33fa5180331819d2741ad4116d0479027e6bf834\\PhysicalFileProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\users\\dat ly\\desktop\\github\\group-25\\finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -110,7 +113,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\HomeController.cs",
@@ -122,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PropertyController.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\PropertyController.cs",
@@ -135,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AppUser.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Models\\AppUser.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\AppUser.cs",
@@ -147,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Models\\Review.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
@@ -159,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Program.cs",
               "RelativeDocumentMoniker": "FinalProject\\Program.cs",
@@ -171,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\RoleAdmin\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleAdmin\\ResetPassword.cshtml",
@@ -183,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Home\\Index.cshtml",
@@ -195,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Search.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Property\\Search.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Search.cshtml",
@@ -207,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RoleAdminController.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\RoleAdminController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\RoleAdminController.cs",
@@ -219,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "ReviewController.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\ReviewController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\ReviewController.cs",
@@ -231,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Property\\Index.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Index.cshtml",
@@ -243,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Property\\Details.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Details.cshtml",
@@ -257,11 +260,24 @@
         },
         {
           "DockedHeight": 144,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "PhysicalFileProvider.cs",
+              "DocumentMoniker": "C:\\Users\\Dat Ly\\AppData\\Local\\Temp\\.vsdbgsrc\\198bf116f7049a2e3e03f29a33fa5180331819d2741ad4116d0479027e6bf834\\PhysicalFileProvider.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\198bf116f7049a2e3e03f29a33fa5180331819d2741ad4116d0479027e6bf834\\PhysicalFileProvider.cs",
+              "ToolTip": "C:\\Users\\Dat Ly\\AppData\\Local\\Temp\\.vsdbgsrc\\198bf116f7049a2e3e03f29a33fa5180331819d2741ad4116d0479027e6bf834\\PhysicalFileProvider.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\198bf116f7049a2e3e03f29a33fa5180331819d2741ad4116d0479027e6bf834\\PhysicalFileProvider.cs [Read Only]",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAiwGsAAAADAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T15:45:18.273Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "HostSummary.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Account\\HostSummary.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostSummary.cshtml",
@@ -273,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AccountViewModels.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
@@ -285,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HostDashboard.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
@@ -297,7 +313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\AccountController.cs",
@@ -310,7 +326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Reports.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Account\\Reports.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\Reports.cshtml",
@@ -322,7 +338,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Reservation.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Models\\Reservation.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Reservation.cs",
@@ -334,7 +350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Property.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Models\\Property.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Property.cs",
@@ -346,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ReservationController.cs",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\ReservationController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\ReservationController.cs",
@@ -358,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Property\\Create.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Create.cshtml",
@@ -370,7 +386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Category\\Edit.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Category\\Edit.cshtml",
@@ -382,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Categories.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Property\\Categories.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Categories.cshtml",
@@ -394,7 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Category\\Create.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Category\\Create.cshtml",
