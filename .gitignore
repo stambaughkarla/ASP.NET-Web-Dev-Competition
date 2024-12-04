@@ -1,6 +1,6 @@
 .vs/
-bin/Debug/net8.0/
-obj/Debug/net8.0/
-ref/
-refint/
-DesignTimeBuild/
+FinalProject/bin/Debug/net8.0/
+FinalProject/obj/Debug/net8.0/
+FinalProject/ref/
+FinalProject/refint/
+FinalProject/DesignTimeBuild/
