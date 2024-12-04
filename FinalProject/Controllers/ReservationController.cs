@@ -89,6 +89,11 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PropertyID,CheckIn,CheckOut,NumOfGuests")] Reservation reservation)
         {
+            // Remove the properties that are not needed for the reservation
+            ModelState.Remove("CustomerID");
+            ModelState.Remove("Property");
+            ModelState.Remove("Customer");
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
