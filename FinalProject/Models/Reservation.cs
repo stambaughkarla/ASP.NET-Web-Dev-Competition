@@ -82,7 +82,7 @@ namespace FinalProject.Models
         [Display(Name = "Total")]
         public Decimal Total => SubTotal + Tax;
 
-        private Decimal CalculateBaseTotal()
+        public Decimal CalculateBaseTotal()
         {
             int totalDays = (CheckOut - CheckIn).Days;
             int weekendDays = CountWeekendDays();
