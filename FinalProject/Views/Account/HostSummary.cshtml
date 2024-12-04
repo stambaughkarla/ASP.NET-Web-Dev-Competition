@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HostSummaryViewModel>
+
+@using (Html.BeginForm("HostSummary", "Account", FormMethod.Post))
+{
+    <label for="startDate">Start Date</label>
+    <input type="date" name="startDate" />
+
+    <label for="endDate">End Date</label>
+    <input type="date" name="endDate" />
+
+    <input type="submit" value="Generate Report" />
+}
+
+<h2>Host Report Summary</h2>
+<table>
+    <tr>
+        <th>Property Name</th>
+        <th>Total Stay Revenue</th>
+        <th>Total Cleaning Fees</th>
+        <th>Combined Revenue</th>
+        <th>Total Reservations</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.PropertyName</td>
+            <td>@item.TotalStayRevenue:C</td>
+            <td>@item.TotalCleaningFees:C</td>
+            <td>@item.CombinedRevenue:C</td>
+            <td>@item.TotalReservations</td>
+        </tr>
+    }
+</table>
