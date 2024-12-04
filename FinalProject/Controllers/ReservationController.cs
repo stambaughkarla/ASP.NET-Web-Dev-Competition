@@ -46,14 +46,11 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> Create(int? id)
         {
             var currentUser = await _userManager.GetUserAsync(User);
-            if (currentUser == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (currentUser == null) return Unauthorized();
 
             if (currentUser != null)
             {
-                ViewBag.Customer = currentUser;  // Pass Host's ID to the View
+                ViewBag.Customer = currentUser;  // Pass Customer ID to the View
 
             }
 
@@ -94,10 +91,6 @@ namespace FinalProject.Controllers
             ModelState.Remove("Property");
             ModelState.Remove("Customer");
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
                 if (ModelState.IsValid)
             {
                 // Fetch the property details
@@ -130,7 +123,7 @@ namespace FinalProject.Controllers
 
                 //reservation.Customer = currentUser;
                 reservation.Customer = currentUser;
-                reservation.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                reservation.CustomerID = currentUser.Id;
                 reservation.Property = property;
 
                 reservation.WeekdayPrice = property.WeekdayPrice;
@@ -187,6 +180,27 @@ namespace FinalProject.Controllers
             HttpContext.Session.SetObjectAsJson(CartSessionKey, cart);
         }
 
+        // POST: Reservations/DeleteFromCart
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteFromCart(int confirmationNumber)
+        {
+            // Retrieve the cart from the session
+            var cart = GetCart();
+
+            // Find the reservation with the matching confirmation number
+            var reservationToRemove = cart.FirstOrDefault(r => r.ConfirmationNumber == confirmationNumber);
+            if (reservationToRemove != null)
+            {
+                cart.Remove(reservationToRemove); // Remove the reservation from the cart
+                SaveCart(cart); // Save the updated cart back to the session
+            }
+
+            // Redirect to the Cart view
+            return RedirectToAction(nameof(Cart));
+        }
+
         // POST: Reservations/Checkout
         [HttpPost]
         [Authorize]
@@ -203,6 +217,20 @@ namespace FinalProject.Controllers
             // Final validation
             foreach (var reservation in cart)
             {
+                bool exists = await _context.Reservations
+            .AnyAsync(r => r.ConfirmationNumber == reservation.ConfirmationNumber);
+
+                if (exists)
+                {
+                    ModelState.AddModelError("",
+                        $"Reservation with Confirmation Number {reservation.ConfirmationNumber} already exists.");
+                    return RedirectToAction(nameof(Cart)); // Redirect back to cart for correction
+                }
+
+                // Attach existing entities to the context to avoid duplication
+                _context.Attach(reservation.Property);
+                _context.Attach(reservation.Customer);
+
                 reservation.ReservationStatus = true;
                 _context.Reservations.Add(reservation);
             }

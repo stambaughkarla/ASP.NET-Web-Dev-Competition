@@ -6,6 +6,8 @@
     decimal subtotal = 0;
     decimal cleaningFees = 0;
     const decimal TAX_RATE = 0.07m;
+    decimal tax = 0;
+    decimal total = 0;
 }
 
 <div class="container">
@@ -49,6 +51,8 @@
 
                                 subtotal += stayPrice;
                                 cleaningFees += reservation.CleaningFee;
+                                tax = (subtotal + cleaningFees) * TAX_RATE;
+                                total = subtotal + cleaningFees + tax;
                             }
 
                             <div class="mt-3">
@@ -62,8 +66,13 @@
                                     {
                                         <li>Discount: @reservation.Property.DiscountRate%</li>
                                     }
+                                    <li>Total: @total.ToString("C")</li>
                                 </ul>
                             </div>
+                            <form asp-action="DeleteFromCart" method="post">
+                                <input type="hidden" name="confirmationNumber" value="@reservation.ConfirmationNumber" />
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
                         </div>
                     </div>
                 }
@@ -81,11 +90,11 @@
                             <dd class="col-5 text-end">@cleaningFees.ToString("C")</dd>
 
                             <dt class="col-7">Tax (7%):</dt>
-                            <dd class="col-5 text-end">@((subtotal + cleaningFees) * TAX_RATE).ToString("C")</dd>
+                            <dd class="col-5 text-end">@tax.ToString("C")</dd>
 
                             <dt class="col-7 fw-bold">Total:</dt>
                             <dd class="col-5 text-end fw-bold">
-                                @((subtotal + cleaningFees) * (1 + TAX_RATE)).ToString("C")
+                                @total.ToString("C")
                             </dd>
                         </dl>
 
@@ -94,7 +103,7 @@
                         </form>
 
                         <div class="mt-3">
-                            <a asp-controller="Property" asp-action="Index" class="btn btn-outline-secondary w-100">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary w-100">
                                 Continue Shopping
                             </a>
                         </div>
