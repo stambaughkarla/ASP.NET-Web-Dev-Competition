@@ -2,9 +2,11 @@
 
 @{
     var totalProperties = Model.Properties.Count();
-    var totalBookings = Model.Reservations.Count();
+    var totalReservations = Model.Reservations.Count();
     var totalReviews = Model.Reviews.Count();
     var totalProfit = Model.Properties.Sum(p => p.WeekendPrice);
+    
+    
 }
 
 <div class="container my-5">
@@ -15,7 +17,7 @@
         <div class="col-md-4 mb-4 d-flex">
             <div class="card shadow-sm border-0 w-100 d-flex flex-column">
                 <div class="card-body d-flex flex-column justify-content-center">
-                    <i class="bi bi-plus-circle mb-3" style="font-size: 2rem; color: #6c757d;"></i>
+                    <i class="bi-chat-square-text" style="font-size: 2rem; color: #6c757d;"></i>
                     <h5 class="card-title">Create a New Property</h5>
                     <p class="text-muted">List new properties for your users to book.</p>
                 </div>
@@ -47,13 +49,40 @@
                 <div class="card-body d-flex flex-column justify-content-center">
                     <i class="bi bi-bar-chart mb-3" style="font-size: 2rem; color: #6c757d;"></i>
                     <h5 class="card-title">Your Reports</h5>
-                    <p class="text-muted">Total Bookings: <strong>@totalBookings</strong></p>
-                    <p class="text-muted">Total Reviews: <strong>@totalReviews</strong></p>
                     <p class="text-muted">Total Profit: <strong>@String.Format("{0:C}", totalProfit)</strong></p>
                 </div>
                 <div class="mt-auto p-3">
                     <a asp-controller="Account" asp-action="HostSummary" class="btn btn-outline-primary w-100">
+                        <i class="bi bi-gear"></i> View Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4 d-flex">
+            <div class="card shadow-sm border-0 w-100 d-flex flex-column">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <i class="bi-chat-square-text" style="font-size: 2rem; color: #6c757d;"></i>
+                    <h5 class="card-title">Manage Reviews</h5>
+                    <p class="text-muted">Total Reviews: <strong>@totalReviews</strong></p>
+                </div>
+                <div class="mt-auto p-3">
+                    <a asp-controller="Account" asp-action="Reports" class="btn btn-outline-primary w-100">
                         <i class="bi bi-gear"></i> Manage Properties
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4 d-flex">
+            <div class="card shadow-sm border-0 w-100 d-flex flex-column">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <i class="bi bi-house mb-3" style="font-size: 2rem; color: #6c757d;"></i>
+                    <h5 class="card-title">Manage Current Reservations</h5>
+                    <p class="text-muted">Total Reservations: <strong>@totalReservations</strong></p>
+                </div>
+                <div class="mt-auto p-3">
+                    <a asp-controller="Account" asp-action="HostSummary" class="btn btn-outline-primary w-100">
+                        <i class="bi bi-gear"></i> View Reports
                     </a>
                 </div>
             </div>
