@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\",
+  "WorkspaceRootPath": "E:\\Github\\Group-25\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\users\\dat ly\\desktop\\github\\group-25\\finalproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\users\\dat ly\\desktop\\github\\group-25\\finalproject\\views\\property\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\property\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\property\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\users\\dat ly\\desktop\\github\\group-25\\finalproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\users\\dat ly\\desktop\\github\\group-25\\finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -32,57 +32,64 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Controllers\\HomeController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\HomeController.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T15:44:47.896Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Search.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Property\\Search.cshtml",
+              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Views\\Property\\Search.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Search.cshtml",
-              "ToolTip": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Property\\Search.cshtml",
+              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Property\\Search.cshtml",
               "RelativeToolTip": "FinalProject\\Views\\Property\\Search.cshtml",
               "ViewState": "AgIAAL4AAAAAAAAAAAAAAMoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-04T21:17:29.523Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "PropertyController.cs",
-              "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\PropertyController.cs",
+              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\PropertyController.cs",
-              "ToolTip": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Controllers\\PropertyController.cs",
+              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\PropertyController.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAUwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T21:40:29.336Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAwwIwAAAAtAAAAAAAAAA==",
+              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Home\\Index.cshtml*",
+              "RelativeToolTip": "FinalProject\\Views\\Home\\Index.cshtml*",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAUwHYAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-04T21:47:22.968Z",
               "IsPinned": true,
               "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 116,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         }
