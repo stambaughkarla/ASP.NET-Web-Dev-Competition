@@ -22,7 +22,7 @@ namespace FinalProject.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var reservations = await _context.Reservations
                 .Include(r => r.Property)
@@ -206,6 +206,7 @@ namespace FinalProject.Controllers
 
             var reservation = await _context.Reservations
                 .Include(r => r.Property)
+                .Include(r => r.Customer)
                 .FirstOrDefaultAsync(r => r.ConfirmationNumber == id);
 
             if (reservation == null)
@@ -214,63 +215,6 @@ namespace FinalProject.Controllers
             }
 
             return View(reservation);
-        }
-
-        public async Task<(bool Success, string ErrorMessage, Reservation Reservation)> PrepareReservation(Reservation reservation, bool isAdminBooking = false)
-        {
-            if (reservation.CheckIn <= DateTime.Now)
-            {
-                return (false, "Check-in date must be in the future.", null);
-            }
-
-            if (reservation.CheckOut <= reservation.CheckIn)
-            {
-                return (false, "Check-out date must be after check-in date.", null);
-            }
-
-            var property = await _context.Properties
-                .FirstOrDefaultAsync(p => p.PropertyID == reservation.PropertyID);
-
-            if (property == null)
-            {
-                return (false, "Property not found.", null);
-            }
-
-            if (reservation.NumOfGuests > property.GuestsAllowed)
-            {
-                return (false, $"Maximum {property.GuestsAllowed} guests allowed for this property.", null);
-            }
-
-            // Check for conflicts including same-day check-in/out
-            bool hasConflict = await _context.Reservations
-                .AnyAsync(r => r.PropertyID == reservation.PropertyID &&
-                              r.ReservationStatus &&
-                              ((reservation.CheckIn >= r.CheckIn && reservation.CheckIn < r.CheckOut) ||
-                               (reservation.CheckOut > r.CheckIn && reservation.CheckOut <= r.CheckOut) ||
-                               (reservation.CheckIn <= r.CheckIn && reservation.CheckOut >= r.CheckOut)));
-
-            if (hasConflict)
-            {
-                return (false, "Selected dates conflict with an existing reservation.", null);
-            }
-
-            // Set prices from property
-            reservation.WeekdayPrice = property.WeekdayPrice;
-            reservation.WeekendPrice = property.WeekendPrice;
-            reservation.CleaningFee = property.CleaningFee;
-
-            // Set confirmation number
-            int lastConfirmationNumber = await _context.Reservations
-                .MaxAsync(r => (int?)r.ConfirmationNumber) ?? FIRST_CONFIRMATION_NUMBER - 1;
-            reservation.ConfirmationNumber = lastConfirmationNumber + 1;
-
-            // For admin bookings, directly set status
-            if (isAdminBooking)
-            {
-                reservation.ReservationStatus = true;
-            }
-
-            return (true, null, reservation);
         }
     }
 

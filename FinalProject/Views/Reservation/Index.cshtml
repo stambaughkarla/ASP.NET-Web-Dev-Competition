@@ -12,18 +12,18 @@
         <div class="col-md-12">
             <ul class="nav nav-tabs mb-4">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#upcoming">Upcoming</a>
+                    <a class="nav-link @(Context.Request.Query["tab"] == "upcoming" || !Context.Request.Query.ContainsKey("tab") ? "active" : "")" href="?tab=upcoming">Upcoming</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#past">Past</a>
+                    <a class="nav-link @(Context.Request.Query["tab"] == "past" ? "active" : "")" href="?tab=past">Past</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#cancelled">Cancelled</a>
+                    <a class="nav-link @(Context.Request.Query["tab"] == "cancelled" ? "active" : "")" href="?tab=cancelled">Cancelled</a>
                 </li>
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="upcoming">
+                <div class="tab-pane fade @(Context.Request.Query["tab"] == "upcoming" || !Context.Request.Query.ContainsKey("tab") ? "show active" : "")" id="upcoming">
                     @foreach (var reservation in Model.Where(r => r.CheckIn >= DateTime.Now && r.ReservationStatus))
                     {
                         <div class="card mb-3">
@@ -51,7 +51,7 @@
                     }
                 </div>
 
-                <div class="tab-pane fade" id="past">
+                <div class="tab-pane fade @(Context.Request.Query["tab"] == "past" ? "show active" : "")" id="past">
                     @foreach (var reservation in Model.Where(r => r.CheckOut < DateTime.Now && r.ReservationStatus))
                     {
                         <div class="card mb-3">
@@ -79,7 +79,7 @@
                     }
                 </div>
 
-                <div class="tab-pane fade" id="cancelled">
+                <div class="tab-pane fade @(Context.Request.Query["tab"] == "cancelled" ? "show active" : "")" id="cancelled">
                     @foreach (var reservation in Model.Where(r => !r.ReservationStatus))
                     {
                         <div class="card mb-3">
