@@ -3,8 +3,23 @@
   "WorkspaceRootPath": "C:\\mis333k\\final\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\hostdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\rolehost\\viewreviews.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\rolehost\\viewreviews.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\rolehostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\rolehostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\JeksEnterprises\\OneDrive\\APP\\final\\FinalProject\\Controllers\\ReservationController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,7 +28,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 83,
+          "DockedHeight": 81,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -23,22 +38,9 @@
           ]
         },
         {
-          "DockedHeight": 450,
-          "SelectedChildIndex": 0,
+          "DockedHeight": 452,
+          "SelectedChildIndex": 16,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Review.cs",
-              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
-              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
-              "RelativeToolTip": "FinalProject\\Models\\Review.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T04:28:01.326Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:25:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
@@ -104,12 +106,68 @@
               "Name": "ST:14:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:28:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HostDashboard.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Account\\HostDashboard.cshtml",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAEUAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-06T05:15:56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ViewReviews.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-06T05:02:52.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoleHostController.cs",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\RoleHostController.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Controllers\\RoleHostController.cs",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Controllers\\RoleHostController.cs",
+              "RelativeToolTip": "FinalProject\\Controllers\\RoleHostController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T05:00:32.183Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:23:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Review.cs",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
+              "RelativeToolTip": "FinalProject\\Models\\Review.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA0wAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T04:28:01.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:28:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -120,8 +178,17 @@
               "Name": "ST:26:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReservationController.cs",
+              "DocumentMoniker": "C:\\Users\\JeksEnterprises\\OneDrive\\APP\\final\\FinalProject\\Controllers\\ReservationController.cs",
+              "RelativeDocumentMoniker": "..\\..\\Users\\JeksEnterprises\\OneDrive\\APP\\final\\FinalProject\\Controllers\\ReservationController.cs",
+              "ToolTip": "C:\\Users\\JeksEnterprises\\OneDrive\\APP\\final\\FinalProject\\Controllers\\ReservationController.cs",
+              "RelativeToolTip": "..\\..\\Users\\JeksEnterprises\\OneDrive\\APP\\final\\FinalProject\\Controllers\\ReservationController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T04:56:38.491Z",
+              "EditorCaption": ""
             }
           ]
         },

@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Review>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        width: 80%;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        background-color: #fff;
+    }
+
+    .message {
+        margin-top: 20px;
+        font-size: 1.2em;
+        color: #888;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .dispute-form {
+        margin-top: 10px;
+    }
+
+    textarea {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    .highlight-row {
+        background-color: #fffbcc; 
+    }
+
+    .no-dispute {
+        font-weight: bold;
+        color: #ff9900; /* ut Orange for 'No Dispute' status */
+    }
+</style>
+
+<h2>Reviews</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="message success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="message error">@TempData["ErrorMessage"]</div>
+}
+
+@if (!Model.Any())
+{
+    <div class="message">No reviews yet.</div>
+}
+else
+{
+    <table>
+        <tr>
+            <th>Rating</th>
+            <th>Review</th>
+            <th>Host Comments</th>
+            <th>Dispute Status</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var review in Model)
+        {
+            @if (!string.IsNullOrWhiteSpace(review.ReviewText))
+            {
+                <tr class="@(review.DisputeStatus == DisputeStatus.NoDispute ? "highlight-row" : "")">
+                    <td>@review.Rating</td>
+                    <td>@review.ReviewText</td>
+                    <td>@review.HostComments</td>
+                    <td class="@(review.DisputeStatus == DisputeStatus.NoDispute ? "no-dispute" : "")"> 
+                        @review.DisputeStatus
+                    </td>
+                    <td>
+                        @if (review.DisputeStatus == DisputeStatus.NoDispute)
+                        {
+                            <form action="@Url.Action("DisputeReview", "RoleHost")" method="post" class="dispute-form">
+                                <input type="hidden" name="reviewId" value="@review.ReviewID" />
+                                <textarea name="reason" placeholder="Enter dispute reason" required></textarea>
+                                <button type="submit">Dispute</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
