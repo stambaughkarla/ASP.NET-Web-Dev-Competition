@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Reservation>
+
 @{
+    ViewData["Title"] = "Manage Reservations";
 }
+
+<h2>Manage Reservations</h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">@TempData["InfoMessage"]</div>
+}
+
+<div id="reservedTable">
+    <h4>Reserved Properties</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Reservation Dates</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservation in Model)
+            {
+                <tr>
+                    <td>@reservation.Property.PropertyName</td>
+                    <td>@reservation.CheckIn.ToShortDateString() - @reservation.CheckOut.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Reservation" asp-route-id="@reservation.ReservationID">View</a>
+                        <form action="@Url.Action("CancelReservation", "RoleHost")" method="post" style="display:inline;">
+                            <input type="hidden" name="reservationId" value="@reservation.ReservationID" />
+                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure you want to cancel this reservation?')">Cancel</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

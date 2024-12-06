@@ -80,7 +80,7 @@
                     <td>@property.Reservations?.Count</td>
                     <td>
                         <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Property" asp-route-id="@property.PropertyID">View</a>
-                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
+                        <a class="btn btn-warning btn-sm" asp-action="EditProperty" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
                     </td>
                     <td>
                         <form asp-action="ToggleStatus" asp-controller="Property" method="post" class="d-inline">

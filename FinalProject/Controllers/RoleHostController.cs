@@ -1,7 +1,9 @@
 ﻿using FinalProject.DAL;
 using FinalProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Claims;
 
@@ -78,6 +80,67 @@ namespace FinalProject.Controllers
 
             return RedirectToAction("ViewReviews");
         }
+
+        public IActionResult cancelReservation(int id)
+        {
+
+            return View();
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Host")]
+        public async Task<IActionResult> ManageReservations()
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            // Retrieve all reservations for properties owned by the host
+            var reservations = await _context.Reservations
+                .Include(r => r.Property) // Ensure Property navigation property is loaded
+                .Where(r => r.Property.Host.Id == userId && r.ReservationStatus == true)
+                .ToListAsync();
+
+            if (!reservations.Any())
+            {
+                TempData["InfoMessage"] = "No reservations found for your properties.";
+            }
+
+            return View(reservations);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Host")]
+        public async Task<IActionResult> CancelReservation(int reservationId)
+        {
+            // Fetch the reservation from the database
+            var reservation = await _context.Reservations
+                .Include(r => r.Property)
+                .FirstOrDefaultAsync(r => r.ReservationID == reservationId);
+
+            if (reservation == null)
+            {
+                TempData["InfoMessage"] = "Reservation not found.";
+                return RedirectToAction("ManageReservations");
+            }
+
+            // Check for day off
+            if (DateTime.UtcNow.Date < reservation.CheckIn.AddDays(-1).Date)
+            {
+
+                reservation.ReservationStatus = false; 
+                _context.Reservations.Update(reservation);
+                await _context.SaveChangesAsync();
+
+                TempData["InfoMessage"] = "The reservation has been successfully canceled.";
+            }
+            else
+            {
+                TempData["InfoMessage"] = "It's too late to cancel this reservation.";
+            }
+
+            return RedirectToAction("ManageReservations");
+        }
+
 
 
 

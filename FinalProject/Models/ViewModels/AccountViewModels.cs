@@ -74,7 +74,18 @@ namespace FinalProject.Models
         public bool RememberMe { get; set; }
     }
 
-    
+    public class UpdatePropertyViewModel
+    {
+        public int PropertyID { get; set; }
+        public decimal WeekdayPrice { get; set; }
+        public decimal WeekendPrice { get; set; }
+        public decimal CleaningFee { get; set; }
+        public Decimal? Discount { get; set; }
+
+        public Int32? MinNights { get; set; }
+
+    }
+
 
     public class ChangePasswordViewModel
     {

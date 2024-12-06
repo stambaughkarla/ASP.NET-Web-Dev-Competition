@@ -155,7 +155,57 @@ namespace FinalProject.Controllers
         }
 
 
-        
+        [HttpGet]
+        [Authorize(Roles = "Host")]
+        public async Task<IActionResult> EditProperty(int id)
+        {
+            var property = await _context.Properties.FindAsync(id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            var model = new UpdatePropertyViewModel
+            {
+                PropertyID = property.PropertyID,
+                WeekdayPrice = property.WeekdayPrice,
+                WeekendPrice = property.WeekendPrice,
+                CleaningFee = property.CleaningFee,
+                Discount = property.DiscountRate
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Host")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProperty(UpdatePropertyViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var property = await _context.Properties.FindAsync(model.PropertyID);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            
+            property.WeekdayPrice = model.WeekdayPrice;
+            property.WeekendPrice = model.WeekendPrice;
+            property.CleaningFee = model.CleaningFee;
+            property.MinNightsForDiscount = model.MinNights;
+            property.DiscountRate = model.Discount;
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Pricing updated successfully!";
+            return RedirectToAction("Reports", "Account");
+        }
 
 
         // GET: Property/Categories
@@ -178,7 +228,7 @@ namespace FinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Check if category already exists
+                
                 if (await _context.Categories.AnyAsync(c =>
                     c.CategoryName.ToLower() == category.CategoryName.ToLower()))
                 {

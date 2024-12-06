@@ -1,0 +1,48 @@
+﻿@model UpdatePropertyViewModel
+
+@{
+    ViewData["Title"] = "Edit Pricing";
+}
+
+<h2>Edit Pricing</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<form asp-action="EditProperty" method="post">
+    <input type="hidden" asp-for="PropertyID" />
+
+    <div class="form-group">
+        <label asp-for="WeekdayPrice" class="form-label">Weekday Price</label>
+        <input asp-for="WeekdayPrice" class="form-control" type="number"  required />
+        <span asp-validation-for="WeekdayPrice" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WeekendPrice" class="form-label">Weekend Price</label>
+        <input asp-for="WeekendPrice" class="form-control" type="number"  required />
+        <span asp-validation-for="WeekendPrice" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CleaningFee" class="form-label">Cleaning Fee</label>
+        <input asp-for="CleaningFee" class="form-control" type="number"  required />
+        <span asp-validation-for="CleaningFee" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MinNights" class="form-label">Minimum Nights for Disount Below</label>
+        <input asp-for="MinNights" class="form-control" type="number"   />
+        <span asp-validation-for="MinNights" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Discount" class="form-label">Discount (decimal)</label>
+        <input asp-for="Discount" class="form-control" type="number" />
+        <span asp-validation-for="Discount" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Update Pricing</button>
+</form>

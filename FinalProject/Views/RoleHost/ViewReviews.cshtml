@@ -100,8 +100,7 @@ else
         </tr>
         @foreach (var review in Model)
         {
-            @if (!string.IsNullOrWhiteSpace(review.ReviewText))
-            {
+            
                 <tr class="@(review.DisputeStatus == DisputeStatus.NoDispute ? "highlight-row" : "")">
                     <td>@review.Rating</td>
                     <td>@review.ReviewText</td>
@@ -120,7 +119,7 @@ else
                         }
                     </td>
                 </tr>
-            }
+            
         }
     </table>
 }

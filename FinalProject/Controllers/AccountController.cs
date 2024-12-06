@@ -136,6 +136,8 @@ namespace FinalProject.Controllers
 
         public async Task<IActionResult> HostDashboard()
         {
+
+
             // Assuming `User.Identity.Name` holds the current user's identifier (email, username, etc.)
             var user = _context.Users
                 .Include(u => u.Properties)    // Eagerly load Properties
@@ -147,6 +149,30 @@ namespace FinalProject.Controllers
             {
                 return NotFound("User not found");
             }
+            // Get the property IDs owned by the host
+            var propertyIds = await _context.Properties
+                .Where(p => p.Host.Id == user.Id)
+                .Select(p => p.PropertyID)
+                .ToListAsync();
+
+            
+            var totalReservations = await _context.Reservations
+                .CountAsync(r => propertyIds.Contains(r.PropertyID));
+            
+            
+            var totalReviews = await _context.Reviews
+                .CountAsync(r => propertyIds.Contains(r.PropertyID));
+
+
+            var reservations = await _context.Reservations
+            .Where(r => propertyIds.Contains(r.PropertyID))
+            .ToListAsync(); 
+
+            var totalProfit = reservations
+                .Sum(r => (r.CalculateBaseTotal() * 0.90m) + r.CleaningFee);
+            ViewBag.totalProfit = totalProfit;
+            ViewBag.TotalReservations = totalReservations;
+            ViewBag.TotalReviews = totalReviews;
 
             return View(user);
         }
