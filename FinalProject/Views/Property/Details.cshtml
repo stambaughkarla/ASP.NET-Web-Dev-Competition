@@ -63,7 +63,7 @@
             <div class="card sticky-top" style="top: 20px;">
                 <div class="card-body">
                     <h5 class="card-title">Book this property</h5>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <form asp-controller="Reservation" asp-action="Create" asp-route-id="@Model.PropertyID" method="get">
                             <button type="submit" class="btn btn-primary w-100">Reserve Now</button>
@@ -72,7 +72,7 @@
                     else
                     {
                         <div class="alert alert-info">
-                            Please <a asp-controller="Account" asp-action="Login">log in</a> to make a reservation
+                            Please <a asp-controller="Account" asp-action="Login">log in as a Customer</a> to make a reservation
                         </div>
                     }
                 </div>

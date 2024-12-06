@@ -42,6 +42,28 @@ namespace FinalProject.Controllers
             return View(properties);
         }
 
+        // GET: /Property/Details/
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var property = await _context.Properties
+                .Include(p => p.Category)
+                .Include(p => p.Reviews)
+                    .ThenInclude(r => r.Customer)
+                .Include(p => p.Host)
+                .FirstOrDefaultAsync(p => p.PropertyID == id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            return View(property);
+        }
 
         // GET: Property/ManageProperties  
         [Authorize(Roles = "Admin")]
