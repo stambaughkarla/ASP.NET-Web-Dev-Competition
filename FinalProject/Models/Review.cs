@@ -5,10 +5,10 @@ namespace FinalProject.Models
 {
     public enum DisputeStatus
     {
-        NoDispute,
-        Disputed,
-        ValidDispute,
-        InvalidDispute
+        NoDispute = 0,
+        Disputed = 1,
+        ValidDispute =2,
+        InvalidDispute = 3
     }
 
     public class Review
