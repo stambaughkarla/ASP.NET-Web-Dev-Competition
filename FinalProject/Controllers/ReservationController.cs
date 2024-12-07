@@ -30,14 +30,14 @@ namespace FinalProject.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
 
-    if (userId == null)
-    {
-        return Unauthorized();
-    }
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
 
             var reservations = await _context.Reservations
                 .Include(r => r.Property)
-                .Where(r => r.CustomerID == userId && r.ReservationStatus == true)
+                .Where(r => r.CustomerID == userId)
                 .OrderBy(r => r.CheckIn)
                 .ToListAsync();
 

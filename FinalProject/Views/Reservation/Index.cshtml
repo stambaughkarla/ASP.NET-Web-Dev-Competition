@@ -3,6 +3,10 @@
 
 @{
     ViewData["Title"] = "My Reservations";
+
+    var upcomingReservations = Model.Where(r => r.CheckIn > DateTime.Now && r.ReservationStatus == true).ToList();
+    var pastReservations = Model.Where(r => r.CheckOut < DateTime.Now && r.ReservationStatus == true).ToList();
+    var cancelledReservations = Model.Where(r => !r.ReservationStatus).ToList();
 }
 
 <div class="container">
@@ -24,7 +28,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade @(Context.Request.Query["tab"] == "upcoming" || !Context.Request.Query.ContainsKey("tab") ? "show active" : "")" id="upcoming">
-                    @foreach (var reservation in Model.Where(r => r.CheckIn >= DateTime.Now && r.ReservationStatus))
+                    @foreach (var reservation in upcomingReservations)
                     {
                         <div class="card mb-3">
                             <div class="card-body">
@@ -52,7 +56,7 @@
                 </div>
 
                 <div class="tab-pane fade @(Context.Request.Query["tab"] == "past" ? "show active" : "")" id="past">
-                    @foreach (var reservation in Model.Where(r => r.CheckOut < DateTime.Now && r.ReservationStatus))
+                    @foreach (var reservation in pastReservations)
                     {
                         <div class="card mb-3">
                             <div class="card-body">
@@ -80,7 +84,7 @@
                 </div>
 
                 <div class="tab-pane fade @(Context.Request.Query["tab"] == "cancelled" ? "show active" : "")" id="cancelled">
-                    @foreach (var reservation in Model.Where(r => !r.ReservationStatus))
+                    @foreach (var reservation in cancelledReservations)
                     {
                         <div class="card mb-3">
                             <div class="card-body">
