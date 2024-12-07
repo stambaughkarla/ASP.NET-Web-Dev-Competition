@@ -63,7 +63,7 @@
             <div class="card sticky-top" style="top: 20px;">
                 <div class="card-body">
                     <h5 class="card-title">Book this property</h5>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
                     {
                         <form asp-controller="Reservation" asp-action="Create" asp-route-id="@Model.PropertyID" method="get">
                             <button type="submit" class="btn btn-primary w-100">Reserve Now</button>
