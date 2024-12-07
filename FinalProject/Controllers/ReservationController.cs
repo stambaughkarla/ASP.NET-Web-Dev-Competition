@@ -6,6 +6,7 @@ using FinalProject.DAL;
 using System.Security.Claims;
 using System.Text.Json;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FinalProject.Controllers
 {
@@ -74,12 +75,27 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            var reservedDates = property.Reservations
-                    .Where(r => r.CustomerID == currentUser.Id)
-                    .Select(r => new { start = r.CheckIn.ToString("yyyy-MM-dd"), end = r.CheckOut.ToString("yyyy-MM-dd") })
-                    .ToList();
+            // Fetch existing reservations for the property
+            var reservedDates = await _context.Reservations
+                .Where(r => r.PropertyID == id && r.ReservationStatus == true) // Only active reservations
+                .Select(r => new
+                {
+                    start = r.CheckIn,
+                    end = r.CheckOut
+                })
+                .ToListAsync();
+
+            // Fetch unavailability dates
+            var unavailabilityDates = await _context.Unavailabilities
+               .Where(u => u.PropertyID == id)
+               .Select(u => new
+               {
+                   date = u.Date
+               })
+               .ToListAsync();
 
             ViewBag.ReservedDates = reservedDates;
+            ViewBag.UnavailabilityDates = unavailabilityDates;
 
             // Create a Reservation model to pass to the view
             var reservation = new Reservation
@@ -88,6 +104,8 @@ namespace FinalProject.Controllers
                 Property = property,             // Include property details
                 CustomerID = currentUser.Id      // Set the current user as the customer
             };
+
+
 
             return View(reservation);
         }

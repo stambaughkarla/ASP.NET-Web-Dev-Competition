@@ -28,13 +28,14 @@
                     <input type="date" name="CheckIn" id="checkInDate"
                            value="@Context.Request.Query["checkInDate"]" class="form-control" required
                            min="@DateTime.Now.ToString("yyyy-MM-dd")" onchange="updateCheckOutMinDate()" />
+                    <span asp-validation-for="CheckIn" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Check-out Date</label>
                     <input type="date" name="CheckOut" id="checkOutDate"
                            value="@Context.Request.Query["checkOutDate"]" class="form-control" required />
-                    <span asp-validation-for="CheckIn" class="text-danger"></span>
+                    <span asp-validation-for="CheckOut" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-6">
@@ -42,7 +43,7 @@
                     <input type="number" name="NumOfGuests" id="numOfGuests"
                            value="@Context.Request.Query["numOfGuests"]" class="form-control" required
                            min="1" max="@Model.Property.GuestsAllowed" />
-                    <span asp-validation-for="CheckOut" class="text-danger"></span>
+                    
                 </div>
 
                 <input type="hidden" name="Customer" value="@ViewBag.Customer" />
@@ -52,7 +53,7 @@
 
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
-                    <a asp-controller="Property" asp-action="Details" asp-route-id="@Model.Property.PropertyID"
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@Model.Property.PropertyID"
                        class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
@@ -98,10 +99,17 @@
         document.getElementById('checkOutDate').addEventListener('change', updatePriceDetails);
 
         function updateCheckOutMinDate() {
-            var checkInDate = document.getElementById('checkInDate').value;
+            var checkInDateInput = document.getElementById('checkInDate');
             var checkOutDateInput = document.getElementById('checkOutDate');
+            var checkInDate = new Date(checkInDateInput.value);
+
             if (checkInDate) {
-                checkOutDateInput.min = checkInDate;
+                // Set the min date to the next day after the check-in date
+                var nextDay = new Date(checkInDate);
+                nextDay.setDate(checkInDate.getDate() + 1);
+
+                // Set the minimum date for the check-out date input
+                checkOutDateInput.min = nextDay.toISOString().split('T')[0]; // Format as "YYYY-MM-DD"
             }
         }
 
@@ -148,29 +156,33 @@
         }
 
 
-                const reservedDates = @Html.Raw(Json.Serialize(ViewBag.ReservedDates));
+        const reservedDates = @Html.Raw(Json.Serialize(ViewBag.ReservedDates));
+        const unavailabilityDates = @Html.Raw(Json.Serialize(ViewBag.UnavailabilityDates));
 
-                document.getElementById('checkInDate').addEventListener('change', validateReservationDates);
-                document.getElementById('checkOutDate').addEventListener('change', validateReservationDates);
+        // Combine reserved and unavailability dates for validation
+        const blockedDates = [...reservedDates, ...unavailabilityDates];
 
-                function validateReservationDates() {
-                    const checkInDate = new Date(document.getElementById('checkInDate').value);
-                    const checkOutDate = new Date(document.getElementById('checkOutDate').value);
+        document.getElementById('checkInDate').addEventListener('change', validateReservationDates);
+        document.getElementById('checkOutDate').addEventListener('change', validateReservationDates);
 
-                    if (checkInDate && checkOutDate && checkOutDate > checkInDate) {
-                        const isOverlapping = reservedDates.some(reserved => {
-                            const reservedStart = new Date(reserved.start);
-                            const reservedEnd = new Date(reserved.end);
-                            return checkInDate < reservedEnd && checkOutDate > reservedStart;
-                        });
+        function validateReservationDates() {
+            const checkInDate = new Date(document.getElementById('checkInDate').value);
+            const checkOutDate = new Date(document.getElementById('checkOutDate').value);
 
-                        if (isOverlapping) {
-                            alert("The selected dates overlap with a reservation you already made. Please choose different dates.");
-                            document.getElementById('checkInDate').value = '';
-                            document.getElementById('checkOutDate').value = '';
-                        }
-                    }
+            if (checkInDate && checkOutDate && checkOutDate > checkInDate) {
+                const isBlocked = blockedDates.some(block => {
+                    const blockStart = new Date(block.start);
+                    const blockEnd = new Date(block.end);
+                    return checkInDate < blockEnd && checkOutDate > blockStart;
+                });
+
+                if (isBlocked) {
+                    alert("The selected dates overlap with unavailable or already reserved dates. Please choose different dates.");
+                    document.getElementById('checkInDate').value = '';
+                    document.getElementById('checkOutDate').value = '';
                 }
+            }
+        }
     </script>
 }
 
