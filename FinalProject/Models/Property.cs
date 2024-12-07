@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalProject.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,7 +12,20 @@ namespace FinalProject.Models
     /// </summary>
     /// 
 
-    public class Property
+    public class Unavailability
+    {
+        public int UnavailabilityID { get; set; }
+
+        [Required]
+        public DateTime Date { get; set; }
+
+        // Foreign key and navigation property
+        public int PropertyID { get; set; }
+        public Property Property { get; set; }
+    }
+}
+
+public class Property
     {
         // Constant for generating property numbers
         private const Int32 FIRST_PROPERTY_NUMBER = 3001;
@@ -88,14 +102,19 @@ namespace FinalProject.Models
 
         // Property availability and status
         [Display(Name = "Unavailable Dates")]
-        public String? UnavailableDates { get; set; }
+        public List<Unavailability> UnavailableDates { get; set; }
 
+        // Admin Approval
         [Display(Name = "Property Status")]
         public Boolean PropertyStatus { get; set; }
 
-        //i think we will need another called adminstatus to set the property off until admin approves
+        // Status of the property
+        [Display(Name = "Active Status")]
+        public Boolean IsActive { get; set; }
 
-        public string? ImageURL {get; set;}
+    //i think we will need another called adminstatus to set the property off until admin approves
+
+    public string? ImageURL {get; set;}
 
 
         // Navigational Properties
@@ -122,10 +141,11 @@ namespace FinalProject.Models
             // Initialize lists to prevent null reference exceptions
             Reviews = new List<Review>();
             Reservations = new List<Reservation>();
-
-            // Set default property status to active
+            UnavailableDates = new List<Unavailability>();  // Initialize the new collection
             PropertyStatus = true;
+            IsActive = true;
 
-        }
+
+    }
     }
 }
