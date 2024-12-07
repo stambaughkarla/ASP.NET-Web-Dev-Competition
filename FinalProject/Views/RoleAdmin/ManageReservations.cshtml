@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<FinalProject.Models.Reservation>
+@{
+    ViewData["Title"] = "Manage Reservations";
+}
 
 <div class="container">
     <h2>Manage Reservations</h2>
@@ -19,7 +22,6 @@
         </div>
     }
 
-    <!-- Create Reservation Form -->
     <div class="card shadow-sm mb-4">
         <div class="card-header">
             <h5 class="card-title mb-0">Create New Reservation</h5>
@@ -31,60 +33,66 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select name="CustomerID" class="form-select" required>
-                                <option value="">Select a Customer</option>
+                            <input type="text" list="customerList" id="customerInput" class="form-control" required
+                                   onchange="updateCustomerSelect(this.value)" />
+                            <datalist id="customerList">
                                 @foreach (var item in ViewBag.Customers)
                                 {
-                                    <option value="@item.Value">@item.Text</option>
+                                    <option value="@item.Text" data-id="@item.Value"></option>
                                 }
-                            </select>
+                            </datalist>
+                            <input type="hidden" name="CustomerID" id="customerIDInput" required />
                             <label>Customer</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select name="PropertyID" class="form-select" required>
-                                <option value="">Select a Property</option>
-                                @foreach (var item in ViewBag.Properties)
+                            <input type="text" list="propertyList" id="propertyInput" class="form-control" required
+                                   onchange="updatePropertySelect(this.value)" />
+                            <datalist id="propertyList">
+                                @foreach (var property in ViewBag.Properties)
                                 {
-                                    <option value="@item.Value">@item.Text</option>
+                                    <option value="@property.Text" data-id="@property.Value" data-guests="@property.GuestLimit"></option>
                                 }
-                            </select>
+                            </datalist>
+                            <input type="hidden" name="PropertyID" id="propertyIDInput" required />
                             <label>Property</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-floating mb-3">
-                            <input type="date" name="CheckIn" class="form-control"
+                            <input type="date" id="checkInDate" name="CheckIn" class="form-control"
                                    required min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                             <label>Check-in Date</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-floating mb-3">
-                            <input type="date" name="CheckOut" class="form-control" required />
+                            <input type="date" id="checkOutDate" name="CheckOut" class="form-control" required />
                             <label>Check-out Date</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-floating mb-3">
-                            <input type="number" name="NumOfGuests" class="form-control" required min="1" />
+                            <input type="number" id="guestInput" name="NumOfGuests" class="form-control"
+                                   required min="1" />
                             <label>Number of Guests</label>
+                            <div id="guestLimitHelp" class="form-text text-muted"></div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary mt-2">Create Reservation</button>
+                    </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Create Reservation</button>
             </form>
         </div>
     </div>
 
-    <!-- Reservations List -->
     <div class="card shadow-sm">
-        <div class="card-header bg-light">
+        <div class="card-header">
             <h5 class="card-title mb-0">All Reservations</h5>
         </div>
         <div class="card-body">
@@ -97,6 +105,8 @@
                             <th>Property</th>
                             <th>Check In</th>
                             <th>Check Out</th>
+                            <th>Maximum Guests</th>
+                            <th>Current Guests</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -107,9 +117,11 @@
                             <tr>
                                 <td>@reservation.ConfirmationNumber</td>
                                 <td>@reservation.Customer.Email</td>
-                                <td>@reservation.Property.Street, @reservation.Property.City</td>
+                                <td>@reservation.Property.Street, @reservation.Property.City, @reservation.Property.State @reservation.Property.Zip</td>
                                 <td>@reservation.CheckIn.ToShortDateString()</td>
                                 <td>@reservation.CheckOut.ToShortDateString()</td>
+                                <td>@reservation.Property.GuestsAllowed</td>
+                                <td>@reservation.NumOfGuests</td>
                                 <td>
                                     @if (reservation.ReservationStatus)
                                     {
@@ -128,7 +140,7 @@
                                             <input type="hidden" name="id" value="@reservation.ReservationID" />
                                             <button type="submit" class="btn btn-danger btn-sm"
                                                     onclick="return confirm('Are you sure you want to cancel this reservation?')">
-                                                <i class="bi bi-x-circle"></i> Cancel
+                                                Cancel
                                             </button>
                                         </form>
                                     }
@@ -138,39 +150,51 @@
                     </tbody>
                 </table>
             </div>
-
-            @if (!Model.Any())
-            {
-                <div class="alert alert-info">
-                    No reservations found.
-                </div>
-            }
         </div>
     </div>
 </div>
 
 @section Scripts {
     <script>
-        // Add client-side validation
+        function updateCustomerSelect(selectedText) {
+            const options = document.querySelector('#customerList').options;
+            for (let option of options) {
+                if (option.value === selectedText) {
+                    document.querySelector('#customerIDInput').value = option.dataset.id;
+                    break;
+                }
+            }
+        }
+
+        function updatePropertySelect(selectedText) {
+            const options = document.querySelector('#propertyList').options;
+            for (let option of options) {
+                if (option.value === selectedText) {
+                    document.querySelector('#propertyIDInput').value = option.dataset.id;
+                    const guestLimit = option.dataset.guests;
+                    document.querySelector('#guestInput').max = guestLimit;
+                    document.querySelector('#guestLimitHelp').textContent = `Maximum ${guestLimit} guests allowed`;
+                    break;
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
-            var checkInInput = document.querySelector('input[name="CheckIn"]');
-            var checkOutInput = document.querySelector('input[name="CheckOut"]');
+            const checkInDate = document.getElementById('checkInDate');
+            const checkOutDate = document.getElementById('checkOutDate');
+            const guestInput = document.getElementById('guestInput');
 
-            // Update minimum check-out date when check-in date changes
-            checkInInput.addEventListener('change', function () {
-                checkOutInput.min = this.value;
-                if (checkOutInput.value && checkOutInput.value < this.value) {
-                    checkOutInput.value = this.value;
+            checkInDate.addEventListener('change', function () {
+                checkOutDate.min = this.value;
+                if (checkOutDate.value && checkOutDate.value < this.value) {
+                    checkOutDate.value = this.value;
                 }
             });
 
-            // Ensure check-out date is after check-in date
-            checkOutInput.addEventListener('change', function () {
-                if (this.value < checkInInput.value) {
-                    alert('Check-out date must be after check-in date');
-                    this.value = '';
-                }
-            });
+            // Auto-dismiss alerts after 5 seconds
+            setTimeout(function () {
+                document.querySelectorAll('.alert').forEach(alert => alert.remove());
+            }, 5000);
         });
     </script>
 }
