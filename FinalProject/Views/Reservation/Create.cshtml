@@ -35,6 +35,18 @@
                     <p class="card-text">
                         <i class="bi bi-geo-alt"></i> @Model.Property.City, @Model.Property.State<br />
                         <i class="bi bi-people"></i> Up to @Model.Property.GuestsAllowed guests
+                        <h4>Pricing</h4>
+                        <ul class="list-unstyled">
+                            <li>Weekday: @Model.Property.WeekdayPrice.ToString("C") / night</li>
+                            <li>Weekend: @Model.Property.WeekendPrice.ToString("C") / night</li>
+                            <li>Cleaning fee: @Model.Property.CleaningFee.ToString("C")</li>
+                            @if (Model.Property.DiscountRate > 0)
+                            {
+                                <small class="text-success">
+                                    @Model.Property.DiscountRate.Value.ToString("P0") off for @Model.Property.MinNightsForDiscount+ nights. Will automatically apply in cart.
+                                </small>
+                            }
+                        </ul>
                     </p>
                 </div>
             </div>
@@ -86,13 +98,16 @@
                     <h4 class="card-title">Pricing Summary</h4>
                     <ul class="list-unstyled">
                         <li>
-                             Cost Per Night: <span id="costPerNightDisplay"></span>
+                             Avg. Cost Per Night: <span id="totalPriceDisplay"></span>
                         </li>
                         <li>
                             Number of Nights: <span id="numNightsDisplay"></span>
                         </li>
                         <li>
                             Cleaning Fee: <span id="cleaningFeeDisplay"></span>
+                        </li>
+                        <li id="discountDisplay" style="display: none;">
+                            Discount: <span id="discountAmount"></span>
                         </li>
                         <li>
                             Tax: <span id="taxDisplay"></span>
@@ -156,11 +171,23 @@
                     }
                 }
 
-               const tax = (totalPrice + cleaningFee) * taxRate;
-                const totalAmount = totalPrice + cleaningFee + tax;
+                // Apply discount if the number of nights meets the minimum for a discount
+                let discountAmount = 0;
+                let grandPrice = totalPrice;
+                if (numNights >= @Model.Property.MinNightsForDiscount) {
+                    discountAmount = grandPrice * (@Model.Property.DiscountRate);
+                    grandPrice -= discountAmount; // Reduce total price by the discount amount
+                    document.getElementById('discountDisplay').style.display = 'block';
+                    document.getElementById('discountAmount').textContent = `- $${discountAmount.toFixed(2)}`;
+                } else {
+                    document.getElementById('discountDisplay').style.display = 'none';
+                }
+
+                const tax = (grandPrice + cleaningFee) * taxRate;
+                const totalAmount = grandPrice + cleaningFee + tax;
 
                 // Display values
-                document.getElementById('costPerNightDisplay').textContent = `$${(totalPrice / numNights).toFixed(2)}`;
+                document.getElementById('totalPriceDisplay').textContent = `$${totalPrice.toFixed(2)}`;
                 document.getElementById('numNightsDisplay').textContent = numNights;
                 document.getElementById('cleaningFeeDisplay').textContent = `$${cleaningFee.toFixed(2)}`;
                 document.getElementById('taxDisplay').textContent = `$${tax.toFixed(2)}`;
