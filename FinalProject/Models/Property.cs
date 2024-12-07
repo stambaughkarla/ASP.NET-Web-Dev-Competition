@@ -26,7 +26,7 @@ namespace FinalProject.Models
 }
 
 public class Property
-    {
+{
         // Constant for generating property numbers
         private const Int32 FIRST_PROPERTY_NUMBER = 3001;
 
@@ -146,6 +146,6 @@ public class Property
             IsActive = true;
 
 
-    }
-    }
+        }
+
 }
