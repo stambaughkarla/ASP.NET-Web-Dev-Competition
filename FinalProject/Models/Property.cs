@@ -11,18 +11,6 @@ namespace FinalProject.Models
     /// Properties are created by Hosts and can be booked by Customers.
     /// </summary>
     /// 
-
-    public class Unavailability
-    {
-        public int UnavailabilityID { get; set; }
-
-        [Required]
-        public DateTime Date { get; set; }
-
-        // Foreign key and navigation property
-        public int PropertyID { get; set; }
-        public Property Property { get; set; }
-    }
 }
 
 public class Property
@@ -102,7 +90,7 @@ public class Property
 
         // Property availability and status
         [Display(Name = "Unavailable Dates")]
-        public List<Unavailability> UnavailableDates { get; set; }
+        public virtual ICollection<Unavailability> UnavailableDates { get; set; }
 
         // Admin Approval
         [Display(Name = "Property Status")]
@@ -144,8 +132,6 @@ public class Property
             UnavailableDates = new List<Unavailability>();  // Initialize the new collection
             PropertyStatus = true;
             IsActive = true;
-
-
         }
 
 }
