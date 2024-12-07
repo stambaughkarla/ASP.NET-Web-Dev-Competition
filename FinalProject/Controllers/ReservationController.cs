@@ -32,7 +32,7 @@ namespace FinalProject.Controllers
             var reservations = await _context.Reservations
                 .Include(r => r.Property)
                 .Where(r => r.CustomerID == userId && r.ReservationStatus == true)
-                .OrderByDescending(r => r.CheckIn)
+                .OrderBy(r => r.CheckIn)
                 .ToListAsync();
 
             return View(reservations);

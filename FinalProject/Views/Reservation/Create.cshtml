@@ -87,8 +87,8 @@
 @section Scripts {
     <script>
         weekdayPrice = @Model.Property.WeekdayPrice; // Assuming weekday price is in the model
-        weekendPrice = @Model.WeekendPrice; // Assuming weekend price is in the model
-        cleaningFee = @Model.CleaningFee; // Adjust as needed
+        weekendPrice = @Model.Property.WeekendPrice; // Assuming weekend price is in the model
+        cleaningFee = @Model.Property.CleaningFee; // Adjust as needed
         const taxRate = 0.07; // Tax rate (e.g., 10%)
 
         document.getElementById('checkInDate').addEventListener('change', updatePriceDetails);
