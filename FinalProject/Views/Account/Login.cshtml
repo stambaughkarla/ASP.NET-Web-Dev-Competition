@@ -21,7 +21,7 @@
 
         <h2 style="text-align: center; font-size: 24px; color: white; margin-bottom: 25px;">Login</h2>
 
-        <form method="post">
+        <form method="post" action="/Account/Login">
             <div class="form-group">
                 <label for="Email" class="control-label" style="font-size: 16px; color: white;">Email</label>
                 <input id="Email" name="Email"
@@ -53,5 +53,12 @@
                 Login
             </button>
         </form>
+
+        <div style="text-align: center; margin-top: 20px; color: white;">
+            <p>
+                New user? <a href="/Account/Register"
+                             style="color: #ffd700; text-decoration: none; font-weight: bold;">Register here</a>
+            </p>
+        </div>
     </div>
 </section>
