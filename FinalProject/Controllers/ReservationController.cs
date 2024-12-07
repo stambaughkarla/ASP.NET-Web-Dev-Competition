@@ -133,24 +133,9 @@ namespace FinalProject.Controllers
                     return NotFound();
                 }
 
-                
-
                 // Assign current user details
                 var currentUser = await _userManager.GetUserAsync(User);
                 if (currentUser == null) return Unauthorized();
-
-                var overlappingReservations = await _context.Reservations
-                    .Where(r => r.CustomerID == currentUser.Id) // Check reservations for the same customer
-                    .Where(r => r.CheckIn < reservation.CheckOut && reservation.CheckIn < r.CheckOut) // Check for overlapping dates
-                    .ToListAsync();
-
-
-
-                if (overlappingReservations.Any())
-                {
-                    ModelState.AddModelError(string.Empty, "The selected dates overlap with a reservation you already made. Please choose different dates.");
-                    return View(reservation);
-                }
 
                 //reservation.Customer = currentUser;
                 reservation.Customer = currentUser;
@@ -162,6 +147,20 @@ namespace FinalProject.Controllers
                 reservation.CleaningFee = property.CleaningFee;
                 //reservation.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+
+                var overlappingReservations = await _context.Reservations
+                    .Where(r => r.CustomerID == currentUser.Id) // Only for the current user
+                    .Where(r => r.ReservationStatus == true)
+                    .Where(r => r.CheckOut > reservation.CheckIn && r.CheckIn < reservation.CheckOut) // Overlapping dates
+                    .ToListAsync();
+
+
+
+                if (overlappingReservations.Any())
+                {
+                    TempData["ErrorMessage"] = "The selected dates overlap with a reservation you already made. Please choose different dates.";
+                    return View(reservation);
+                }
 
                 // Set confirmation number
                 int lastConfirmationNumber = await _context.Reservations
@@ -245,6 +244,23 @@ namespace FinalProject.Controllers
             if (!cart.Any())
             {
                 return RedirectToAction(nameof(Cart));
+            }
+            // Retrieve the current user
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Unauthorized();
+
+            // Check for overlaps within the cart itself
+            for (int i = 0; i < cart.Count; i++)
+            {
+                for (int j = i + 1; j < cart.Count; j++)
+                {
+                    // Check for overlapping dates between reservations in the cart
+                    if (cart[i].CheckOut > cart[j].CheckIn && cart[i].CheckIn < cart[j].CheckOut)
+                    {
+                        TempData["ErrorMessage"] = "The selected dates for your stays overlap. Please modify your cart.";
+                        return RedirectToAction(nameof(Cart));
+                    }
+                }
             }
 
             decimal subtotal = 0;

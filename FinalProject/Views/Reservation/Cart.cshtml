@@ -19,6 +19,25 @@
             Your cart is empty. <a asp-controller="Home" asp-action="Index">Find a place to stay</a>
         </div>
     }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
     else
     {
         <div class="row">
@@ -66,13 +85,12 @@
                                     <li>@weekendNights weekend nights × @reservation.WeekendPrice.ToString("C")</li>
                                     <li>Cleaning fee: @reservation.CleaningFee.ToString("C")</li>
                                     <li>Tax (7%): @tax.ToString("C")</li>
-                                    <hr />
-                                    <li><strong>Stay Total (+tax):</strong> @reservationTotal.ToString("C")</li>
                                     @if (nights >= reservation.Property.MinNightsForDiscount &&
-                                   reservation.Property.DiscountRate.HasValue)
+                                    reservation.Property.DiscountRate.HasValue)
                                     {
                                         <li>Discount: @reservation.Property.DiscountRate%</li>
                                     }
+                                    <li><strong>Stay Total:</strong> @reservationTotal.ToString("C")</li>
                                 </ul>
                             </div>
                             <td>
