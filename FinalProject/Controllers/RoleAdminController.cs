@@ -19,12 +19,13 @@ namespace FinalProject.Controllers
 
         public RoleAdminController(AppDbContext context,
                                  UserManager<AppUser> userManager,
-                                 RoleManager<IdentityRole> roleManager)
+                                 RoleManager<IdentityRole> roleManager,
+                                 SignInManager<AppUser> signInManager)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
-            _reservationController = new ReservationController(context);
+            _reservationController = new ReservationController(context, userManager,signInManager);
 
         }
 
