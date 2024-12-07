@@ -29,6 +29,12 @@ namespace FinalProject.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+
+    if (userId == null)
+    {
+        return Unauthorized();
+    }
+
             var reservations = await _context.Reservations
                 .Include(r => r.Property)
                 .Where(r => r.CustomerID == userId && r.ReservationStatus == true)
@@ -116,9 +122,11 @@ namespace FinalProject.Controllers
                 if (currentUser == null) return Unauthorized();
 
                 var overlappingReservations = await _context.Reservations
-                                            .Where(r => r.PropertyID == reservation.PropertyID && r.CustomerID == currentUser.Id)
-                                            .Where(r => r.CheckIn < reservation.CheckOut && reservation.CheckIn < r.CheckOut)
-                                            .ToListAsync();
+                    .Where(r => r.CustomerID == currentUser.Id) // Check reservations for the same customer
+                    .Where(r => r.CheckIn < reservation.CheckOut && reservation.CheckIn < r.CheckOut) // Check for overlapping dates
+                    .ToListAsync();
+
+
 
                 if (overlappingReservations.Any())
                 {
@@ -278,14 +286,27 @@ namespace FinalProject.Controllers
         }
 
         // POST: Reservations/Cancel/5
-        [HttpPost, ActionName("Cancel")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<IActionResult> CancelConfirmed(int id)
         {
-            var reservation = await _context.Reservations.FindAsync(id);
-            reservation.ReservationStatus = false;
+            var reservation = await _context.Reservations
+            .Include(r => r.Property)
+            .FirstOrDefaultAsync(r => r.ReservationID == id);
+
+            if (reservation == null)
+            {
+                TempData["InfoMessage"] = "Reservation not found.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Mark the reservation as cancelled
+            reservation.ReservationStatus = false; // Assuming false indicates cancellation
+            _context.Reservations.Update(reservation);
             await _context.SaveChangesAsync();
+
+            // Redirect back to the index page to show all reservations
             return RedirectToAction(nameof(Index));
         }
 
