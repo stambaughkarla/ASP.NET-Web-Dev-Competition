@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\mis333k\\final\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\property\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\property\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\rolehostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\rolehostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -68,11 +72,24 @@
         },
         {
           "DockedHeight": 571,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Create.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Create.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Create.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Property\\Create.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-07T07:05:15.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ManageReservations.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\ManageReservations.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\ManageReservations.cshtml",
@@ -85,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "UnvDetails.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\UnvDetails.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\UnvDetails.cshtml",
@@ -98,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "HostSummary.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostSummary.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostSummary.cshtml",
@@ -111,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Reservation.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Reservation.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Reservation.cs",
@@ -124,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ReservationController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\ReservationController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\ReservationController.cs",
@@ -137,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Unavailability.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Unavailability.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Unavailability.cs",
@@ -150,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\AccountController.cs",
@@ -163,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "UnvDates.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\UnvDates.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\UnvDates.cshtml",
@@ -176,7 +193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "RoleHostController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\RoleHostController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\RoleHostController.cs",
@@ -189,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Reports.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\Reports.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\Reports.cshtml",
@@ -202,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
@@ -215,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Property.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Property.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Property.cs",
