@@ -142,6 +142,38 @@ namespace FinalProject.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult UnvDates(int id)
+        {
+            var model = new Unavailability
+            {
+                PropertyID = id,
+                Date = DateTime.Now // Default date
+            };
+
+            return View(model);
+        }
+
+
+
+        [HttpPost]
+        public IActionResult UnvDates(Unavailability model)
+        {
+            ModelState.Remove("Property");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); 
+            }
+
+            // check this
+            model.Property = _context.Properties.FirstOrDefault(p => p.PropertyID == model.PropertyID);
+
+            _context.Unavailabilities.Add(model);
+            _context.SaveChanges();
+
+            return RedirectToAction("Reports", "Account"); 
+        }
+
 
 
     }

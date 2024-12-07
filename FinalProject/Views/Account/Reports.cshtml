@@ -37,15 +37,16 @@
                         <td>
                             <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Property" asp-route-id="@property.PropertyID">View</a>
                             <a class="btn btn-warning btn-sm" asp-action="Edit" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
+                            <a class="btn btn-warning btn-sm" asp-action="EditUnavailableDates" asp-controller="RoleHost" asp-route-id="@property.PropertyID">Add Unavailability</a>
                         </td>
                         <td>
                             <form asp-action="ToggleStatus" asp-controller="Property" method="post" class="d-inline">
                                 <input type="hidden" name="propertyId" value="@property.PropertyID" />
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="propertystatus"
-                                           value="true" @(property.PropertyStatus ? "checked" : "")
+                                    <input class="form-check-input" type="checkbox" name="isactive"
+                                           value="true" @(property.IsActive ? "checked" : "")
                                            onchange="this.form.submit()" />
-                                    <label class="form-check-label">@((property.PropertyStatus ? "Active" : "Disabled"))</label>
+                                    <label class="form-check-label">@((property.IsActive ? "Active" : "Disabled"))</label>
                                 </div>
                             </form>
                         </td>
@@ -81,6 +82,9 @@
                     <td>
                         <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Home" asp-route-id="@property.PropertyID">View</a>
                         <a class="btn btn-warning btn-sm" asp-action="EditProperty" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
+                        <a class="btn btn-warning btn-sm" asp-action="UnvDates" asp-controller= "RoleHost" asp-route-id="@property.PropertyID">Add Unavailability</a>
+                        
+
                     </td>
                     <td>
                         <form asp-action="ToggleStatus" asp-controller="Property" method="post" class="d-inline">
