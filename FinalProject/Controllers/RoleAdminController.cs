@@ -402,33 +402,24 @@ namespace FinalProject.Controllers
                 .OrderByDescending(r => r.CheckIn)
                 .ToListAsync();
 
-            // Populate customer dropdown with proper value - ensure it matches UserId
-            ViewBag.Customers = new SelectList(
-                await _userManager.Users
-                    .Where(u => !u.Email.EndsWith("@bevobnb.com"))
-                    .Select(u => new
-                    {
-                        Id = u.Id,  // This should match CustomerID in Reservation
-                        Text = $"{u.Email} ({u.FirstName} {u.LastName})"
-                    })
-                    .ToListAsync(),
-                "Id",
-                "Text"
-            );
+            ViewBag.Customers = await _userManager.Users
+                .Where(u => !u.Email.EndsWith("@bevobnb.com"))
+                .Select(u => new
+                {
+                    Value = u.Id,
+                    Text = $"{u.Email} ({u.FirstName} {u.LastName})"
+                })
+                .ToListAsync();
 
-            // Populate property dropdown
-            ViewBag.Properties = new SelectList(
-                await _context.Properties
-                    .Where(p => p.PropertyStatus)
-                    .Select(p => new
-                    {
-                        Id = p.PropertyID,  // This should match PropertyID in Reservation
-                        Text = $"{p.Street}, {p.City}"
-                    })
-                    .ToListAsync(),
-                "Id",
-                "Text"
-            );
+            ViewBag.Properties = await _context.Properties
+                .Where(p => p.PropertyStatus && p.IsActive)
+                .Select(p => new
+                {
+                    Value = p.PropertyID.ToString(),
+                    Text = $"{p.Street}, {p.City}, {p.State} {p.Zip}",
+                    GuestLimit = p.GuestsAllowed
+                })
+                .ToListAsync();
 
             return View(reservations);
         }
@@ -437,29 +428,62 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateReservation([Bind("CustomerID,PropertyID,CheckIn,CheckOut,NumOfGuests")] Reservation reservation)
         {
-            // Explicitly check if CustomerID and PropertyID were received
             if (string.IsNullOrEmpty(reservation.CustomerID) || reservation.PropertyID == 0)
             {
                 TempData["ErrorMessage"] = "Must select both a customer and property.";
                 return RedirectToAction(nameof(ManageReservations));
             }
 
-            // Get property details
-            var property = await _context.Properties.FindAsync(reservation.PropertyID);
+            var property = await _context.Properties
+                .Include(p => p.UnavailableDates)
+                .FirstOrDefaultAsync(p => p.PropertyID == reservation.PropertyID);
+
             if (property == null)
             {
                 TempData["ErrorMessage"] = "Selected property not found.";
                 return RedirectToAction(nameof(ManageReservations));
             }
 
-            // Set the basic reservation details
+            // Guest limit validation
+            if (reservation.NumOfGuests > property.GuestsAllowed)
+            {
+                TempData["ErrorMessage"] = $"This property allows maximum {property.GuestsAllowed} guests.";
+                return RedirectToAction(nameof(ManageReservations));
+            }
+
+            // Check unavailable dates
+            var reservationDates = Enumerable.Range(0, (reservation.CheckOut - reservation.CheckIn).Days + 1)
+                .Select(offset => reservation.CheckIn.AddDays(offset).Date);
+
+            var hasUnavailableDates = property.UnavailableDates
+                .Any(ud => reservationDates.Contains(ud.Date.Date));
+
+            if (hasUnavailableDates)
+            {
+                TempData["ErrorMessage"] = "Property is unavailable for selected dates.";
+                return RedirectToAction(nameof(ManageReservations));
+            }
+
+            // Check conflicting reservations
+            var hasConflict = await _context.Reservations
+                .AnyAsync(r => r.PropertyID == reservation.PropertyID &&
+                               r.ReservationStatus &&
+                               ((reservation.CheckIn >= r.CheckIn && reservation.CheckIn < r.CheckOut) ||
+                                (reservation.CheckOut > r.CheckIn && reservation.CheckOut <= r.CheckOut) ||
+                                (reservation.CheckIn <= r.CheckIn && reservation.CheckOut >= r.CheckOut)));
+
+            if (hasConflict)
+            {
+                TempData["ErrorMessage"] = "Selected dates conflict with existing reservation.";
+                return RedirectToAction(nameof(ManageReservations));
+            }
+
             reservation.WeekdayPrice = property.WeekdayPrice;
             reservation.WeekendPrice = property.WeekendPrice;
             reservation.CleaningFee = property.CleaningFee;
-            reservation.DiscountRate = 0m; // Default to no discount
+            reservation.DiscountRate = 0m;
             reservation.ReservationStatus = true;
 
-            // Get next confirmation number
             int lastConfirmationNumber = await _context.Reservations
                 .MaxAsync(r => (int?)r.ConfirmationNumber) ?? 21900;
             reservation.ConfirmationNumber = lastConfirmationNumber + 1;
