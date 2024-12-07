@@ -174,6 +174,19 @@ namespace FinalProject.Controllers
             return RedirectToAction("Reports", "Account"); 
         }
 
+        public IActionResult UnvDetails(int id)
+        {
+            var property = _context.Properties
+                .Include(p => p.UnavailableDates) 
+                .FirstOrDefault(p => p.PropertyID == id);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            return View(property);
+        }
 
 
     }

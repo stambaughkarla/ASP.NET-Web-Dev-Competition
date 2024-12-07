@@ -1,0 +1,22 @@
+﻿@model FinalProject.Models.Property
+
+<h2>@Model.PropertyName - Unavailability Dates</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var unavailability in Model.UnavailableDates)
+        {
+            <tr>
+                <td>@unavailability.Date.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="UnvDates" asp-route-id="@Model.PropertyID" class="btn btn-primary">Add New Unavailability</a>
+<a asp-action="Reports" asp-controller="Account"class="btn btn-secondary">Back to List</a>
