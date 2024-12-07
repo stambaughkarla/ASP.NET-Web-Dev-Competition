@@ -52,7 +52,9 @@
                         <li>Cleaning fee: @Model.CleaningFee.ToString("C")</li>
                         @if (Model.DiscountRate > 0)
                         {
-                            <li>@Model.DiscountRate% discount for stays of @Model.MinNightsForDiscount nights or more</li>
+                            <small class="text-success">
+                                @Model.DiscountRate.Value.ToString("P0") off for @Model.MinNightsForDiscount+ nights
+                            </small>
                         }
                     </ul>
                 </div>

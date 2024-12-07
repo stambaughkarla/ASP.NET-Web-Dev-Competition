@@ -6,6 +6,7 @@ using FinalProject.DAL;
 using System.Security.Claims;
 using System.Text.Json;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FinalProject.Controllers
 {
@@ -30,14 +31,14 @@ namespace FinalProject.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
 
-    if (userId == null)
-    {
-        return Unauthorized();
-    }
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
 
             var reservations = await _context.Reservations
                 .Include(r => r.Property)
-                .Where(r => r.CustomerID == userId && r.ReservationStatus == true)
+                .Where(r => r.CustomerID == userId)
                 .OrderBy(r => r.CheckIn)
                 .ToListAsync();
 
@@ -74,12 +75,27 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            var reservedDates = property.Reservations
-                    .Where(r => r.CustomerID == currentUser.Id)
-                    .Select(r => new { start = r.CheckIn.ToString("yyyy-MM-dd"), end = r.CheckOut.ToString("yyyy-MM-dd") })
-                    .ToList();
+            // Fetch existing reservations for the property
+            var reservedDates = await _context.Reservations
+                .Where(r => r.PropertyID == id && r.ReservationStatus == true) // Only active reservations
+                .Select(r => new
+                {
+                    start = r.CheckIn.ToString("yyyy-MM-dd"),
+                    end = r.CheckOut.ToString("yyyy-MM-dd")
+                })
+                .ToListAsync();
+
+            // Fetch unavailability dates
+ var unavailabilityDates = await _context.Unavailabilities
+    .Where(u => u.PropertyID == id)
+    .Select(u => new
+    {
+        date = u.Date.ToString("yyyy-MM-dd")
+    })
+    .ToListAsync();
 
             ViewBag.ReservedDates = reservedDates;
+            ViewBag.UnavailabilityDates = unavailabilityDates;
 
             // Create a Reservation model to pass to the view
             var reservation = new Reservation
@@ -88,6 +104,8 @@ namespace FinalProject.Controllers
                 Property = property,             // Include property details
                 CustomerID = currentUser.Id      // Set the current user as the customer
             };
+
+
 
             return View(reservation);
         }
@@ -115,24 +133,9 @@ namespace FinalProject.Controllers
                     return NotFound();
                 }
 
-                
-
                 // Assign current user details
                 var currentUser = await _userManager.GetUserAsync(User);
                 if (currentUser == null) return Unauthorized();
-
-                var overlappingReservations = await _context.Reservations
-                    .Where(r => r.CustomerID == currentUser.Id) // Check reservations for the same customer
-                    .Where(r => r.CheckIn < reservation.CheckOut && reservation.CheckIn < r.CheckOut) // Check for overlapping dates
-                    .ToListAsync();
-
-
-
-                if (overlappingReservations.Any())
-                {
-                    ModelState.AddModelError(string.Empty, "The selected dates overlap with a reservation you already made. Please choose different dates.");
-                    return View(reservation);
-                }
 
                 //reservation.Customer = currentUser;
                 reservation.Customer = currentUser;
@@ -144,6 +147,20 @@ namespace FinalProject.Controllers
                 reservation.CleaningFee = property.CleaningFee;
                 //reservation.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+
+                var overlappingReservations = await _context.Reservations
+                    .Where(r => r.CustomerID == currentUser.Id) // Only for the current user
+                    .Where(r => r.ReservationStatus == true)
+                    .Where(r => r.CheckOut > reservation.CheckIn && r.CheckIn < reservation.CheckOut) // Overlapping dates
+                    .ToListAsync();
+
+
+
+                if (overlappingReservations.Any())
+                {
+                    TempData["ErrorMessage"] = "The selected dates overlap with a reservation you already made. Please choose different dates.";
+                    return View(reservation);
+                }
 
                 // Set confirmation number
                 int lastConfirmationNumber = await _context.Reservations
@@ -228,12 +245,35 @@ namespace FinalProject.Controllers
             {
                 return RedirectToAction(nameof(Cart));
             }
+            // Retrieve the current user
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Unauthorized();
+
+            // Check for overlaps within the cart itself
+            for (int i = 0; i < cart.Count; i++)
+            {
+                for (int j = i + 1; j < cart.Count; j++)
+                {
+                    // Check for overlapping dates between reservations in the cart
+                    if (cart[i].CheckOut > cart[j].CheckIn && cart[i].CheckIn < cart[j].CheckOut)
+                    {
+                        TempData["ErrorMessage"] = "The selected dates for your stays overlap. Please modify your cart.";
+                        return RedirectToAction(nameof(Cart));
+                    }
+                }
+            }
+
+            decimal subtotal = 0;
+            decimal cleaningFees = 0;
+            const decimal TAX_RATE = 0.07m;
+            decimal tax = 0;
 
             // Final validation
             foreach (var reservation in cart)
             {
+                // Check for existing reservation
                 bool exists = await _context.Reservations
-            .AnyAsync(r => r.ConfirmationNumber == reservation.ConfirmationNumber);
+                    .AnyAsync(r => r.ConfirmationNumber == reservation.ConfirmationNumber);
 
                 if (exists)
                 {
@@ -242,7 +282,29 @@ namespace FinalProject.Controllers
                     return RedirectToAction(nameof(Cart)); // Redirect back to cart for correction
                 }
 
-                // Attach existing entities to the context to avoid duplication
+                var nights = (reservation.CheckOut - reservation.CheckIn).Days;
+                var weekdayNights = Enumerable.Range(0, nights)
+                    .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday }
+                    .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
+                var weekendNights = nights - weekdayNights;
+
+                // Calculate stay price
+                decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
+                                    (weekendNights * reservation.WeekendPrice);
+
+                // Apply discount if applicable
+                if (nights >= reservation.Property.MinNightsForDiscount)
+                {
+                    decimal discountRate = reservation.Property.DiscountRate ?? 0;
+                    stayPrice *= (1 - (discountRate / 100m));
+                }
+
+                // Accumulate totals
+                cleaningFees += reservation.CleaningFee;
+                tax += (stayPrice + reservation.CleaningFee) * TAX_RATE;
+                subtotal += stayPrice;
+
+                // Attach existing entities to avoid duplication
                 _context.Attach(reservation.Property);
                 _context.Attach(reservation.Customer);
 
@@ -250,9 +312,18 @@ namespace FinalProject.Controllers
                 _context.Reservations.Add(reservation);
             }
 
+            // Calculate grand total
+            decimal grandtotal = subtotal + cleaningFees + tax;
+
             await _context.SaveChangesAsync();
             HttpContext.Session.Remove("Cart");
 
+            TempData["Subtotal"] = subtotal.ToString("C");
+            TempData["CleaningFee"] = cleaningFees.ToString("C");
+            TempData["Tax"] = tax.ToString("C");
+            TempData["GrandTotal"] = grandtotal.ToString("C");
+
+            // Redirect to confirmation view
             return RedirectToAction(nameof(Confirmation), new { id = cart.First().ConfirmationNumber });
         }
 

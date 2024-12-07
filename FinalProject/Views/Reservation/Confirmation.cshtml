@@ -24,27 +24,23 @@
                         <strong>Check-in:</strong> @Model.CheckIn.ToShortDateString()<br />
                         <strong>Check-out:</strong> @Model.CheckOut.ToShortDateString()<br />
                         <strong>Guests:</strong> @Model.NumOfGuests
-                    </p>
+                    </p>                        
 
-                    <h5 class="mt-4">Price Details</h5>
-                    <dl class="row mb-0">
-                        <dt class="col-6">Stay Price:</dt>
-                        <dd class="col-6 text-end">@((Model.WeekdayPrice + Model.WeekendPrice).ToString("C"))</dd>
-
-                        <dt class="col-6">Cleaning Fee:</dt>
-                        <dd class="col-6 text-end">@Model.CleaningFee.ToString("C")</dd>
-
-                        <dt class="col-6">Tax (7%):</dt>
-                        <dd class="col-6 text-end">@(((Model.WeekdayPrice + Model.WeekendPrice + Model.CleaningFee) * 0.07m).ToString("C"))</dd>
-
-                        <dt class="col-6 border-top pt-2"><strong>Total:</strong></dt>
-                        <dd class="col-6 text-end border-top pt-2"><strong>@(((Model.WeekdayPrice + Model.WeekendPrice + Model.CleaningFee) * 1.07m).ToString("C"))</strong></dd>
-                    </dl>
+                    <div class="mt-3">
+                        <strong>Price Details</strong>
+                        <ul class="list-unstyled">
+                            <li>Stay Price: @TempData["Subtotal"]</li>               
+                            <li>Cleaning fee: @TempData["CleaningFee"]</li>
+                            <li>Tax (7%): @TempData["Tax"]</li>
+                            <hr/>
+                            <li>Grand Total: @TempData["GrandTotal"]</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="text-center mt-4">
-                <a asp-controller="Properties" asp-action="Index" class="btn btn-primary">Return to Home</a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Return to Home</a>
                 <a asp-action="Index" class="btn btn-secondary">View My Reservations</a>
             </div>
         </div>

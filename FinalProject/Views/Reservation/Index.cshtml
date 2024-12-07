@@ -3,6 +3,15 @@
 
 @{
     ViewData["Title"] = "My Reservations";
+
+    var upcomingReservations = Model.Where(r => r.CheckIn > DateTime.Now && r.ReservationStatus == true).ToList();
+    var pastReservations = Model.Where(r => r.CheckOut < DateTime.Now && r.ReservationStatus == true).ToList();
+    var cancelledReservations = Model.Where(r => !r.ReservationStatus).ToList();
+    decimal subtotal = 0;
+    decimal cleaningFees = 0;
+    const decimal TAX_RATE = 0.07m;
+    decimal tax = 0;
+    decimal grandtotal = 0;
 }
 
 <div class="container">
@@ -24,13 +33,14 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade @(Context.Request.Query["tab"] == "upcoming" || !Context.Request.Query.ContainsKey("tab") ? "show active" : "")" id="upcoming">
-                    @foreach (var reservation in Model.Where(r => r.CheckIn >= DateTime.Now && r.ReservationStatus))
+                    <p>REMINDER: Reservations occuring within 1 day are not cancellable</p>
+                    @foreach (var reservation in upcomingReservations)
                     {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="@reservation.Property.ImageURL" class="img-fluid rounded" alt="Property Image" />
+                                        <img src="@reservation.Property.ImageURL" width = "300" class="img-fluid rounded" alt="Property Image" />
                                     </div>
                                     <div class="col-md-8">
                                         <h5 class="card-title">@reservation.Property.PropertyName</h5>
@@ -39,11 +49,54 @@
                                             <i class="bi bi-people"></i> @reservation.NumOfGuests guests<br />
                                             <i class="bi bi-tag"></i> Confirmation #@reservation.ConfirmationNumber
                                         </p>
+
+                                        @{
+                                            var nights = (reservation.CheckOut - reservation.CheckIn).Days;
+                                            var weekdayNights = Enumerable.Range(0, nights)
+                                            .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday }
+                                            .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
+                                            var weekendNights = nights - weekdayNights;
+
+                                            decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
+                                            (weekendNights * reservation.WeekendPrice);
+
+                                            if (nights >= reservation.Property.MinNightsForDiscount)
+                                            {
+                                                decimal discountRate = reservation.Property.DiscountRate ?? 0;
+                                                stayPrice *= (1 - (discountRate / 100m));
+                                            }
+
+
+                                            subtotal += stayPrice;
+                                            cleaningFees += reservation.CleaningFee;
+                                            tax = (subtotal + cleaningFees) * TAX_RATE;
+                                            grandtotal = subtotal + cleaningFees + tax;
+
+                                            decimal reservationTax = (stayPrice + reservation.CleaningFee) * TAX_RATE;
+                                            decimal reservationTotal = stayPrice + reservation.CleaningFee + reservationTax;
+                                        }
+
+                                        <div class="mt-3">
+                                            <strong>Price Details</strong>
+                                            <ul class="list-unstyled">
+                                                <li>@weekdayNights weekday nights × @reservation.WeekdayPrice.ToString("C")</li>
+                                                <li>@weekendNights weekend nights × @reservation.WeekendPrice.ToString("C")</li>
+                                                <li>Cleaning fee: @reservation.CleaningFee.ToString("C")</li>
+                                                <li>Tax: @tax.ToString("C")</li>
+                                                <li><strong>Stay Total:</strong> @reservationTotal.ToString("C")</li>
+                                                @if (nights >= reservation.Property.MinNightsForDiscount &&
+                                               reservation.Property.DiscountRate.HasValue)
+                                                {
+                                                    <li>Discount: @reservation.Property.DiscountRate%</li>
+                                                }
+                                            </ul>
+                                        </div>
                                         @if (reservation.CheckIn > DateTime.Now.AddDays(1))
                                         {
                                             <a asp-action="Cancel" asp-route-id="@reservation.ReservationID"
                                                class="btn btn-danger btn-sm">Cancel Reservation</a>
                                         }
+
                                     </div>
                                 </div>
                             </div>
@@ -52,13 +105,13 @@
                 </div>
 
                 <div class="tab-pane fade @(Context.Request.Query["tab"] == "past" ? "show active" : "")" id="past">
-                    @foreach (var reservation in Model.Where(r => r.CheckOut < DateTime.Now && r.ReservationStatus))
+                    @foreach (var reservation in pastReservations)
                     {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="@reservation.Property.ImageURL" class="img-fluid rounded" alt="Property Image" />
+                                        <img src="@reservation.Property.ImageURL" width = "300" class="img-fluid rounded" alt="Property Image" />
                                     </div>
                                     <div class="col-md-8">
                                         <h5 class="card-title">@reservation.Property.PropertyName</h5>
@@ -67,6 +120,48 @@
                                             <i class="bi bi-people"></i> @reservation.NumOfGuests guests<br />
                                             <i class="bi bi-tag"></i> Confirmation #@reservation.ConfirmationNumber
                                         </p>
+                                        
+                                        @{
+                                            var nights = (reservation.CheckOut - reservation.CheckIn).Days;
+                                            var weekdayNights = Enumerable.Range(0, nights)
+                                            .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday }
+                                            .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
+                                            var weekendNights = nights - weekdayNights;
+
+                                            decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
+                                            (weekendNights * reservation.WeekendPrice);
+
+                                            if (nights >= reservation.Property.MinNightsForDiscount)
+                                            {
+                                                decimal discountRate = reservation.Property.DiscountRate ?? 0;
+                                                stayPrice *= (1 - (discountRate / 100m));
+                                            }
+
+
+                                            subtotal += stayPrice;
+                                            cleaningFees += reservation.CleaningFee;
+                                            tax = (subtotal + cleaningFees) * TAX_RATE;
+                                            grandtotal = subtotal + cleaningFees + tax;
+
+                                            decimal reservationTax = (stayPrice + reservation.CleaningFee) * TAX_RATE;
+                                            decimal reservationTotal = stayPrice + reservation.CleaningFee + reservationTax;
+                                        }
+
+                                        <div class="mt-3">
+                                            <strong>Price Details</strong>
+                                            <ul class="list-unstyled">
+                                                <li>@weekdayNights weekday nights × @reservation.WeekdayPrice.ToString("C")</li>
+                                                <li>@weekendNights weekend nights × @reservation.WeekendPrice.ToString("C")</li>
+                                                <li>Cleaning fee: @reservation.CleaningFee.ToString("C")</li>
+                                                <li>Tax: @tax.ToString("C")</li>
+                                                <li><strong>Stay Total:</strong> @reservationTotal.ToString("C")</li>
+                                                @if (nights >= reservation.Property.MinNightsForDiscount &&
+                                               reservation.Property.DiscountRate.HasValue)
+                                                {
+                                                    <li>Discount: @reservation.Property.DiscountRate%</li>
+                                                }
+                                            </ul>
+                                        </div>
                                         @if (!reservation.Property.Reviews.Any(r => r.CustomerID == User.FindFirst(ClaimTypes.NameIdentifier).Value))
                                         {
                                             <a asp-controller="Review" asp-action="Create" asp-route-id="@reservation.PropertyID"
@@ -80,13 +175,13 @@
                 </div>
 
                 <div class="tab-pane fade @(Context.Request.Query["tab"] == "cancelled" ? "show active" : "")" id="cancelled">
-                    @foreach (var reservation in Model.Where(r => !r.ReservationStatus))
+                    @foreach (var reservation in cancelledReservations)
                     {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="@reservation.Property.ImageURL" class="img-fluid rounded" alt="Property Image" />
+                                        <img src="@reservation.Property.ImageURL" width="300" class="img-fluid rounded" alt="Property Image" />
                                     </div>
                                     <div class="col-md-8">
                                         <h5 class="card-title">@reservation.Property.PropertyName</h5>
@@ -95,6 +190,47 @@
                                             <i class="bi bi-people"></i> @reservation.NumOfGuests guests<br />
                                             <i class="bi bi-tag"></i> Confirmation #@reservation.ConfirmationNumber
                                         </p>
+                                        @{
+                                            var nights = (reservation.CheckOut - reservation.CheckIn).Days;
+                                            var weekdayNights = Enumerable.Range(0, nights)
+                                            .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday }
+                                            .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
+                                            var weekendNights = nights - weekdayNights;
+
+                                            decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
+                                            (weekendNights * reservation.WeekendPrice);
+
+                                            if (nights >= reservation.Property.MinNightsForDiscount)
+                                            {
+                                                decimal discountRate = reservation.Property.DiscountRate ?? 0;
+                                                stayPrice *= (1 - (discountRate / 100m));
+                                            }
+
+
+                                            subtotal += stayPrice;
+                                            cleaningFees += reservation.CleaningFee;
+                                            tax = (subtotal + cleaningFees) * TAX_RATE;
+                                            grandtotal = subtotal + cleaningFees + tax;
+
+                                            decimal reservationTax = (stayPrice + reservation.CleaningFee) * TAX_RATE;
+                                            decimal reservationTotal = stayPrice + reservation.CleaningFee + reservationTax;
+                                        }
+
+                                        <div class="mt-3">
+                                            <strong>Price Details</strong>
+                                            <ul class="list-unstyled">
+                                                <li>@weekdayNights weekday nights × @reservation.WeekdayPrice.ToString("C")</li>
+                                                <li>@weekendNights weekend nights × @reservation.WeekendPrice.ToString("C")</li>
+                                                <li>Cleaning fee: @reservation.CleaningFee.ToString("C")</li>
+                                                <li>Tax: @tax.ToString("C")</li>
+                                                @if (nights >= reservation.Property.MinNightsForDiscount &&
+                                               reservation.Property.DiscountRate.HasValue)
+                                                {
+                                                    <li>Discount: @reservation.Property.DiscountRate%</li>
+                                                }
+                                                <li><strong>Stay Total:</strong> @reservationTotal.ToString("C")</li>
+                                            </ul>
+                                        </div>
                                         <span class="badge bg-danger">Cancelled</span>
                                     </div>
                                 </div>
