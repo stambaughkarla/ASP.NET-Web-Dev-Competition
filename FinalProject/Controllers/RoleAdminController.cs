@@ -25,7 +25,7 @@ namespace FinalProject.Controllers
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
-            _reservationController = new ReservationController(context, userManager, signInManager);
+            _reservationController = new ReservationController(context, userManager,signInManager);
 
         }
 
