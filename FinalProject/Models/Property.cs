@@ -129,7 +129,7 @@ public class Property
             // Initialize lists to prevent null reference exceptions
             Reviews = new List<Review>();
             Reservations = new List<Reservation>();
-            UnavailableDates = new List<Unavailability>();  // Initialize the new collection
+            UnavailableDates = new List<Unavailability>();  
             PropertyStatus = true;
             IsActive = true;
         }
