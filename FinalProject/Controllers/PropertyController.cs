@@ -222,6 +222,7 @@ namespace FinalProject.Controllers
             return RedirectToAction(nameof(Categories));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCategory(int id, string categoryName)
@@ -248,6 +249,7 @@ namespace FinalProject.Controllers
         }
 
         // GET: Property/Create
+        [Authorize(Roles = "Host")]
         public IActionResult Create()
         {
 
@@ -274,6 +276,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Host")]
         // POST: Property/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
