@@ -36,7 +36,24 @@ namespace FinalProject.Controllers
             return View(properties);
         }
 
-        // GET: /Property/Search
+        // GET: /Home/
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var property = await _context.Properties
+                .Include(p => p.Category)
+                .Include(p => p.Reviews)
+                    .ThenInclude(r => r.Customer)
+                .Include(p => p.Host)
+                .FirstOrDefaultAsync(p => p.PropertyID == id);
+
+            if (property == null) return NotFound();
+
+            return View("~/Views/Property/Details.cshtml", property);
+        }
+
+        // GET: /Home/
         public async Task<IActionResult> Search(
             string location = null,
             DateTime? checkIn = null,
@@ -163,30 +180,6 @@ namespace FinalProject.Controllers
 
             // Return the search view with results
             return View("Index", properties);
-        }
-
-
-        // GET: /Property/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var property = await _context.Properties
-                .Include(p => p.Category)
-                .Include(p => p.Reviews)
-                    .ThenInclude(r => r.Customer)
-                .Include(p => p.Host)
-                .FirstOrDefaultAsync(p => p.PropertyID == id);
-
-            if (property == null)
-            {
-                return NotFound();
-            }
-
-            return View(property);
         }
 
         public IActionResult Privacy()
