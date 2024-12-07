@@ -11,10 +11,10 @@ namespace FinalProject.Models
     /// Properties are created by Hosts and can be booked by Customers.
     /// </summary>
     /// 
-}
 
-public class Property
-{
+
+    public class Property
+    {
         // Constant for generating property numbers
         private const Int32 FIRST_PROPERTY_NUMBER = 3001;
 
@@ -100,9 +100,9 @@ public class Property
         [Display(Name = "Active Status")]
         public Boolean IsActive { get; set; }
 
-    //i think we will need another called adminstatus to set the property off until admin approves
+        //i think we will need another called adminstatus to set the property off until admin approves
 
-    public string? ImageURL {get; set;}
+        public string? ImageURL { get; set; }
 
 
         // Navigational Properties
@@ -129,9 +129,10 @@ public class Property
             // Initialize lists to prevent null reference exceptions
             Reviews = new List<Review>();
             Reservations = new List<Reservation>();
-            UnavailableDates = new List<Unavailability>();  
+            UnavailableDates = new List<Unavailability>();
             PropertyStatus = true;
             IsActive = true;
         }
 
+    }
 }

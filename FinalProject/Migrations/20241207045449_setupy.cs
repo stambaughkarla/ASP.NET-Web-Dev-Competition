@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class finalsetup333 : Migration
+    public partial class setupy : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -198,8 +198,8 @@ namespace FinalProject.Migrations
                     CleaningFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiscountRate = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     MinNightsForDiscount = table.Column<int>(type: "int", nullable: true),
-                    UnavailableDates = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PropertyStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
                     HostId = table.Column<string>(type: "nvarchar(450)", nullable: true)
@@ -285,6 +285,26 @@ namespace FinalProject.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Unavailabilities",
+                columns: table => new
+                {
+                    UnavailabilityID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PropertyID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Unavailabilities", x => x.UnavailabilityID);
+                    table.ForeignKey(
+                        name: "FK_Unavailabilities_Properties_PropertyID",
+                        column: x => x.PropertyID,
+                        principalTable: "Properties",
+                        principalColumn: "PropertyID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -353,6 +373,11 @@ namespace FinalProject.Migrations
                 name: "IX_Reviews_PropertyID",
                 table: "Reviews",
                 column: "PropertyID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Unavailabilities_PropertyID",
+                table: "Unavailabilities",
+                column: "PropertyID");
         }
 
         /// <inheritdoc />
@@ -378,6 +403,9 @@ namespace FinalProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "Unavailabilities");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

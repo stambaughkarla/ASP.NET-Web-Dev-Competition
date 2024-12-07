@@ -170,6 +170,9 @@ namespace FinalProject.Migrations
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("MinNightsForDiscount")
                         .HasColumnType("int");
 
@@ -188,9 +191,6 @@ namespace FinalProject.Migrations
 
                     b.Property<string>("Street")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UnavailableDates")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("WeekdayPrice")
@@ -300,6 +300,27 @@ namespace FinalProject.Migrations
                     b.HasIndex("PropertyID");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Unavailability", b =>
+                {
+                    b.Property<int>("UnavailabilityID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UnavailabilityID"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PropertyID")
+                        .HasColumnType("int");
+
+                    b.HasKey("UnavailabilityID");
+
+                    b.HasIndex("PropertyID");
+
+                    b.ToTable("Unavailabilities");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -494,6 +515,17 @@ namespace FinalProject.Migrations
                     b.Navigation("Property");
                 });
 
+            modelBuilder.Entity("FinalProject.Models.Unavailability", b =>
+                {
+                    b.HasOne("FinalProject.Models.Property", "Property")
+                        .WithMany("UnavailableDates")
+                        .HasForeignKey("PropertyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Property");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -564,6 +596,8 @@ namespace FinalProject.Migrations
                     b.Navigation("Reservations");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("UnavailableDates");
                 });
 #pragma warning restore 612, 618
         }
