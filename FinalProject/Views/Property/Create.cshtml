@@ -77,6 +77,16 @@
         <span asp-validation-for="WeekendPrice" class="text-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="MinNightsForDiscount"></label>
+        <input asp-for="MinNightsForDiscount" type="number" class="form-control"  />
+        <span asp-validation-for="MinNightsForDiscount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DiscountRate"></label>
+        <input asp-for="DiscountRate" type="number" class="form-control"  />
+        <span asp-validation-for="DiscountRate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="GuestsAllowed"></label>
         <input asp-for="GuestsAllowed" type="number" class="form-control" />
         <span asp-validation-for="GuestsAllowed" class="text-danger"></span>

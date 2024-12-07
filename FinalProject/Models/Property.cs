@@ -81,7 +81,7 @@ namespace FinalProject.Models
         public Decimal CleaningFee { get; set; }
 
         // Optional discount settings
-        [Display(Name = "Discount Rate (%)")]
+        [Display(Name = "Discount Rate (Decimal)")]
         [DisplayFormat(DataFormatString = "{0:P0}")]
         public Decimal? DiscountRate { get; set; }
 
