@@ -73,6 +73,12 @@
                                     }
                                 </ul>
                             </div>
+                            <td>
+                                <form asp-action="DeleteFromCart" method="post">
+                                    <input type="hidden" name="confirmationNumber" value="@reservation.ConfirmationNumber" />
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                </form>
+                            </td>
                         </div>
                     </div>
                 }

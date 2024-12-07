@@ -60,12 +60,20 @@ namespace FinalProject.Controllers
             // Fetch the property details
             var property = await _context.Properties
                 .Include(p => p.Category) // Include related data if necessary
+                .Include(p => p.Reservations)
                 .FirstOrDefaultAsync(p => p.PropertyID == id);
 
             if (property == null)
             {
                 return NotFound();
             }
+
+            var reservedDates = property.Reservations
+                    .Where(r => r.CustomerID == currentUser.Id)
+                    .Select(r => new { start = r.CheckIn.ToString("yyyy-MM-dd"), end = r.CheckOut.ToString("yyyy-MM-dd") })
+                    .ToList();
+
+            ViewBag.ReservedDates = reservedDates;
 
             // Create a Reservation model to pass to the view
             var reservation = new Reservation
@@ -101,24 +109,22 @@ namespace FinalProject.Controllers
                     return NotFound();
                 }
 
-                // Check for conflicts
-                bool hasConflict = await _context.Reservations
-                    .AnyAsync(r => r.PropertyID == reservation.PropertyID &&
-                                   r.ReservationStatus &&
-                                   ((reservation.CheckIn >= r.CheckIn && reservation.CheckIn < r.CheckOut) ||
-                                    (reservation.CheckOut > r.CheckIn && reservation.CheckOut <= r.CheckOut) ||
-                                    (reservation.CheckIn <= r.CheckIn && reservation.CheckOut >= r.CheckOut)));
-
-                if (hasConflict)
-                {
-                    ModelState.AddModelError("", "Selected dates conflict with an existing reservation.");
-                    reservation.Property = property; // Populate the property before returning the view
-                    return View(reservation);
-                }
+                
 
                 // Assign current user details
                 var currentUser = await _userManager.GetUserAsync(User);
                 if (currentUser == null) return Unauthorized();
+
+                var overlappingReservations = await _context.Reservations
+                                            .Where(r => r.PropertyID == reservation.PropertyID && r.CustomerID == currentUser.Id)
+                                            .Where(r => r.CheckIn < reservation.CheckOut && reservation.CheckIn < r.CheckOut)
+                                            .ToListAsync();
+
+                if (overlappingReservations.Any())
+                {
+                    ModelState.AddModelError(string.Empty, "The selected dates overlap with a reservation you already made. Please choose different dates.");
+                    return View(reservation);
+                }
 
                 //reservation.Customer = currentUser;
                 reservation.Customer = currentUser;
