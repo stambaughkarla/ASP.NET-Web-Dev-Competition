@@ -80,19 +80,19 @@ namespace FinalProject.Controllers
                 .Where(r => r.PropertyID == id && r.ReservationStatus == true) // Only active reservations
                 .Select(r => new
                 {
-                    start = r.CheckIn,
-                    end = r.CheckOut
+                    start = r.CheckIn.ToString("yyyy-MM-dd"),
+                    end = r.CheckOut.ToString("yyyy-MM-dd")
                 })
                 .ToListAsync();
 
             // Fetch unavailability dates
-            var unavailabilityDates = await _context.Unavailabilities
-               .Where(u => u.PropertyID == id)
-               .Select(u => new
-               {
-                   date = u.Date
-               })
-               .ToListAsync();
+ var unavailabilityDates = await _context.Unavailabilities
+    .Where(u => u.PropertyID == id)
+    .Select(u => new
+    {
+        date = u.Date.ToString("yyyy-MM-dd")
+    })
+    .ToListAsync();
 
             ViewBag.ReservedDates = reservedDates;
             ViewBag.UnavailabilityDates = unavailabilityDates;
@@ -247,11 +247,17 @@ namespace FinalProject.Controllers
                 return RedirectToAction(nameof(Cart));
             }
 
+            decimal subtotal = 0;
+            decimal cleaningFees = 0;
+            const decimal TAX_RATE = 0.07m;
+            decimal tax = 0;
+
             // Final validation
             foreach (var reservation in cart)
             {
+                // Check for existing reservation
                 bool exists = await _context.Reservations
-            .AnyAsync(r => r.ConfirmationNumber == reservation.ConfirmationNumber);
+                    .AnyAsync(r => r.ConfirmationNumber == reservation.ConfirmationNumber);
 
                 if (exists)
                 {
@@ -260,7 +266,29 @@ namespace FinalProject.Controllers
                     return RedirectToAction(nameof(Cart)); // Redirect back to cart for correction
                 }
 
-                // Attach existing entities to the context to avoid duplication
+                var nights = (reservation.CheckOut - reservation.CheckIn).Days;
+                var weekdayNights = Enumerable.Range(0, nights)
+                    .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday }
+                    .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
+                var weekendNights = nights - weekdayNights;
+
+                // Calculate stay price
+                decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
+                                    (weekendNights * reservation.WeekendPrice);
+
+                // Apply discount if applicable
+                if (nights >= reservation.Property.MinNightsForDiscount)
+                {
+                    decimal discountRate = reservation.Property.DiscountRate ?? 0;
+                    stayPrice *= (1 - (discountRate / 100m));
+                }
+
+                // Accumulate totals
+                cleaningFees += reservation.CleaningFee;
+                tax += (stayPrice + reservation.CleaningFee) * TAX_RATE;
+                subtotal += stayPrice;
+
+                // Attach existing entities to avoid duplication
                 _context.Attach(reservation.Property);
                 _context.Attach(reservation.Customer);
 
@@ -268,9 +296,18 @@ namespace FinalProject.Controllers
                 _context.Reservations.Add(reservation);
             }
 
+            // Calculate grand total
+            decimal grandtotal = subtotal + cleaningFees + tax;
+
             await _context.SaveChangesAsync();
             HttpContext.Session.Remove("Cart");
 
+            TempData["Subtotal"] = subtotal.ToString("C");
+            TempData["CleaningFee"] = cleaningFees.ToString("C");
+            TempData["Tax"] = tax.ToString("C");
+            TempData["GrandTotal"] = grandtotal.ToString("C");
+
+            // Redirect to confirmation view
             return RedirectToAction(nameof(Confirmation), new { id = cart.First().ConfirmationNumber });
         }
 

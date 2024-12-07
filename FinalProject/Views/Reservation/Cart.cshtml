@@ -36,7 +36,7 @@
                             @{
                                 var nights = (reservation.CheckOut - reservation.CheckIn).Days;
                                 var weekdayNights = Enumerable.Range(0, nights)
-                                .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday }
+                                .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday }
                                 .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
                                 var weekendNights = nights - weekdayNights;
 
@@ -65,7 +65,8 @@
                                     <li>@weekdayNights weekday nights × @reservation.WeekdayPrice.ToString("C")</li>
                                     <li>@weekendNights weekend nights × @reservation.WeekendPrice.ToString("C")</li>
                                     <li>Cleaning fee: @reservation.CleaningFee.ToString("C")</li>
-                                    <li>Stay Total (+tax): @reservationTotal.ToString("C")</li>
+                                    <hr />
+                                    <li><strong>Stay Total (+tax):</strong> @reservationTotal.ToString("C")</li>
                                     @if (nights >= reservation.Property.MinNightsForDiscount &&
                                    reservation.Property.DiscountRate.HasValue)
                                     {

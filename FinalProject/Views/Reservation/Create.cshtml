@@ -1,4 +1,5 @@
 ﻿@* Views/Reservation/Create.cshtml *@
+@using System.Security.Claims
 @model Reservation
 
 @{
@@ -136,8 +137,8 @@
                     }
                 }
 
-                const tax = totalPrice * taxRate;
-                const totalAmount = totalPrice + tax + cleaningFee;
+               const tax = (totalPrice + cleaningFee) * taxRate;
+                const totalAmount = totalPrice + cleaningFee + tax;
 
                 // Display values
                 document.getElementById('costPerNightDisplay').textContent = `$${(totalPrice / numNights).toFixed(2)}`;
