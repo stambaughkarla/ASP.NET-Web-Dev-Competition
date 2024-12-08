@@ -32,9 +32,11 @@
                             <li>Stay Price: @TempData["Subtotal"]</li>          
                             @if (TempData["TotalDiscount"] != null)
                             {
-                                <p>Discount Amount: <span style="color: red;">-@TempData["TotalDiscount"]</span></p>
+                                <li>Discount Amount: <span style="color: red;">-@TempData["TotalDiscount"]</span></li>
+                                <li>Price After Discount: @TempData["PriceAfterDis"]</li>
                             }
-                            <li>Cleaning fee: @TempData["CleaningFee"]</li>
+                            <li>Cleaning Fee: @TempData["CleaningFee"]</li>
+                            <li>Subtotal: @TempData["SubAfterDis"]</li>
                             <li>Tax (7%): @TempData["Tax"]</li>
                             <hr/>
                             <li>Grand Total: @TempData["GrandTotal"]</li>
