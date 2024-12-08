@@ -150,6 +150,7 @@ namespace FinalProject.Controllers
                 WeekdayPrice = property.WeekdayPrice,
                 WeekendPrice = property.WeekendPrice,
                 CleaningFee = property.CleaningFee,
+                MinNights = property.MinNightsForDiscount,
                 Discount = property.DiscountRate
             };
 
@@ -173,18 +174,24 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            
+            // Validatio!!
+            if (model.Discount.HasValue && (!model.MinNights.HasValue || model.MinNights <= 0))
+            {
+                ModelState.AddModelError("MinNights", "Minimum nights must be set before a discount can be applied.");
+                return View(model);
+            }
+
             property.WeekdayPrice = model.WeekdayPrice;
             property.WeekendPrice = model.WeekendPrice;
             property.CleaningFee = model.CleaningFee;
             property.MinNightsForDiscount = model.MinNights;
             property.DiscountRate = model.Discount;
+
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Pricing updated successfully!";
             return RedirectToAction("Reports", "Account");
         }
-
 
         // GET: Property/Categories
         [Authorize(Roles = "Admin")]

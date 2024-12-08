@@ -134,6 +134,8 @@ namespace FinalProject.Controllers
             return View(lvm);
         }
 
+
+        [Authorize(Roles = "Host")]
         public async Task<IActionResult> HostDashboard()
         {
 
@@ -194,19 +196,20 @@ namespace FinalProject.Controllers
             // Retrieve all properties owned by the host
             var properties = await _context.Properties
                 .Where(p => p.Host.Id == userId)
+                .Include(p => p.Reservations)
                 .ToListAsync();
 
             return View(properties);
         }
 
-
+        [Authorize(Roles = "Host")]
         [HttpGet]
         public IActionResult HostSummary()
         {
             // Return an empty model on the initial GET request
             return View(new List<HostSummaryViewModel>());
         }
-
+        [Authorize(Roles = "Host")]
         [HttpPost]
         public async Task<IActionResult> HostSummary(DateTime? startDate, DateTime? endDate)
         {
