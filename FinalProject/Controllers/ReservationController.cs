@@ -76,7 +76,7 @@ namespace FinalProject.Controllers
             }
 
             var reservedDates = _context.Reservations
-                .Where(r => r.PropertyID == id)
+                .Where(r => r.PropertyID == id && r.ReservationStatus == true) // Include only active reservations
                 .Select(r => new { start = r.CheckIn, end = r.CheckOut })
                 .ToList();
 
@@ -144,7 +144,6 @@ namespace FinalProject.Controllers
                     .Where(r => r.ReservationStatus == true)
                     .Where(r => r.CheckOut > reservation.CheckIn && r.CheckIn < reservation.CheckOut) // Overlapping dates
                     .ToListAsync();
-
 
 
                 if (overlappingReservations.Any())
@@ -263,13 +262,17 @@ namespace FinalProject.Controllers
                 }
             }
 
-            decimal subtotal = 0;
+            decimal stayprice = 0;
+            decimal staydiscounted = 0;
             decimal cleaningFees = 0;
+            decimal subtotal = 0;
             const decimal TAX_RATE = 0.07m;
             decimal tax = 0;
             decimal totaltax = 0;
-            decimal grandtotal = 0;
             decimal totaldiscountamount = 0;
+            decimal reservationsubtotal = 0;
+            decimal grandTotal = 0;
+            decimal subafterdis = 0;
 
             // Final validation
             foreach (var reservation in cart)
@@ -293,25 +296,29 @@ namespace FinalProject.Controllers
                 .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
                 var weekendNights = nights - weekdayNights;
 
-                decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
+                decimal reservationStayPrice = (weekdayNights * reservation.WeekdayPrice) +
                 (weekendNights * reservation.WeekendPrice);
 
                 if (nights >= reservation.Property.MinNightsForDiscount)
                 {
-                    decimal discountRate = reservation.Property.DiscountRate ?? 0;
-                    discountamount = stayPrice * discountRate;
+                    decimal discountRate = reservation.Property.DiscountRate/100m ?? 0;
+                    discountamount = reservationStayPrice * discountRate;
                 }
 
-
-                subtotal += stayPrice;
-                cleaningFees += reservation.CleaningFee;
-                tax = (stayPrice + reservation.CleaningFee - discountamount) * TAX_RATE;
+                stayprice += reservationStayPrice;
                 totaldiscountamount += discountamount;
-                totaltax = (subtotal + cleaningFees) * TAX_RATE;
-                grandtotal = subtotal - discountamount + cleaningFees + tax;
 
-                decimal reservationTax = (stayPrice + reservation.CleaningFee) * TAX_RATE;
-                decimal reservationTotal = stayPrice - discountamount + reservation.CleaningFee + tax;
+                subtotal += reservationStayPrice;
+                cleaningFees += reservation.CleaningFee;
+                staydiscounted = subtotal - totaldiscountamount;
+                tax = (reservationStayPrice - discountamount + reservation.CleaningFee) * TAX_RATE;
+                reservationsubtotal = reservationStayPrice - discountamount + reservation.CleaningFee;
+                subafterdis = staydiscounted + cleaningFees;
+                totaltax += tax;
+                grandTotal = subtotal - totaldiscountamount + cleaningFees + totaltax;
+                
+                decimal reservationTax = (stayprice + reservation.CleaningFee) * TAX_RATE;
+                decimal reservationTotal = stayprice - discountamount + reservation.CleaningFee + tax;
 
                 // Attach existing entities to avoid duplication
                 _context.Attach(reservation.Property);
@@ -329,9 +336,11 @@ namespace FinalProject.Controllers
             {
                 TempData["TotalDiscount"] = totaldiscountamount.ToString("C");
             }
+            TempData["PriceAfterDis"] = staydiscounted.ToString("C");
             TempData["CleaningFee"] = cleaningFees.ToString("C");
+            TempData["SubAfterDis"] = subafterdis.ToString("C");
             TempData["Tax"] = tax.ToString("C");
-            TempData["GrandTotal"] = grandtotal.ToString("C");
+            TempData["GrandTotal"] = grandTotal.ToString("C");
 
             // Redirect to confirmation view
             return RedirectToAction(nameof(Confirmation), new { id = cart.First().ConfirmationNumber });
@@ -385,7 +394,27 @@ namespace FinalProject.Controllers
             // Mark the reservation as cancelled
             reservation.ReservationStatus = false; // Assuming false indicates cancellation
             _context.Reservations.Update(reservation);
-            await _context.SaveChangesAsync();
+
+            // Clear unavailable dates linked to the reservation
+            var unavailableDates = await _context.Unavailabilities
+                .Where(u => u.PropertyID == reservation.PropertyID)
+                .Where(u => u.Date >= reservation.CheckIn && u.Date < reservation.CheckOut)
+                .ToListAsync();
+
+            if (unavailableDates.Any())
+            {
+                _context.Unavailabilities.RemoveRange(unavailableDates);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Reservation has been canceled successfully.";
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "An error occurred while canceling the reservation. Please try again.";
+            }
 
             // Redirect back to the index page to show all reservations
             return RedirectToAction(nameof(Index));
