@@ -134,6 +134,27 @@ namespace FinalProject.Controllers
             return View(lvm);
         }
 
+        // Logs out the user and redirects to the hosting registration page
+        public async Task<IActionResult> LogoutAndRedirectToRegister()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            // Redirect to the host registration page
+            return RedirectToAction("Register", "Account");
+        }
+
+        // Logs out the user and redirects to the login page
+        public async Task<IActionResult> LogoutAndRedirectToLogin()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            // Redirect to the login page
+            return RedirectToAction("Login", "Account");
+        }
 
         [Authorize(Roles = "Host")]
         public async Task<IActionResult> HostDashboard()

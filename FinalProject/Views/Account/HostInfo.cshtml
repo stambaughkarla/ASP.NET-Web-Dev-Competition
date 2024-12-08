@@ -8,8 +8,26 @@
     <div class="content">
         <h1 class="hero-title">Turn Your Home into a Destination</h1>
         <p class="hero-text">Unlock the potential of your space and earn extra income by hosting with BevoBnB.</p>
-        <a href="/Account/Register" class="cta-button">Start Hosting</a>
-        <p class="hero-text">Already a host? Login <a href="/Account/Login">here</a></p>
+
+        @if (User.IsInRole("Customer"))
+        {
+            <a href="/Account/LogoutAndRedirectToRegister" class="cta-button">Start Hosting</a>
+        }
+        else
+        {
+            <a href="/Account/Register" class="cta-button">Start Hosting</a>
+        }
+
+        <p class="hero-text">
+            Already a host?
+            @if (User.IsInRole("Customer"))
+            {
+                <a href="/Account/LogoutAndRedirectToLogin">Login Here</a>
+            }
+            else
+            {
+                <a href="/Account/Login" >Login Here</a>
+            }
     </div>
 </section>
 
