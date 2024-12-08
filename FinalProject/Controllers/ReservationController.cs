@@ -75,24 +75,15 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            // Fetch existing reservations for the property
-            var reservedDates = await _context.Reservations
-                .Where(r => r.PropertyID == id && r.ReservationStatus == true) // Only active reservations
-                .Select(r => new
-                {
-                    start = r.CheckIn.ToString("yyyy-MM-dd"),
-                    end = r.CheckOut.ToString("yyyy-MM-dd")
-                })
-                .ToListAsync();
+            var reservedDates = _context.Reservations
+                .Where(r => r.PropertyID == id)
+                .Select(r => new { start = r.CheckIn, end = r.CheckOut })
+                .ToList();
 
-            // Fetch unavailability dates
- var unavailabilityDates = await _context.Unavailabilities
-    .Where(u => u.PropertyID == id)
-    .Select(u => new
-    {
-        date = u.Date.ToString("yyyy-MM-dd")
-    })
-    .ToListAsync();
+            var unavailabilityDates = _context.Unavailabilities
+                .Where(u => u.PropertyID == id)
+                .Select(u => new { start = u.Date, end = u.Date })
+                .ToList();
 
             ViewBag.ReservedDates = reservedDates;
             ViewBag.UnavailabilityDates = unavailabilityDates;
@@ -137,7 +128,7 @@ namespace FinalProject.Controllers
                 var currentUser = await _userManager.GetUserAsync(User);
                 if (currentUser == null) return Unauthorized();
 
-                //reservation.Customer = currentUser;
+
                 reservation.Customer = currentUser;
                 reservation.CustomerID = currentUser.Id;
                 reservation.Property = property;
@@ -162,8 +153,19 @@ namespace FinalProject.Controllers
                     return View(reservation);
                 }
 
-                // Set confirmation number
-                int lastConfirmationNumber = await _context.Reservations
+                var unavailableDates = await _context.Unavailabilities
+                    .Where(u => u.PropertyID == reservation.PropertyID)
+                    .Where(u => u.Date >= reservation.CheckIn && u.Date < reservation.CheckOut)
+                    .ToListAsync();
+
+                if (unavailableDates.Any())
+                {
+                    TempData["ErrorMessage"] = "The selected dates include unavailable dates. Please choose different dates.";
+                    return View(reservation);
+                }
+
+                    // Set confirmation number
+                    int lastConfirmationNumber = await _context.Reservations
                     .MaxAsync(r => (int?)r.ConfirmationNumber) ?? 9999;
                 reservation.ConfirmationNumber = lastConfirmationNumber + 1;
 
@@ -245,9 +247,7 @@ namespace FinalProject.Controllers
             {
                 return RedirectToAction(nameof(Cart));
             }
-            // Retrieve the current user
-            var currentUser = await _userManager.GetUserAsync(User);
-            if (currentUser == null) return Unauthorized();
+
 
             // Check for overlaps within the cart itself
             for (int i = 0; i < cart.Count; i++)
@@ -267,10 +267,15 @@ namespace FinalProject.Controllers
             decimal cleaningFees = 0;
             const decimal TAX_RATE = 0.07m;
             decimal tax = 0;
+            decimal totaltax = 0;
+            decimal grandtotal = 0;
+            decimal totaldiscountamount = 0;
 
             // Final validation
             foreach (var reservation in cart)
             {
+                decimal discountamount = 0;
+
                 // Check for existing reservation
                 bool exists = await _context.Reservations
                     .AnyAsync(r => r.ConfirmationNumber == reservation.ConfirmationNumber);
@@ -284,25 +289,29 @@ namespace FinalProject.Controllers
 
                 var nights = (reservation.CheckOut - reservation.CheckIn).Days;
                 var weekdayNights = Enumerable.Range(0, nights)
-                    .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday }
-                    .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
+                .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday }
+                .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
                 var weekendNights = nights - weekdayNights;
 
-                // Calculate stay price
                 decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
-                                    (weekendNights * reservation.WeekendPrice);
+                (weekendNights * reservation.WeekendPrice);
 
-                // Apply discount if applicable
                 if (nights >= reservation.Property.MinNightsForDiscount)
                 {
                     decimal discountRate = reservation.Property.DiscountRate ?? 0;
-                    stayPrice *= (1 - (discountRate / 100m));
+                    discountamount = stayPrice * discountRate;
                 }
 
-                // Accumulate totals
-                cleaningFees += reservation.CleaningFee;
-                tax += (stayPrice + reservation.CleaningFee) * TAX_RATE;
+
                 subtotal += stayPrice;
+                cleaningFees += reservation.CleaningFee;
+                tax = (stayPrice + reservation.CleaningFee - discountamount) * TAX_RATE;
+                totaldiscountamount += discountamount;
+                totaltax = (subtotal + cleaningFees) * TAX_RATE;
+                grandtotal = subtotal - discountamount + cleaningFees + tax;
+
+                decimal reservationTax = (stayPrice + reservation.CleaningFee) * TAX_RATE;
+                decimal reservationTotal = stayPrice - discountamount + reservation.CleaningFee + tax;
 
                 // Attach existing entities to avoid duplication
                 _context.Attach(reservation.Property);
@@ -312,13 +321,14 @@ namespace FinalProject.Controllers
                 _context.Reservations.Add(reservation);
             }
 
-            // Calculate grand total
-            decimal grandtotal = subtotal + cleaningFees + tax;
-
             await _context.SaveChangesAsync();
             HttpContext.Session.Remove("Cart");
 
             TempData["Subtotal"] = subtotal.ToString("C");
+            if (totaldiscountamount > 0)
+            {
+                TempData["TotalDiscount"] = totaldiscountamount.ToString("C");
+            }
             TempData["CleaningFee"] = cleaningFees.ToString("C");
             TempData["Tax"] = tax.ToString("C");
             TempData["GrandTotal"] = grandtotal.ToString("C");

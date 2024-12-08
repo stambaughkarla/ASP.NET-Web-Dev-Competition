@@ -5,6 +5,10 @@ namespace FinalProject.Models
 {
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "UserName is Required")]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }

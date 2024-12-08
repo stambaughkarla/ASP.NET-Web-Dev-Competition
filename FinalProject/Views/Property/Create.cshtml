@@ -13,6 +13,7 @@
     <input type="hidden" asp-for="Host.FirstName" value="@ViewBag.Host" />
     <input type="hidden" asp-for="Host.FirstName" value="@ViewBag.CategorySelectList" />
     <input type="hidden" asp-for="PropertyStatus" value="false" />
+    <input type="hidden" asp-for="ImageURL" value="/images/properties/goldenimage.jpg" />
 
 
 
@@ -82,7 +83,7 @@
         <span asp-validation-for="MinNightsForDiscount" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="DiscountRate"></label>
+        <label asp-for="DiscountRate">Discount Rate %</label>
         <input asp-for="DiscountRate" type="number" class="form-control"  />
         <span asp-validation-for="DiscountRate" class="text-danger"></span>
     </div>

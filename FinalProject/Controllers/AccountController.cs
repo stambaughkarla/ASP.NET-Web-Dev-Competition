@@ -41,7 +41,7 @@ namespace FinalProject.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(rvm);
+                return BadRequest(ModelState);
             }
 
             // Check if user is at least 18 years old
@@ -134,6 +134,29 @@ namespace FinalProject.Controllers
             return View(lvm);
         }
 
+        // Logs out the user and redirects to the hosting registration page
+        public async Task<IActionResult> LogoutAndRedirectToRegister()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            // Redirect to the host registration page
+            return RedirectToAction("Register", "Account");
+        }
+
+        // Logs out the user and redirects to the login page
+        public async Task<IActionResult> LogoutAndRedirectToLogin()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            // Redirect to the login page
+            return RedirectToAction("Login", "Account");
+        }
+
+        [Authorize(Roles = "Host")]
         public async Task<IActionResult> HostDashboard()
         {
 
@@ -194,19 +217,20 @@ namespace FinalProject.Controllers
             // Retrieve all properties owned by the host
             var properties = await _context.Properties
                 .Where(p => p.Host.Id == userId)
+                .Include(p => p.Reservations)
                 .ToListAsync();
 
             return View(properties);
         }
 
-
+        [Authorize(Roles = "Host")]
         [HttpGet]
         public IActionResult HostSummary()
         {
             // Return an empty model on the initial GET request
             return View(new List<HostSummaryViewModel>());
         }
-
+        [Authorize(Roles = "Host")]
         [HttpPost]
         public async Task<IActionResult> HostSummary(DateTime? startDate, DateTime? endDate)
         {
