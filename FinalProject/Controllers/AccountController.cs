@@ -41,7 +41,7 @@ namespace FinalProject.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return View(rvm);
             }
 
             // Check if user is at least 18 years old
