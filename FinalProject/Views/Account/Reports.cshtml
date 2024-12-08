@@ -13,24 +13,21 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>Property Number</th>
                 <th>Property</th>
                 <th>Total Reservations</th>
-                <th>Actions</th>
                 <th>Admin Status</th>
-                <th>Disable Property</th>
+                <th>Property Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var property in allProperties.OrderByDescending(p => p.Reservations?.Count ?? 0))
             {
                 <tr>
+                    <td>@property.PropertyNumber</td>
                     <td>@property.PropertyName</td>
                     <td>@(property.Reservations?.Count() ?? 0)</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Home" asp-route-id="@property.PropertyID">View</a>
-                        <a class="btn btn-warning btn-sm" asp-action="EditProperty" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
-                        <a class="btn btn-warning btn-sm" asp-action="UnvDetails" asp-controller="RoleHost" asp-route-id="@property.PropertyID">Manage Unavailability</a>
-                    </td>
                     <td>
                         <span class="badge @(property.PropertyStatus ? "bg-success" : "bg-danger")">
                             @(property.PropertyStatus ? "Approved" : "Rejected")
@@ -53,6 +50,26 @@
                                 </label>
                             </div>
                         </form>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm @(!property.PropertyStatus ? "disabled btn-secondary" : "")"
+                           asp-controller="Home"
+                           asp-action="Details"
+                           asp-route-id="@property.PropertyID">
+                            View
+                        </a>
+                        <a class="btn btn-warning btn-sm"
+                           asp-action="EditProperty"
+                           asp-controller="Property"
+                           asp-route-id="@property.PropertyID">
+                            Edit
+                        </a>
+                        <a class="btn btn-warning btn-sm"
+                           asp-action="UnvDetails"
+                           asp-controller="RoleHost"
+                           asp-route-id="@property.PropertyID">
+                            Manage Unavailability
+                        </a>
                     </td>
                 </tr>
             }

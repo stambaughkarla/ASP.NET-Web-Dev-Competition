@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\property\\manageproperties.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\property\\manageproperties.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|e:\\github\\group-25\\finalproject\\views\\property\\manageproperties.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\property\\manageproperties.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,13 +30,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "ManageProperties.cshtml",
               "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Views\\Property\\ManageProperties.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\ManageProperties.cshtml",
               "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Property\\ManageProperties.cshtml",
               "RelativeToolTip": "FinalProject\\Views\\Property\\ManageProperties.cshtml",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAAE0AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-08T17:02:56.271Z",
               "IsPinned": true,
@@ -54,7 +50,7 @@
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\PropertyController.cs",
               "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\PropertyController.cs",
-              "ViewState": "AgIAACUBAAAAAAAAAADwv0UBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAuwEUBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T17:03:03.041Z",
               "IsPinned": true,
@@ -68,23 +64,9 @@
               "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\Reports.cshtml",
               "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Views\\Account\\Reports.cshtml",
               "RelativeToolTip": "FinalProject\\Views\\Account\\Reports.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACIAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-08T17:14:05.198Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "E:\\Github\\Group-25\\FinalProject\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "FinalProject\\Controllers\\HomeController.cs",
-              "ToolTip": "E:\\Github\\Group-25\\FinalProject\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "FinalProject\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBkAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T17:25:19.642Z",
+              "WhenOpened": "2024-12-08T17:50:08.665Z",
               "EditorCaption": ""
             },
             {
