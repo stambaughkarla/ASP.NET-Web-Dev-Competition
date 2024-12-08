@@ -24,7 +24,8 @@
             {
                 <tr>
                     <td>@property.PropertyName</td>
-                    <td>@property.Reservations?.Count</td>
+                    <td>@(property.Reservations?.Count() ?? 0)</td>
+
                     <td>
                         <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Home" asp-route-id="@property.PropertyID">View</a>
                         <a class="btn btn-warning btn-sm" asp-action="EditProperty" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>

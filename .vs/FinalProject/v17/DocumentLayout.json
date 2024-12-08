@@ -3,16 +3,40 @@
   "WorkspaceRootPath": "C:\\mis333k\\final\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\property\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\property\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\viewmodels\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\viewmodels\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\property\\editproperty.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\property\\editproperty.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\rolehost\\viewreviews.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\rolehost\\viewreviews.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\rolehostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,20 +47,12 @@
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\rolehost\\managereservations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\views\\account\\hostsummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\account\\hostsummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\unavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\unavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,10 +67,6 @@
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\views\\rolehost\\unvdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|c:\\mis333k\\final\\finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FD7FEB-B09B-4A83-AD90-3D54038C0352}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -65,7 +77,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 130,
+          "DockedHeight": 37,
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -75,38 +87,91 @@
           ]
         },
         {
-          "DockedHeight": 595,
-          "SelectedChildIndex": 13,
+          "DockedHeight": 628,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Reports.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\Reports.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\Reports.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\Reports.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Account\\Reports.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-07T05:37:01.964Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "AccountViewModels.cs",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "RelativeDocumentMoniker": "FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "RelativeToolTip": "FinalProject\\Models\\ViewModels\\AccountViewModels.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFQAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T06:02:33.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EditProperty.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\EditProperty.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\EditProperty.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\EditProperty.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\Property\\EditProperty.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-08T06:00:19.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ViewReviews.cshtml",
+              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "RelativeToolTip": "FinalProject\\Views\\RoleHost\\ViewReviews.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-07T07:43:20.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "PropertyController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\PropertyController.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Controllers\\PropertyController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\PropertyController.cs",
-              "ViewState": "AgIAABoBAAAAAAAAAAA+wAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAowLAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T07:34:33.3Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Create.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Property\\Create.cshtml",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Property\\Create.cshtml",
               "RelativeToolTip": "FinalProject\\Views\\Property\\Create.cshtml",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAzwFEAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAzwFQAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-07T07:05:15.874Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "ManageReservations.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\ManageReservations.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\ManageReservations.cshtml",
@@ -119,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "UnvDetails.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\UnvDetails.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\UnvDetails.cshtml",
@@ -132,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "HostSummary.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\HostSummary.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\HostSummary.cshtml",
@@ -145,33 +210,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "Reservation.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Reservation.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Reservation.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Reservation.cs",
               "RelativeToolTip": "FinalProject\\Models\\Reservation.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T06:24:03.099Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "ReservationController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\ReservationController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\ReservationController.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Controllers\\ReservationController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\ReservationController.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAAAGcAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHkAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T06:23:17.003Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "Unavailability.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Unavailability.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Unavailability.cs",
@@ -184,20 +249,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 6,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Controllers\\AccountController.cs",
               "RelativeToolTip": "FinalProject\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAkwNIAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAAAMcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T06:05:31.564Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "UnvDates.cshtml",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\RoleHost\\UnvDates.cshtml",
               "RelativeDocumentMoniker": "FinalProject\\Views\\RoleHost\\UnvDates.cshtml",
@@ -210,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "RoleHostController.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Controllers\\RoleHostController.cs",
               "RelativeDocumentMoniker": "FinalProject\\Controllers\\RoleHostController.cs",
@@ -223,20 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Reports.cshtml",
-              "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\Reports.cshtml",
-              "RelativeDocumentMoniker": "FinalProject\\Views\\Account\\Reports.cshtml",
-              "ToolTip": "C:\\mis333k\\final\\FinalProject\\Views\\Account\\Reports.cshtml",
-              "RelativeToolTip": "FinalProject\\Views\\Account\\Reports.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-07T05:37:01.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Review.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Review.cs",
@@ -249,13 +301,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Property.cs",
               "DocumentMoniker": "C:\\mis333k\\final\\FinalProject\\Models\\Property.cs",
               "RelativeDocumentMoniker": "FinalProject\\Models\\Property.cs",
               "ToolTip": "C:\\mis333k\\final\\FinalProject\\Models\\Property.cs",
               "RelativeToolTip": "FinalProject\\Models\\Property.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAuwFMAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAFgAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T04:53:58.411Z",
               "EditorCaption": ""
@@ -363,7 +415,7 @@
           ]
         },
         {
-          "DockedHeight": 44,
+          "DockedHeight": 105,
           "SelectedChildIndex": -1,
           "Children": [
             {
