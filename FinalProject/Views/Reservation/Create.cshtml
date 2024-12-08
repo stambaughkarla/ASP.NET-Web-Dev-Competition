@@ -1,5 +1,4 @@
 ﻿@* Views/Reservation/Create.cshtml *@
-@using System.Security.Claims
 @model Reservation
 
 @{
@@ -98,7 +97,7 @@
                     <h4 class="card-title">Pricing Summary</h4>
                     <ul class="list-unstyled">
                         <li>
-                             Avg. Cost Per Night: <span id="totalPriceDisplay"></span>
+                             Subtotal Price: <span id="totalPriceDisplay"></span>
                         </li>
                         <li>
                             Number of Nights: <span id="numNightsDisplay"></span>
@@ -106,11 +105,9 @@
                         <li>
                             Cleaning Fee: <span id="cleaningFeeDisplay"></span>
                         </li>
-                        <li id="discountDisplay" style="display: none;">
-                            Discount: <span id="discountAmount"></span>
-                        </li>
                         <li>
                             Tax: <span id="taxDisplay"></span>
+                        </li>
                         </li>
                         <li>
                             Total Amount: <span id="totalAmountDisplay"></span>
@@ -164,44 +161,39 @@
                 for (let i = 0; i < numNights; i++) {
                     let currentDate = new Date(checkInDate);
                     currentDate.setDate(checkInDate.getDate() + i);
-                    if (currentDate.getDay() === 4 || currentDate.getDay() === 5 || currentDate.getDay() === 6) { // Sunday (0) or Saturday (6)
+                    if (currentDate.getDay() === 4 || currentDate.getDay() === 5) { // Friday & Saturday
                         totalPrice += weekendPrice;
                     } else {
                         totalPrice += weekdayPrice;
                     }
                 }
 
-                // Apply discount if the number of nights meets the minimum for a discount
-                let discountAmount = 0;
-                let grandPrice = totalPrice;
-                if (numNights >= @Model.Property.MinNightsForDiscount) {
-                    discountAmount = grandPrice * (@Model.Property.DiscountRate);
-                    grandPrice -= discountAmount; // Reduce total price by the discount amount
-                    document.getElementById('discountDisplay').style.display = 'block';
-                    document.getElementById('discountAmount').textContent = `- $${discountAmount.toFixed(2)}`;
-                } else {
-                    document.getElementById('discountDisplay').style.display = 'none';
-                }
+                // Initialize discount-related variables
 
+                let grandPrice = totalPrice;
+
+
+                // Calculate tax and total amount
                 const tax = (grandPrice + cleaningFee) * taxRate;
                 const totalAmount = grandPrice + cleaningFee + tax;
 
-                // Display values
+
+                // Update the UI
                 document.getElementById('totalPriceDisplay').textContent = `$${totalPrice.toFixed(2)}`;
                 document.getElementById('numNightsDisplay').textContent = numNights;
                 document.getElementById('cleaningFeeDisplay').textContent = `$${cleaningFee.toFixed(2)}`;
                 document.getElementById('taxDisplay').textContent = `$${tax.toFixed(2)}`;
                 document.getElementById('totalAmountDisplay').textContent = `$${totalAmount.toFixed(2)}`;
             } else {
-                // Reset displayed values if dates are not valid
-                document.getElementById('costPerNightDisplay').textContent = '';
+                // Reset all fields if dates are invalid
+                document.getElementById('totalPriceDisplay').textContent = '';
                 document.getElementById('numNightsDisplay').textContent = '';
                 document.getElementById('cleaningFeeDisplay').textContent = '';
                 document.getElementById('taxDisplay').textContent = '';
                 document.getElementById('totalAmountDisplay').textContent = '';
+
             }
         }
-
 
         const reservedDates = @Html.Raw(Json.Serialize(ViewBag.ReservedDates));
         const unavailabilityDates = @Html.Raw(Json.Serialize(ViewBag.UnavailabilityDates));

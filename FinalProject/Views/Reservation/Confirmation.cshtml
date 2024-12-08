@@ -29,7 +29,11 @@
                     <div class="mt-3">
                         <strong>Price Details</strong>
                         <ul class="list-unstyled">
-                            <li>Stay Price: @TempData["Subtotal"]</li>               
+                            <li>Stay Price: @TempData["Subtotal"]</li>          
+                            @if (TempData["TotalDiscount"] != null)
+                            {
+                                <p>Discount Amount: <span style="color: red;">-@TempData["TotalDiscount"]</span></p>
+                            }
                             <li>Cleaning fee: @TempData["CleaningFee"]</li>
                             <li>Tax (7%): @TempData["Tax"]</li>
                             <hr/>
