@@ -262,10 +262,15 @@ namespace FinalProject.Controllers
             decimal cleaningFees = 0;
             const decimal TAX_RATE = 0.07m;
             decimal tax = 0;
+            decimal totaltax = 0;
+            decimal grandtotal = 0;
+            decimal totaldiscountamount = 0;
 
             // Final validation
             foreach (var reservation in cart)
             {
+                decimal discountamount = 0;
+
                 // Check for existing reservation
                 bool exists = await _context.Reservations
                     .AnyAsync(r => r.ConfirmationNumber == reservation.ConfirmationNumber);
@@ -279,25 +284,29 @@ namespace FinalProject.Controllers
 
                 var nights = (reservation.CheckOut - reservation.CheckIn).Days;
                 var weekdayNights = Enumerable.Range(0, nights)
-                    .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday }
-                    .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
+                .Count(offset => !new[] { DayOfWeek.Friday, DayOfWeek.Saturday }
+                .Contains(reservation.CheckIn.AddDays(offset).DayOfWeek));
                 var weekendNights = nights - weekdayNights;
 
-                // Calculate stay price
                 decimal stayPrice = (weekdayNights * reservation.WeekdayPrice) +
-                                    (weekendNights * reservation.WeekendPrice);
+                (weekendNights * reservation.WeekendPrice);
 
-                // Apply discount if applicable
                 if (nights >= reservation.Property.MinNightsForDiscount)
                 {
                     decimal discountRate = reservation.Property.DiscountRate ?? 0;
-                    stayPrice *= (1 - (discountRate / 100m));
+                    discountamount = stayPrice * discountRate;
                 }
 
-                // Accumulate totals
-                cleaningFees += reservation.CleaningFee;
-                tax += (stayPrice + reservation.CleaningFee) * TAX_RATE;
+
                 subtotal += stayPrice;
+                cleaningFees += reservation.CleaningFee;
+                tax = (stayPrice + reservation.CleaningFee - discountamount) * TAX_RATE;
+                totaldiscountamount += discountamount;
+                totaltax = (subtotal + cleaningFees) * TAX_RATE;
+                grandtotal = subtotal - discountamount + cleaningFees + tax;
+
+                decimal reservationTax = (stayPrice + reservation.CleaningFee) * TAX_RATE;
+                decimal reservationTotal = stayPrice - discountamount + reservation.CleaningFee + tax;
 
                 // Attach existing entities to avoid duplication
                 _context.Attach(reservation.Property);
@@ -307,13 +316,14 @@ namespace FinalProject.Controllers
                 _context.Reservations.Add(reservation);
             }
 
-            // Calculate grand total
-            decimal grandtotal = subtotal + cleaningFees + tax;
-
             await _context.SaveChangesAsync();
             HttpContext.Session.Remove("Cart");
 
             TempData["Subtotal"] = subtotal.ToString("C");
+            if (totaldiscountamount > 0)
+            {
+                TempData["TotalDiscount"] = totaldiscountamount.ToString("C");
+            }
             TempData["CleaningFee"] = cleaningFees.ToString("C");
             TempData["Tax"] = tax.ToString("C");
             TempData["GrandTotal"] = grandtotal.ToString("C");
