@@ -35,6 +35,16 @@
                             <label for="guests">Guests</label>
                         </div>
                     </div>
+
+                    <input type="hidden" name="categoryId" value="@Context.Request.Query["categoryId"]" />
+                    <input type="hidden" name="minPrice" value="@Context.Request.Query["minPrice"]" />
+                    <input type="hidden" name="maxPrice" value="@Context.Request.Query["maxPrice"]" />
+                    <input type="hidden" name="minBedrooms" value="@Context.Request.Query["minBedrooms"]" />
+                    <input type="hidden" name="minBathrooms" value="@Context.Request.Query["minBathrooms"]" />
+                    <input type="hidden" name="minRating" value="@Context.Request.Query["minRating"]" />
+                    <input type="hidden" name="petsAllowed" value="@Context.Request.Query["petsAllowed"]" />
+                    <input type="hidden" name="freeParking" value="@Context.Request.Query["freeParking"]" />
+
                     <div class="col-md-3 d-flex gap-2">
                         <button type="submit" class="btn btn-primary flex-grow-1 rounded-pill d-flex align-items-center justify-content-center gap-2">
                             <i class="bi bi-search" style="font-size: 0.9rem;"></i>
@@ -49,43 +59,65 @@
             </div>
             </div>
 
-<!-- Category Tabs -->
-<div class="container mt-4 border-bottom">
-    <div class="d-flex gap-4 overflow-auto pb-2 scrollbar-hide">
-        <a asp-controller="Home"
-           asp-action="Search"
-           class="text-decoration-none">
-            <div class="text-center category-tab">
-                <div class="mb-2">
-                    <i class="bi bi-house-door h4"></i>
+    <!-- Category Tabs -->
+    <div class="container mt-4 border-bottom">
+        <div class="d-flex gap-4 overflow-auto pb-2 scrollbar-hide">
+            <a asp-controller="Home"
+               asp-action="Search"
+               asp-route-location="@Context.Request.Query["location"]"
+               asp-route-checkIn="@Context.Request.Query["checkIn"]"
+               asp-route-checkOut="@Context.Request.Query["checkOut"]"
+               asp-route-guests="@Context.Request.Query["guests"]"
+               asp-route-minPrice="@Context.Request.Query["minPrice"]"
+               asp-route-maxPrice="@Context.Request.Query["maxPrice"]"
+               asp-route-minBedrooms="@Context.Request.Query["minBedrooms"]"
+               asp-route-minBathrooms="@Context.Request.Query["minBathrooms"]"
+               asp-route-minRating="@Context.Request.Query["minRating"]"
+               asp-route-petsAllowed="@Context.Request.Query["petsAllowed"]"
+               asp-route-freeParking="@Context.Request.Query["freeParking"]"
+               class="text-decoration-none">
+                <div class="text-center category-tab">
+                    <div class="mb-2">
+                        <i class="bi bi-house-door h4"></i>
+                    </div>
+                    <div class="small">All</div>
                 </div>
-                <div class="small">All</div>
-            </div>
-        </a>
+            </a>
             @foreach (var category in ViewBag.Categories)
             {
                 <a asp-controller="Home"
                    asp-action="Search"
                    asp-route-categoryId="@category.CategoryID"
+                   asp-route-location="@Context.Request.Query["location"]"
+                   asp-route-checkIn="@Context.Request.Query["checkIn"]"
+                   asp-route-checkOut="@Context.Request.Query["checkOut"]"
+                   asp-route-guests="@Context.Request.Query["guests"]"
+                   asp-route-minPrice="@Context.Request.Query["minPrice"]"
+                   asp-route-maxPrice="@Context.Request.Query["maxPrice"]"
+                   asp-route-minBedrooms="@Context.Request.Query["minBedrooms"]"
+                   asp-route-minBathrooms="@Context.Request.Query["minBathrooms"]"
+                   asp-route-minRating="@Context.Request.Query["minRating"]"
+                   asp-route-petsAllowed="@Context.Request.Query["petsAllowed"]"
+                   asp-route-freeParking="@Context.Request.Query["freeParking"]"
                    class="text-decoration-none">
                     <div class="text-center category-tab">
                         <div class="mb-2">
                             @switch (category.CategoryName.ToLower())
                             {
                                 case "apartment":
-                                            <i class="bi bi-building h4"></i>
+                                    <i class="bi bi-building h4"></i>
                                     break;
                                 case "cabin":
-                                            <i class="bi bi-house h4"></i>
+                                    <i class="bi bi-house h4"></i>
                                     break;
                                 case "condo":
-                                            <i class="bi bi-buildings h4"></i>
+                                    <i class="bi bi-buildings h4"></i>
                                     break;
                                 case "hotel":
-                                            <i class="bi bi-building-fill h4"></i>
+                                    <i class="bi bi-building-fill h4"></i>
                                     break;
                                 default:
-                                            <i class="bi bi-house-door h4"></i>
+                                    <i class="bi bi-house-door h4"></i>
                                     break;
                             }
                         </div>
@@ -93,17 +125,25 @@
                     </div>
                 </a>
             }
+        </div>
     </div>
-</div>
 
 
     <!-- Advanced Search Fields -->
     <div class="col-12">
         <div class="search-filters" id="advancedSearch" style="display: none;">
             <form asp-controller="Home" asp-action="Search" method="get" class="container shadow-sm py-3" id="advancedSearchForm">
+                <!-- Add hidden fields to maintain main search parameters -->
+                <input type="hidden" name="location" value="@Context.Request.Query["location"]" />
+                <input type="hidden" name="checkIn" value="@Context.Request.Query["checkIn"]" />
+                <input type="hidden" name="checkOut" value="@Context.Request.Query["checkOut"]" />
+                <input type="hidden" name="guests" value="@Context.Request.Query["guests"]" />
+                <input type="hidden" name="categoryId" value="@Context.Request.Query["categoryId"]" />
+
                 <div class="container">
                     <div class="card-body">
                         <div class="row g-3">
+                            <!-- Rest of the advanced search form remains the same -->
                             <div class="col-md-6">
                                 <label class="form-label">Price Range (per night)</label>
                                 <div class="input-group">
@@ -151,15 +191,15 @@
                         <button type="submit" class="btn btn-primary">Apply Filters</button>
                         <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
-</div>
 
 <!-- Property Grid -->
 <div class="container py-4">
     <div class="mb-3">
-        <span class="text-muted">Showing @Model.Count(p => p.PropertyStatus) of @Model.Count() Properties</span>
+        <span class="text-muted">Showing @ViewBag.FilteredCount of @ViewBag.TotalCount Properties</span>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -171,7 +211,10 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <div>
-                                <span class="badge bg-primary mb-2">@property.Category.CategoryName</span>
+                                <div class="d-flex gap-2 mb-2">
+                                    <span class="badge bg-primary">@property.Category.CategoryName</span>
+                                    <span class="badge bg-secondary">#@property.PropertyNumber</span>
+                                </div>
                                 <h5 class="card-title mb-0">@property.Street</h5>
                             </div>
                             <div class="text-end">
