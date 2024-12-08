@@ -99,9 +99,6 @@ namespace FinalProject.Models
         // Status of the property
         [Display(Name = "Active Status")]
         public Boolean IsActive { get; set; }
-
-        //i think we will need another called adminstatus to set the property off until admin approves
-
         public string? ImageURL { get; set; }
 
 

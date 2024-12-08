@@ -13,34 +13,63 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>Property Number</th>
                 <th>Property</th>
                 <th>Total Reservations</th>
+                <th>Admin Status</th>
+                <th>Property Status</th>
                 <th>Actions</th>
-                <th>Disable Property</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var property in allProperties.OrderByDescending(p => p.Reservations?.Count ?? 0))
             {
                 <tr>
+                    <td>@property.PropertyNumber</td>
                     <td>@property.PropertyName</td>
                     <td>@(property.Reservations?.Count() ?? 0)</td>
-
                     <td>
-                        <a class="btn btn-primary btn-sm" asp-action="Details" asp-controller="Home" asp-route-id="@property.PropertyID">View</a>
-                        <a class="btn btn-warning btn-sm" asp-action="EditProperty" asp-controller="Property" asp-route-id="@property.PropertyID">Edit</a>
-                        <a class="btn btn-warning btn-sm" asp-action="UnvDetails" asp-controller="RoleHost" asp-route-id="@property.PropertyID">Manage Unavailability</a>
+                        <span class="badge @(property.PropertyStatus ? "bg-success" : "bg-danger")">
+                            @(property.PropertyStatus ? "Approved" : "Rejected")
+                        </span>
                     </td>
                     <td>
                         <form asp-action="ToggleStatus" asp-controller="Property" method="post" class="d-inline">
                             <input type="hidden" name="propertyId" value="@property.PropertyID" />
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" name="propertystatus"
-                                       value="true" @(property.PropertyStatus ? "checked" : "")
-                                       onchange="this.form.submit()" />
-                                <label class="form-check-label">@((property.PropertyStatus ? "Active" : "Disabled"))</label>
+                                <input class="form-check-input" type="checkbox" name="isActive"
+                                       value="true" @(property.IsActive ? "checked" : "")
+                                       onchange="this.form.submit()"
+                                @(!property.PropertyStatus ? "disabled" : "") />
+                                <label class="form-check-label @(!property.PropertyStatus ? "text-muted" : "")">
+                                    @(property.IsActive ? "Active" : "Disabled")
+                                    @if (!property.PropertyStatus)
+                                    {
+                                        <small>(Unavailable while rejected)</small>
+                                    }
+                                </label>
                             </div>
                         </form>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm @(!property.PropertyStatus ? "disabled btn-secondary" : "")"
+                           asp-controller="Home"
+                           asp-action="Details"
+                           asp-route-id="@property.PropertyID">
+                            View
+                        </a>
+                        <a class="btn btn-warning btn-sm"
+                           asp-action="EditProperty"
+                           asp-controller="Property"
+                           asp-route-id="@property.PropertyID">
+                            Edit
+                        </a>
+                        <a class="btn btn-warning btn-sm"
+                           asp-action="UnvDetails"
+                           asp-controller="RoleHost"
+                           asp-route-id="@property.PropertyID">
+                            Manage Unavailability
+                        </a>
                     </td>
                 </tr>
             }

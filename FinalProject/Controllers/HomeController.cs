@@ -25,7 +25,7 @@ namespace FinalProject.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.Reviews)
                 .Include(p => p.Host)
-                .Where(p => p.PropertyStatus)
+                .Where(p => p.PropertyStatus && p.IsActive) 
                 .ToListAsync();
 
 

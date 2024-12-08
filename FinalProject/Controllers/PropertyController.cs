@@ -325,13 +325,14 @@ namespace FinalProject.Controllers
             return await _userManager.GetUserAsync(HttpContext.User);
         }
 
+        [Authorize(Roles = "Host")]
         [HttpPost]
         public IActionResult ToggleStatus(int propertyId)
         {
             var property = _context.Properties.FirstOrDefault(p => p.PropertyID == propertyId);
             if (property != null)
             {
-                property.PropertyStatus = !property.PropertyStatus; // Toggle the value
+                property.IsActive = !property.IsActive; // Toggle IsActive instead of PropertyStatus
                 _context.SaveChanges();
             }
             return RedirectToAction("Reports", "Account");
