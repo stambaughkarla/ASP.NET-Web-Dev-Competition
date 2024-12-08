@@ -34,7 +34,6 @@ namespace FinalProject.Controllers
             return View(reviews);
         }
 
-        // GET: Reviews/Create/5 (PropertyId)
         [Authorize]
         public async Task<IActionResult> Create(int? id)
         {
@@ -43,49 +42,88 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            // Check if user has stayed at this property
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            bool hasStayed = await _context.Reservations
-                .AnyAsync(r => r.PropertyID == id &&
-                              r.CustomerID == userId &&
-                              r.CheckOut < DateTime.Now);
 
-            if (!hasStayed)
+            // Fetch reservation based on ReservationID or ConfirmationNumber
+            var reservation = await _context.Reservations
+                .Include(r => r.Property)
+                .FirstOrDefaultAsync(r => r.ConfirmationNumber == id &&
+                                          r.CustomerID == userId);
+
+            if (reservation == null)
             {
-                return RedirectToAction("Index", "Properties");
+                // Redirect if no reservation found or if it does not belong to the current user
+                return RedirectToAction("Index", "Home");
             }
 
-            // Check if user has already reviewed this property
-            bool hasReviewed = await _context.Reviews
-                .AnyAsync(r => r.PropertyID == id && r.CustomerID == userId);
+            // Check if the user has already reviewed this property
+            var existingReview = await _context.Reviews
+                .FirstOrDefaultAsync(r => r.PropertyID == reservation.PropertyID && r.CustomerID == userId);
 
-            if (hasReviewed)
+            var model = new ReviewCreateEditViewModel
             {
-                return RedirectToAction("Edit", new { propertyId = id });
-            }
+                PropertyID = reservation.PropertyID,
+                CustomerID = userId,
+                ReservationID = reservation.ReservationID,
+                ExistingReview = existingReview
+            };
 
-            ViewBag.PropertyID = id;
-            return View();
+            return View(model);
         }
 
-        // POST: Reviews/Create
+
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PropertyID,Rating,ReviewText")] Review review)
+        public async Task<IActionResult> Create([Bind("ReservationID,PropertyID,CustomerID,Rating,ReviewText")] Review review)
         {
-            if (ModelState.IsValid)
+            ModelState.Remove("CustomerID");
+            ModelState.Remove("Property");
+            ModelState.Remove("Customer");
+            if (!ModelState.IsValid)
             {
-                review.CustomerID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                review.DisputeStatus = DisputeStatus.NoDispute;
-                _context.Add(review);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Properties", new { id = review.PropertyID });
+                return BadRequest(ModelState);
             }
-            return View(review);
-        }
 
-        // GET: Reviews/Edit/5
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            // Fetch reservation and make sure it's valid
+            var reservation = await _context.Reservations
+                .FirstOrDefaultAsync(r => r.PropertyID == review.PropertyID &&
+                                          r.CustomerID == userId &&
+                                          r.CheckIn <= DateTime.Now);
+
+            if (reservation == null)
+            {
+                return RedirectToAction("Index", "Property");
+            }
+
+            // Check if this is an update or a new review
+            var existingReview = await _context.Reviews
+                .FirstOrDefaultAsync(r => r.PropertyID == review.PropertyID && r.CustomerID == userId);
+
+            if (existingReview != null)
+            {
+                // If a review already exists, update it
+                existingReview.Rating = review.Rating;
+                existingReview.ReviewText = review.ReviewText;
+                existingReview.DisputeStatus = DisputeStatus.NoDispute;
+
+                _context.Update(existingReview);
+            }
+            else
+            {
+                // If no review exists, create a new one
+                review.CustomerID = userId;
+                review.DisputeStatus = DisputeStatus.NoDispute;
+
+                _context.Add(review);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Reservation");
+        }
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -94,44 +132,57 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            var review = await _context.Reviews.FindAsync(id);
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var review = await _context.Reviews
+                .FirstOrDefaultAsync(r => r.ReviewID == id && r.CustomerID == userId);
+
             if (review == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(review);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int reviewId, [Bind("ReviewID, PropertyID, Rating, ReviewText")] Review review)
+        {
+            ModelState.Remove("CustomerID");
+            ModelState.Remove("Property");
+            ModelState.Remove("Customer");
+            if (review.ReviewID == 0)
             {
                 return NotFound();
             }
 
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (review.CustomerID != userId)
-            {
-                return Forbid();
-            }
 
-            return View(review);
-        }
+            var existingReview = await _context.Reviews
+                .FirstOrDefaultAsync(r => r.ReviewID == review.ReviewID && r.CustomerID == userId);
 
-        // POST: Reviews/Edit/5
-        [HttpPost]
-        [Authorize]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReviewID,Rating,ReviewText")] Review review)
-        {
-            if (id != review.ReviewID)
+            if (existingReview == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Reservation");
             }
 
             if (ModelState.IsValid)
             {
-                var existingReview = await _context.Reviews.FindAsync(id);
                 existingReview.Rating = review.Rating;
                 existingReview.ReviewText = review.ReviewText;
-                existingReview.DisputeStatus = DisputeStatus.NoDispute;
+                existingReview.DisputeStatus = DisputeStatus.NoDispute; // Reset dispute status or set based on your logic
 
+                _context.Update(existingReview);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Properties", new { id = existingReview.PropertyID });
+
+                return RedirectToAction("Index", "Reservation");
             }
+
             return View(review);
         }
+
 
         // POST: Reviews/Dispute/5
         [HttpPost]

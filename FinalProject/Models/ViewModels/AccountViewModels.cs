@@ -50,6 +50,15 @@ namespace FinalProject.Models
         [Display(Name = "Account Type")]
         public string Role { get; set; }
     }
+    public class ReviewCreateEditViewModel
+    {
+        public int ReservationID { get; set; }
+        public int PropertyID { get; set; }
+        public string CustomerID { get; set; }
+        public int? Rating { get; set; }
+        public string ReviewText { get; set; }
+        public Review ExistingReview { get; set; }
+    }
 
     public class HostSummaryViewModel
     {

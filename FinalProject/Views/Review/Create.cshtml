@@ -1,40 +1,33 @@
-﻿@model Review
+﻿@model ReviewCreateEditViewModel
 
 @{
-    ViewData["Title"] = "Write a Review";
+    ViewData["Title"] = Model.ExistingReview == null ? "Create Review" : "Edit Review";
 }
 
-<div class="container">
-    <h2>Write a Review</h2>
+<h1>@ViewData["Title"]</h1>
 
-    <form asp-action="Create" class="row g-3">
-        <input type="hidden" asp-for="PropertyID" />
+<!-- Show a toggle message if the user is editing an existing review -->
+@if (Model.ExistingReview != null)
+{
+    <div class="alert alert-info">
+        You have already submitted a review for this property. You can edit your review below.
+    </div>
+}
 
-        <div class="col-md-12">
-            <label asp-for="Rating" class="form-label">Rating</label>
-            <div class="form-group">
-                <select asp-for="Rating" class="form-select">
-                    <option value="5">5 - Excellent</option>
-                    <option value="4">4 - Very Good</option>
-                    <option value="3">3 - Good</option>
-                    <option value="2">2 - Fair</option>
-                    <option value="1">1 - Poor</option>
-                </select>
-                <span asp-validation-for="Rating" class="text-danger"></span>
-            </div>
-        </div>
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Rating">Rating</label>
+        <input type="number" class="form-control" id="Rating" name="Rating" value="@Model.ExistingReview?.Rating" min="1" max="5" required />
+    </div>
 
-        <div class="col-md-12">
-            <label asp-for="ReviewText" class="form-label">Your Review</label>
-            <textarea asp-for="ReviewText" class="form-control" rows="5" maxlength="280"></textarea>
-            <span asp-validation-for="ReviewText" class="text-danger"></span>
-            <div class="form-text">Maximum 280 characters</div>
-        </div>
+    <div class="form-group">
+        <label for="ReviewText">Review</label>
+        <textarea class="form-control" id="ReviewText" name="ReviewText" required>@Model.ExistingReview?.ReviewText</textarea>
+    </div>
 
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-            <a asp-controller="Properties" asp-action="Details" asp-route-id="@Model.PropertyID"
-               class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
-</div>
+    <button type="submit" class="btn btn-primary">
+        @(Model.ExistingReview == null ? "Submit Review" : "Update Review")
+    </button>
+</form>
+
+

@@ -191,7 +191,7 @@
                                         </div>
                                         @if (!reservation.Property.Reviews.Any(r => r.CustomerID == User.FindFirst(ClaimTypes.NameIdentifier).Value))
                                         {
-                                            <a asp-controller="Review" asp-action="Create" asp-route-id="@reservation.PropertyID"
+                                            <a asp-controller="Review" asp-action="Create" asp-route-id="@reservation.ConfirmationNumber"
                                                class="btn btn-primary btn-sm">Write a Review</a>
                                         }
                                     </div>

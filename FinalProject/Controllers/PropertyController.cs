@@ -260,21 +260,21 @@ namespace FinalProject.Controllers
         public IActionResult Create()
         {
 
-            // Ensure user is authenticated
+            
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
-            // Get the current user
+            
             var currentUser = _userManager.GetUserAsync(User).Result;
             if (currentUser == null)
             {
-                // Handle unauthenticated user, e.g., redirect to login page
-                return RedirectToAction("Login", "Account"); // Or another appropriate action
+                
+                return RedirectToAction("Login", "Account"); 
             }
             if (currentUser != null)
             {
-                ViewBag.Host = currentUser;  // Pass Host's ID to the View
+                ViewBag.Host = currentUser;  
                 
             }
 
@@ -289,32 +289,37 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Property property)
         {
-            // Ensure user is authenticated
+            
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
             if (ModelState.IsValid)
             {
-                // Ensure current user is retrieved correctly
+                
                 var currentUser = await _userManager.GetUserAsync(User);
                 if (currentUser == null) return Unauthorized();
 
-                property.Host = currentUser;  // Set the current user as Host
+                property.Host = currentUser;  
 
 
                 property.Category = _context.Categories.Find(property.CategoryID);
 
-                // Add the property to the database context
+                
+                int lastpropNumber = await _context.Properties
+                .MaxAsync(r => (int?)r.PropertyNumber) ?? 9999;
+                property.PropertyNumber = lastpropNumber + 1;
+
+                
                 _context.Properties.Add(property);
                 _context.SaveChanges();
                 return RedirectToAction("HostDashboard", "Account");
             }
 
-            // If validation fails, pass the list again
+            
             ViewBag.CategorySelectList = new SelectList(_context.Categories, "CategoryID", "CategoryName");
 
-            return BadRequest(ModelState); // Redisplay the form with validation errors
+            return BadRequest(ModelState); 
         }
 
 
