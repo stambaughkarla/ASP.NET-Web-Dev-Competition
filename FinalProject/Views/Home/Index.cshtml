@@ -54,6 +54,62 @@
         </div>
     </div>
 
+    <!-- Category Icons Section -->
+<div class="container mt-4 border-bottom">
+    <div class="d-flex gap-4 overflow-auto pb-2 scrollbar-hide">
+        <a asp-controller="Home"
+           asp-action="Search"
+           asp-route-location="@Context.Request.Query["location"]"
+           asp-route-checkIn="@Context.Request.Query["checkIn"]"
+           asp-route-checkOut="@Context.Request.Query["checkOut"]"
+           asp-route-guests="@Context.Request.Query["guests"]"
+           class="text-decoration-none">
+            <div class="text-center category-tab">
+                <div class="mb-2">
+                    <i class="bi bi-house-door h4"></i>
+                </div>
+                <div class="small">All</div>
+            </div>
+        </a>
+        @foreach (var category in ViewBag.Categories)
+        {
+            <a asp-controller="Home"
+               asp-action="Search"
+               asp-route-categories="@category.CategoryID"
+               asp-route-location="@Context.Request.Query["location"]"
+               asp-route-checkIn="@Context.Request.Query["checkIn"]"
+               asp-route-checkOut="@Context.Request.Query["checkOut"]"
+               asp-route-guests="@Context.Request.Query["guests"]"
+               class="text-decoration-none">
+                <div class="text-center category-tab @((Context.Request.Query["categories"].Count > 0 && Context.Request.Query["categories"].Any(c => c == category.CategoryID.ToString())) ? "active" : "")">
+                    <div class="mb-2">
+                        @switch (category.CategoryName.ToLower())
+                        {
+                            case "apartment":
+                                <i class="bi bi-building h4"></i>
+                                break;
+                            case "cabin":
+                                <i class="bi bi-house h4"></i>
+                                break;
+                            case "condo":
+                                <i class="bi bi-buildings h4"></i>
+                                break;
+                            case "hotel":
+                                <i class="bi bi-building-fill h4"></i>
+                                break;
+                            default:
+                                <i class="bi bi-house-door h4"></i>
+                                break;
+                        }
+                    </div>
+                    <div class="small">@category.CategoryName</div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
+
     <!-- Advanced Search Fields -->
     <div class="col-12">
         <div class="search-filters" id="advancedSearch" style="display: none;">
@@ -271,6 +327,14 @@
             opacity: 1;
             border-bottom: 2px solid #0d6efd;
         }
+    .category-tab.active {
+        opacity: 1;
+        border-bottom: 2px solid #0d6efd;
+    }
+
+    .form-check-label i {
+        margin-right: 0.5rem;
+    }
 
     .property-card {
         transition: transform 0.2s;
@@ -279,6 +343,7 @@
         .property-card:hover {
             transform: translateY(-5px);
         }
+
 </style>
 
 @section Scripts {
