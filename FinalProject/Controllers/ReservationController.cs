@@ -80,19 +80,16 @@ namespace FinalProject.Controllers
                 .Where(r => r.PropertyID == id && r.ReservationStatus == true) // Only active reservations
                 .Select(r => new
                 {
-                    start = r.CheckIn.ToString("yyyy-MM-dd"),
-                    end = r.CheckOut.ToString("yyyy-MM-dd")
+                    start = r.CheckIn,
+                    end = r.CheckOut
                 })
                 .ToListAsync();
 
-            // Fetch unavailability dates
- var unavailabilityDates = await _context.Unavailabilities
-    .Where(u => u.PropertyID == id)
-    .Select(u => new
-    {
-        date = u.Date.ToString("yyyy-MM-dd")
-    })
-    .ToListAsync();
+            // Fetch unavailability dates for the property
+            var unavailabilityDates = await _context.Unavailabilities
+                .Where(u => u.PropertyID == id) // Filter by property ID
+                .Select(u => u.Date) // Select only the date
+                .ToListAsync();
 
             ViewBag.ReservedDates = reservedDates;
             ViewBag.UnavailabilityDates = unavailabilityDates;
@@ -245,9 +242,7 @@ namespace FinalProject.Controllers
             {
                 return RedirectToAction(nameof(Cart));
             }
-            // Retrieve the current user
-            var currentUser = await _userManager.GetUserAsync(User);
-            if (currentUser == null) return Unauthorized();
+
 
             // Check for overlaps within the cart itself
             for (int i = 0; i < cart.Count; i++)
