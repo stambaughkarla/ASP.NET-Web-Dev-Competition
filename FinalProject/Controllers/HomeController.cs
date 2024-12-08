@@ -60,16 +60,20 @@ namespace FinalProject.Controllers
         // GET: /Home/
         public async Task<IActionResult> Search(
             string location = null,
+            string propertyNumber = null,
+            string state = null,
             DateTime? checkIn = null,
             DateTime? checkOut = null,
             int? guests = null,
-            int? categoryId = null,
+            int[] categories = null,
             decimal? minPrice = null,
             decimal? maxPrice = null,
             int? minBedrooms = null,
             int? maxBedrooms = null,
             int? minBathrooms = null,
+            int? maxBathrooms = null,
             decimal? minRating = null,
+            decimal? maxRating = null,
             bool? petsAllowed = null,
             bool? freeParking = null)
         {
@@ -77,6 +81,8 @@ namespace FinalProject.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.Reviews)
                 .Include(p => p.Host)
+                .Include(p => p.Reservations)
+                .Include(p => p.UnavailableDates)
                 .Where(p => p.PropertyStatus && p.IsActive); // Only show active and approved properties
 
             // Apply filters one by one
@@ -85,9 +91,22 @@ namespace FinalProject.Controllers
                 query = ApplyLocationFilter(query, location);
             }
 
-            if (categoryId.HasValue)
+            // Property Number filter
+            if (!string.IsNullOrEmpty(propertyNumber))
             {
-                query = query.Where(p => p.CategoryID == categoryId.Value);
+                query = query.Where(p => p.PropertyNumber.ToString().Contains(propertyNumber));
+            }
+
+            // State filter
+            if (!string.IsNullOrEmpty(state))
+            {
+                query = query.Where(p => p.State.ToLower().Contains(state.ToLower()));
+            }
+
+            // Multiple Categories filter
+            if (categories != null && categories.Length > 0)
+            {
+                query = query.Where(p => categories.Contains(p.CategoryID));
             }
 
             if (guests.HasValue)
@@ -105,19 +124,24 @@ namespace FinalProject.Controllers
                 query = query.Where(p => p.WeekdayPrice <= maxPrice.Value && p.WeekendPrice <= maxPrice.Value);
             }
 
+            // Bedroom range
             if (minBedrooms.HasValue)
             {
                 query = query.Where(p => p.Bedrooms >= minBedrooms.Value);
             }
-
             if (maxBedrooms.HasValue)
             {
                 query = query.Where(p => p.Bedrooms <= maxBedrooms.Value);
             }
 
+            // Bathroom range
             if (minBathrooms.HasValue)
             {
                 query = query.Where(p => p.Bathrooms >= minBathrooms.Value);
+            }
+            if (maxBathrooms.HasValue)
+            {
+                query = query.Where(p => p.Bathrooms <= maxBathrooms.Value);
             }
 
             if (petsAllowed.HasValue)
@@ -133,24 +157,32 @@ namespace FinalProject.Controllers
             // Handle date availability
             if (checkIn.HasValue && checkOut.HasValue)
             {
-                query = query.Where(p => !p.Reservations.Any(r =>
-                    r.ReservationStatus &&
-                    ((checkIn >= r.CheckIn && checkIn < r.CheckOut) ||
-                     (checkOut > r.CheckIn && checkOut <= r.CheckOut) ||
-                     (checkIn <= r.CheckIn && checkOut >= r.CheckOut))));
-
-                // Also check UnavailableDates
-                query = query.Where(p => !p.UnavailableDates.Any(ud =>
-                    ud.Date >= checkIn && ud.Date < checkOut));
+                query = query.Where(p =>
+                    // No overlapping reservations
+                    !p.Reservations.Any(r =>
+                        r.ReservationStatus == true &&
+                        (
+                            (checkIn >= r.CheckIn && checkIn < r.CheckOut) ||
+                            (checkOut > r.CheckIn && checkOut <= r.CheckOut) ||
+                            (checkIn <= r.CheckIn && checkOut >= r.CheckOut)
+                        )
+                    ) &&
+                    // No unavailable dates
+                    !p.UnavailableDates.Any(ud =>
+                        ud.Date >= checkIn && ud.Date < checkOut
+                    )
+                );
             }
 
-            // Apply rating filter
-            if (minRating.HasValue)
+            // Apply rating filter with range
+            if (minRating.HasValue || maxRating.HasValue)
             {
                 query = query.Where(p =>
                     p.Reviews.Any() &&
-                    p.Reviews.Where(r => r.DisputeStatus != DisputeStatus.ValidDispute)
-                             .Average(r => (decimal)r.Rating) >= minRating.Value);
+                    (!minRating.HasValue || p.Reviews.Where(r => r.DisputeStatus != DisputeStatus.ValidDispute)
+                                                  .Average(r => (decimal)r.Rating) >= minRating.Value) &&
+                    (!maxRating.HasValue || p.Reviews.Where(r => r.DisputeStatus != DisputeStatus.ValidDispute)
+                                                  .Average(r => (decimal)r.Rating) <= maxRating.Value));
             }
 
             var properties = await query.ToListAsync();
