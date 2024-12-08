@@ -75,21 +75,15 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            // Fetch existing reservations for the property
-            var reservedDates = await _context.Reservations
-                .Where(r => r.PropertyID == id && r.ReservationStatus == true) // Only active reservations
-                .Select(r => new
-                {
-                    start = r.CheckIn,
-                    end = r.CheckOut
-                })
-                .ToListAsync();
+            var reservedDates = _context.Reservations
+                .Where(r => r.PropertyID == id)
+                .Select(r => new { start = r.CheckIn, end = r.CheckOut })
+                .ToList();
 
-            // Fetch unavailability dates for the property
-            var unavailabilityDates = await _context.Unavailabilities
-                .Where(u => u.PropertyID == id) // Filter by property ID
-                .Select(u => u.Date) // Select only the date
-                .ToListAsync();
+            var unavailabilityDates = _context.Unavailabilities
+                .Where(u => u.PropertyID == id)
+                .Select(u => new { start = u.Date, end = u.Date })
+                .ToList();
 
             ViewBag.ReservedDates = reservedDates;
             ViewBag.UnavailabilityDates = unavailabilityDates;
@@ -134,7 +128,7 @@ namespace FinalProject.Controllers
                 var currentUser = await _userManager.GetUserAsync(User);
                 if (currentUser == null) return Unauthorized();
 
-                //reservation.Customer = currentUser;
+
                 reservation.Customer = currentUser;
                 reservation.CustomerID = currentUser.Id;
                 reservation.Property = property;
@@ -159,8 +153,19 @@ namespace FinalProject.Controllers
                     return View(reservation);
                 }
 
-                // Set confirmation number
-                int lastConfirmationNumber = await _context.Reservations
+                var unavailableDates = await _context.Unavailabilities
+                    .Where(u => u.PropertyID == reservation.PropertyID)
+                    .Where(u => u.Date >= reservation.CheckIn && u.Date < reservation.CheckOut)
+                    .ToListAsync();
+
+                if (unavailableDates.Any())
+                {
+                    TempData["ErrorMessage"] = "The selected dates include unavailable dates. Please choose different dates.";
+                    return View(reservation);
+                }
+
+                    // Set confirmation number
+                    int lastConfirmationNumber = await _context.Reservations
                     .MaxAsync(r => (int?)r.ConfirmationNumber) ?? 9999;
                 reservation.ConfirmationNumber = lastConfirmationNumber + 1;
 
