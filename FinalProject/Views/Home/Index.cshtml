@@ -72,11 +72,14 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Price Range (per night)</label>
                                     <div class="input-group">
+                                        <span class="input-group-text">$</span>
                                         <input type="number" name="minPrice" class="form-control"
-                                               placeholder="Min" min="0" value="@Context.Request.Query["minPrice"]" />
+                                               placeholder="Min" min="0" step="0.01" value="@Context.Request.Query["minPrice"]" />
+                                        <span class="input-group-text">-</span>
                                         <input type="number" name="maxPrice" class="form-control"
-                                               placeholder="Max" min="0" value="@Context.Request.Query["maxPrice"]" />
+                                               placeholder="Max" min="0" step="0.01" value="@Context.Request.Query["maxPrice"]" />
                                     </div>
+                                    <small class="text-muted">Searches both weekday and weekend prices</small>
                                 </div>
 
                                 <!-- Bedroom Range -->
@@ -260,15 +263,23 @@
                                 <i class="bi bi-water"></i> @property.Bathrooms @(property.Bathrooms == 1 ? "bathroom" : "bathrooms")
                             </p>
                             <p class="card-text mt-2">
-                                <span class="fw-bold">@property.WeekdayPrice.ToString("C")</span> / night
-                                @if (property.DiscountRate > 0)
-                                {
-                                    <br />
-                                    var discountLabel = property.DiscountRate.Value / 100m;
-                                    <small class="text-success d-block">
-                                        @discountLabel.ToString("P0") off for @property.MinNightsForDiscount+ nights
-                                    </small>
-                                }
+                                <div class="d-flex flex-column gap-1">
+                                    <div>
+                                        <span class="fw-bold">@property.WeekdayPrice.ToString("C")</span>
+                                        <small class="text-muted">weekday</small>
+                                    </div>
+                                    <div>
+                                        <span class="fw-bold">@property.WeekendPrice.ToString("C")</span>
+                                        <small class="text-muted">weekend</small>
+                                    </div>
+                                    @if (property.DiscountRate > 0)
+                                    {
+                                        var discountLabel = property.DiscountRate.Value / 100m;
+                                        <small class="text-success">
+                                            @discountLabel.ToString("P0") off for @property.MinNightsForDiscount+ nights
+                                        </small>
+                                    }
+                                </div>
                             </p>
                         </div>
                         <div class="card-footer bg-transparent border-0">
