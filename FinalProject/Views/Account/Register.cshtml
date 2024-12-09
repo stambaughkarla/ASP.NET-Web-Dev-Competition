@@ -63,6 +63,15 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="UserName" class="control-label" style="font-size: 16px; color: white;">Username</label>
+                <input asp-for="UserName"
+                       class="form-control"
+                       style="margin-bottom: 15px; padding: 12px; font-size: 14px; border: none; border-radius: 8px; width: 100%;"
+                       placeholder="Enter your Username" />
+                <span asp-validation-for="UserName" class="text-danger" style="font-size: 12px; font-style: italic; color: white !important; display: block;"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="Email" class="control-label" style="font-size: 16px; color: white;">Email</label>
                 <input asp-for="Email"
                        class="form-control"
