@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj": {}
+    "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj": {
+    "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
+        "projectUniqueName": "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj",
         "projectName": "FinalProject",
-        "projectPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
-        "packagesPath": "C:\\Users\\Dat Ly\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\obj\\",
+        "projectPath": "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj",
+        "packagesPath": "C:\\Users\\JeksEnterprises\\.nuget\\packages\\",
+        "outputPath": "C:\\mis333k\\final\\FinalProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dat Ly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JeksEnterprises\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,9 +58,9 @@
               "target": "Package",
               "version": "[8.0.10, )"
             },
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore.Abstractions": {
               "target": "Package",
-              "version": "[8.0.10, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

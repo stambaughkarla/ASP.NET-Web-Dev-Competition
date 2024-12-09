@@ -248,53 +248,68 @@ namespace FinalProject.Controllers
             // Return an empty model on the initial GET request
             return View(new List<HostSummaryViewModel>());
         }
+
         [Authorize(Roles = "Host")]
         [HttpPost]
         public async Task<IActionResult> HostSummary(DateTime? startDate, DateTime? endDate)
         {
             // Ensure the user is authenticated
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
+            if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized();
             }
 
-            // Retrieve properties owned by the host, including reservations
+            // Handle missing date range
+            if (!startDate.HasValue || !endDate.HasValue)
+            {
+                ModelState.AddModelError("", "Please select both a start date and an end date.");
+                return View(new List<HostSummaryViewModel>());
+            }
+
+            // Validate date range
+            if (startDate > endDate)
+            {
+                ModelState.AddModelError("", "The start date cannot be later than the end date.");
+                return View(new List<HostSummaryViewModel>());
+            }
+
+            // Retrieve properties owned by the current host with their reservations
             var properties = await _context.Properties
                 .Where(p => p.Host.Id == userId)
                 .Include(p => p.Reservations)
                 .ToListAsync();
 
-            // Filter reservations based on the date range if provided
-            if (startDate.HasValue && endDate.HasValue)
-            {
-                properties = properties
-                    .Where(p => p.Reservations.Any(r => r.CheckIn <= endDate && r.CheckOut >= startDate))
-                    .ToList();
+            // Filter reservations based on the provided date range
+            var reportData = properties
+                .Where(p => p.Reservations.Any(r => r.CheckIn <= endDate && r.CheckOut >= startDate))
+                .Select(p => new HostSummaryViewModel
+                {
+                    PropertyName = p.PropertyName,
+                    TotalStayRevenue = p.Reservations
+                        .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+                        .Sum(r => r.CalculateBaseTotal() * 0.90m), // Host gets 90% revenue
+                    TotalCleaningFees = p.Reservations
+                        .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+                        .Sum(r => r.CleaningFee),
+                    CombinedRevenue = p.Reservations
+                        .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+                        .Sum(r => (r.CalculateBaseTotal() * 0.90m) + r.CleaningFee),
+                    TotalReservations = p.Reservations
+                        .Count(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
+                })
+                .ToList();
 
+            // If no data is available for the selected date range, show a user-friendly message
+            if (!reportData.Any())
+            {
+                ModelState.AddModelError("", "No data available for the selected date range.");
             }
 
-            // Generate the report data
-            var reportData = properties.Select(p => new HostSummaryViewModel
-            {
-                PropertyName = p.PropertyName,
-               
-                TotalStayRevenue = p.Reservations
-                    .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
-                    .Sum(r => r.CalculateBaseTotal() *.90m), // Host gets 90% revenue
-                TotalCleaningFees = p.Reservations
-                    .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
-                    .Sum(r => r.CleaningFee),
-                CombinedRevenue = p.Reservations
-                    .Where(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
-                    .Sum(r => (r.CalculateBaseTotal() *.90m) + r.CleaningFee),
-                TotalReservations = p.Reservations
-                    .Count(r => r.CheckIn <= endDate && r.CheckOut >= startDate)
-            }).ToList();
-
-            // Return the view with the generated data
+            // Return the view with the generated data or an error
             return View(reportData);
         }
+
 
 
         public async Task<IActionResult> Index()

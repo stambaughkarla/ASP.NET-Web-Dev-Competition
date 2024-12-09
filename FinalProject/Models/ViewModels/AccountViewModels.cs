@@ -63,8 +63,6 @@ namespace FinalProject.Models
     public class HostSummaryViewModel
     {
         public string PropertyName { get; set; } = "Unknown Property";
-
-        
         public decimal TotalStayRevenue { get; set; } = 0;
         public decimal TotalCleaningFees { get; set; } = 0;
         public decimal CombinedRevenue { get; set; } = 0;

@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<HostSummaryViewModel>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +8,6 @@
     <title>Host Report Summary</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" />
     <style>
-        /* idk where to put this we can move it later */
         .container-centered {
             display: flex;
             flex-direction: column;
@@ -54,20 +51,28 @@
     </style>
 </head>
 <body class="bg-light">
-
-    
     <div class="container mt-5 container-centered">
         <h1 class="text-center header-accent mb-4">Host Report Summary</h1>
 
-        <!-- Filterss -->
-        @using (Html.BeginForm("HostSummary", "Account", FormMethod.Post, new { @class = "w-50 mx-auto" }))
+        <!-- Validation Errors -->
+        <div class="text-center mb-4">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div class="alert alert-danger">@error.ErrorMessage</div>
+                }
+            }
+        </div>
 
+        <!-- Filters -->
+        @using (Html.BeginForm("HostSummary", "Account", FormMethod.Post, new { @class = "w-50 mx-auto" }))
         {
             <div class="mb-3">
-                <input type="date" name="startDate" class="form-control rounded-input" placeholder="Start Date" />
+                <input type="date" name="startDate" class="form-control rounded-input" placeholder="Select Start Date" />
             </div>
             <div class="mb-3">
-                <input type="date" name="endDate" class="form-control rounded-input" placeholder="End Date" />
+                <input type="date" name="endDate" class="form-control rounded-input" placeholder="Select End Date" />
             </div>
             <div class="text-center">
                 <button type="submit" class="btn custom-btn">
@@ -77,24 +82,21 @@
         }
 
         <!-- Report Table -->
-        <div class="table-container">
-            <table class="table table-bordered table-hover align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>Property Name</th>
-                        <th>Total Stay Revenue</th>
-                        <th>Total Cleaning Fees</th>
-                        <th>Combined Revenue</th>
-                        <th>Total Reservations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
-
-                    {
-
-                        foreach (var item in Model)
-
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-container">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Property Name</th>
+                            <th>Total Stay Revenue</th>
+                            <th>Total Cleaning Fees</th>
+                            <th>Combined Revenue</th>
+                            <th>Total Reservations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
                         {
                             <tr>
                                 <td>@item.PropertyName</td>
@@ -104,21 +106,14 @@
                                 <td>@item.TotalReservations</td>
                             </tr>
                         }
-
-                    }
-
-                    else
-
-                    {
-                        <tr>
-                            <td colspan="5" class="no-data">
-                                No data available for the selected date range.
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="no-data text-center mt-4">No data available for the selected date range.</p>
+        }
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

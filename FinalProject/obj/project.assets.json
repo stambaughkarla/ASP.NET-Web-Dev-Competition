@@ -524,7 +524,7 @@
           "buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/8.0.10": {
+      "Microsoft.EntityFrameworkCore.Abstractions/9.0.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -2703,10 +2703,10 @@
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/8.0.10": {
-      "sha512": "FV0QlcX9INY4kAD2o72uPtyOh0nZut2jB11Jf9mNYBtHay8gDLe+x4AbXFwuQg+eSvofjT7naV82e827zGfyMg==",
+    "Microsoft.EntityFrameworkCore.Abstractions/9.0.0": {
+      "sha512": "fnmifFL8KaA4ZNLCVgfjCWhZUFxkrDInx5hR4qG7Q8IEaSiy/6VOSRFyx55oH7MV4y7wM3J3EE90nSpcVBI44Q==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/8.0.10",
+      "path": "microsoft.entityframeworkcore.abstractions/9.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2714,7 +2714,7 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.8.0.10.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.9.0.0.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
@@ -4883,25 +4883,25 @@
       "EPPlus >= 7.5.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.0",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.10",
-      "Microsoft.EntityFrameworkCore >= 8.0.10",
+      "Microsoft.EntityFrameworkCore.Abstractions >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dat Ly\\.nuget\\packages\\": {}
+    "C:\\Users\\JeksEnterprises\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
+      "projectUniqueName": "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj",
       "projectName": "FinalProject",
-      "projectPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\FinalProject.csproj",
-      "packagesPath": "C:\\Users\\Dat Ly\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dat Ly\\Desktop\\Github\\Group-25\\FinalProject\\obj\\",
+      "projectPath": "C:\\mis333k\\final\\FinalProject\\FinalProject.csproj",
+      "packagesPath": "C:\\Users\\JeksEnterprises\\.nuget\\packages\\",
+      "outputPath": "C:\\mis333k\\final\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Dat Ly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JeksEnterprises\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4945,9 +4945,9 @@
             "target": "Package",
             "version": "[8.0.10, )"
           },
-          "Microsoft.EntityFrameworkCore": {
+          "Microsoft.EntityFrameworkCore.Abstractions": {
             "target": "Package",
-            "version": "[8.0.10, )"
+            "version": "[9.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
