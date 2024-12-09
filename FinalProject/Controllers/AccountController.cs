@@ -280,6 +280,7 @@ namespace FinalProject.Controllers
                 .Include(p => p.Reservations)
                 .ToListAsync();
 
+
             // Filter reservations based on the provided date range
             var reportData = properties
                 .Where(p => p.Reservations.Any(r => r.CheckIn <= endDate && r.CheckOut >= startDate))
