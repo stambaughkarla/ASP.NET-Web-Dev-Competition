@@ -450,7 +450,11 @@
 
             if (advancedSearchForm) {
                 advancedSearchForm.addEventListener('submit', function(event) {
-                    return validateForm(event, this);
+                    if (validateForm(event, this)) {
+                        sessionStorage.setItem('formSubmitted', 'true');
+                        return true;
+                    }
+                    return false;
                 });
             }
 
@@ -463,12 +467,17 @@
                     'petsAllowed', 'freeParking', 'state', 'categories'
                 ];
 
-                const hasAdvancedFilters = advancedParams.some(param => urlParams.has(param));
-
-                if (hasAdvancedFilters && toggleFilters && advancedSearch) {
-                    filtersVisible = true;
-                    advancedSearch.style.display = 'block';
-                    toggleFilters.classList.add('active');
+                // Only show advanced filters if we're not coming from a form submission
+                const formSubmitted = sessionStorage.getItem('formSubmitted');
+                if (formSubmitted) {
+                    sessionStorage.removeItem('formSubmitted');
+                } else {
+                    const hasAdvancedFilters = advancedParams.some(param => urlParams.has(param));
+                    if (hasAdvancedFilters && toggleFilters && advancedSearch) {
+                        filtersVisible = true;
+                        advancedSearch.style.display = 'block';
+                        toggleFilters.classList.add('active');
+                    }
                 }
             });
         });
