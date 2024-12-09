@@ -276,8 +276,9 @@
                                 @if (property.DiscountRate > 0)
                                 {
                                     <br />
-                                    <small class="text-success">
-                                        @property.DiscountRate.Value.ToString("P0") off for @property.MinNightsForDiscount+ nights
+                                    var discountLabel = property.DiscountRate.Value / 100m;
+                                    <small class="text-success d-block">
+                                        @discountLabel.ToString("P0") off for @property.MinNightsForDiscount+ nights
                                     </small>
                                 }
                             </p>

@@ -53,7 +53,7 @@
                         @if (Model.DiscountRate > 0)
                         {
                             <small class="text-success">
-                                @Model.DiscountRate.Value.ToString("P0") off for @Model.MinNightsForDiscount+ nights
+                                @string.Format("{0:P0}", decimal.Divide(Model.DiscountRate.Value, 100)) off for @Model.MinNightsForDiscount+ nights
                             </small>
                         }
                     </ul>
