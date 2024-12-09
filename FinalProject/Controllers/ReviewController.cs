@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using FinalProject.Models;
 using FinalProject.DAL;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FinalProject.Controllers
 {
@@ -58,7 +59,9 @@ namespace FinalProject.Controllers
 
             // Check if the user has already reviewed this property
             var existingReview = await _context.Reviews
+            .Include(r => r.Property)
                 .FirstOrDefaultAsync(r => r.PropertyID == reservation.PropertyID && r.CustomerID == userId);
+
 
             var model = new ReviewCreateEditViewModel
             {
@@ -95,7 +98,7 @@ namespace FinalProject.Controllers
 
             if (reservation == null)
             {
-                return RedirectToAction("Index", "Property");
+                return RedirectToAction("Index", "Home");
             }
 
             // Check if this is an update or a new review
@@ -104,15 +107,18 @@ namespace FinalProject.Controllers
 
             if (existingReview != null)
             {
-                // If a review already exists, update it
-                existingReview.Rating = review.Rating;
-                existingReview.ReviewText = review.ReviewText;
-                existingReview.DisputeStatus = DisputeStatus.NoDispute;
+               
+                    // Attach the entity to the context if it's not tracked
+                    _context.Reviews.Attach(existingReview);
+                    existingReview.Rating = review.Rating;
+                    existingReview.ReviewText = review.ReviewText;
+                    existingReview.DisputeStatus = DisputeStatus.NoDispute;
 
-                _context.Update(existingReview);
-            }
-            else
-            {
+                    await _context.SaveChangesAsync();
+                }
+
+                else
+                {
                 // If no review exists, create a new one
                 review.CustomerID = userId;
                 review.DisputeStatus = DisputeStatus.NoDispute;
@@ -122,7 +128,7 @@ namespace FinalProject.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Reservation");
+            return RedirectToAction("Index", "Home");
         }
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
@@ -148,11 +154,8 @@ namespace FinalProject.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int reviewId, [Bind("ReviewID, PropertyID, Rating, ReviewText")] Review review)
+        public async Task<IActionResult> Edit(int reviewId, [Bind("ReviewID, PropertyID,CustomerID, Rating, ReviewText")] Review review)
         {
-            ModelState.Remove("CustomerID");
-            ModelState.Remove("Property");
-            ModelState.Remove("Customer");
             if (review.ReviewID == 0)
             {
                 return NotFound();
@@ -172,7 +175,7 @@ namespace FinalProject.Controllers
             {
                 existingReview.Rating = review.Rating;
                 existingReview.ReviewText = review.ReviewText;
-                existingReview.DisputeStatus = DisputeStatus.NoDispute; // Reset dispute status or set based on your logic
+                existingReview.DisputeStatus = DisputeStatus.NoDispute; // Reset or set based on your logic
 
                 _context.Update(existingReview);
                 await _context.SaveChangesAsync();
@@ -182,6 +185,7 @@ namespace FinalProject.Controllers
 
             return View(review);
         }
+
 
 
         // POST: Reviews/Dispute/5
