@@ -77,10 +77,9 @@
 
                                 stayprice += reservationStayPrice;
                                 totaldiscountamount += discountamount;
-                                
-                                subtotal += reservationStayPrice;
+                                                          
                                 cleaningFees += reservation.CleaningFee;
-                                staydiscounted = subtotal - totaldiscountamount;
+                                staydiscounted = stayprice - totaldiscountamount; 
                                 tax = (reservationStayPrice - discountamount + reservation.CleaningFee) * TAX_RATE;
                                 reservationsubtotal = reservationStayPrice - discountamount + reservation.CleaningFee;
 
@@ -88,7 +87,8 @@
 
                                 decimal reservationTax = (reservationStayPrice + reservation.CleaningFee) * TAX_RATE;
                                 decimal reservationTotal = reservationStayPrice - discountamount + reservation.CleaningFee + tax;
-                                grandTotal = subtotal - totaldiscountamount + cleaningFees + totaltax;
+                                subtotal = staydiscounted + cleaningFees;
+                                grandTotal = subtotal + totaltax;
                             }
                             
 

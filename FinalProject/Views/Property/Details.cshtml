@@ -52,8 +52,9 @@
                         <li>Cleaning fee: @Model.CleaningFee.ToString("C")</li>
                         @if (Model.DiscountRate > 0)
                         {
-                            <small class="text-success">
-                                @string.Format("{0:P0}", decimal.Divide(Model.DiscountRate.Value, 100)) off for @Model.MinNightsForDiscount+ nights
+                            var discountLabel = Model.DiscountRate.Value / 100m;
+                            <small class="text-success d-block">
+                                @discountLabel.ToString("P0") off for @Model.MinNightsForDiscount+ nights
                             </small>
                         }
                     </ul>
