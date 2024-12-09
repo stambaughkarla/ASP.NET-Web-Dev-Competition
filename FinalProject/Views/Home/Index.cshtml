@@ -9,7 +9,7 @@
     <div class="sticky-top bg-white py-3">
         <div class="container">
             <h2 class="h4 mb-3">Search Properties</h2>
-            <form asp-controller="Home" asp-action="Search" method="get">
+            <form asp-controller="Home" asp-action="Search" method="get" id="searchForm">
                 <div class="row g-3">
                     <div class="col-md-3">
                         <div class="form-floating">
@@ -50,177 +50,165 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Advanced Search Fields -->
+                <div class="search-filters mt-3" id="advancedSearch" style="display: none;">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <!-- Location and Guest Options -->
+                                <div class="col-md-6">
+                                    <label class="form-label">State</label>
+                                    <input type="text" name="state" class="form-control"
+                                           placeholder="Enter state" value="@Context.Request.Query["state"]" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Number of Guests</label>
+                                    <input type="number" name="guests" class="form-control"
+                                           min="1" value="@Context.Request.Query["guests"]" />
+                                </div>
+
+                                <!-- Price Range -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Price Range (per night)</label>
+                                    <div class="input-group">
+                                        <input type="number" name="minPrice" class="form-control"
+                                               placeholder="Min" min="0" value="@Context.Request.Query["minPrice"]" />
+                                        <input type="number" name="maxPrice" class="form-control"
+                                               placeholder="Max" min="0" value="@Context.Request.Query["maxPrice"]" />
+                                    </div>
+                                </div>
+
+                                <!-- Bedroom Range -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Bedrooms Range</label>
+                                    <div class="input-group">
+                                        <input type="number" name="minBedrooms" class="form-control"
+                                               placeholder="Min" min="1" value="@Context.Request.Query["minBedrooms"]" />
+                                        <input type="number" name="maxBedrooms" class="form-control"
+                                               placeholder="Max" min="1" value="@Context.Request.Query["maxBedrooms"]" />
+                                    </div>
+                                </div>
+
+                                <!-- Bathroom Range -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Bathrooms Range</label>
+                                    <div class="input-group">
+                                        <input type="number" name="minBathrooms" class="form-control"
+                                               placeholder="Min" min="1" value="@Context.Request.Query["minBathrooms"]" />
+                                        <input type="number" name="maxBathrooms" class="form-control"
+                                               placeholder="Max" min="1" value="@Context.Request.Query["maxBathrooms"]" />
+                                    </div>
+                                </div>
+
+                                <!-- Rating Range -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Rating Range</label>
+                                    <div class="input-group">
+                                        <input type="number" name="minRating" class="form-control"
+                                               placeholder="Min" min="1" max="5" step="0.1"
+                                               value="@Context.Request.Query["minRating"]" />
+                                        <input type="number" name="maxRating" class="form-control"
+                                               placeholder="Max" min="1" max="5" step="0.1"
+                                               value="@Context.Request.Query["maxRating"]" />
+                                    </div>
+                                </div>
+
+                                <!-- Categories -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Categories</label>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        @foreach (var category in ViewBag.Categories)
+                                        {
+                                            <div class="form-check">
+                                                <input type="checkbox" name="categories" class="form-check-input"
+                                                       value="@category.CategoryID"
+                                                       @((Context.Request.Query["categories"].Count > 0 && Context.Request.Query["categories"].Any(c => c == category.CategoryID.ToString())) ? "checked" : "") />
+                                                <label class="form-check-label">@category.CategoryName</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                <!-- Amenities -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Amenities</label>
+                                    <div class="d-flex gap-4">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="petsAllowed" class="form-check-input" value="true"
+                                                   @(Context.Request.Query["petsAllowed"] == "true" ? "checked" : "") />
+                                            <label class="form-check-label">Pets Allowed</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" name="freeParking" class="form-check-input" value="true"
+                                                   @(Context.Request.Query["freeParking"] == "true" ? "checked" : "") />
+                                            <label class="form-check-label">Free Parking</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 
     <!-- Category Icons Section -->
-<div class="container mt-4 border-bottom">
-    <div class="d-flex gap-4 overflow-auto pb-2 scrollbar-hide">
-        <a asp-controller="Home"
-           asp-action="Search"
-           asp-route-location="@Context.Request.Query["location"]"
-           asp-route-checkIn="@Context.Request.Query["checkIn"]"
-           asp-route-checkOut="@Context.Request.Query["checkOut"]"
-           asp-route-guests="@Context.Request.Query["guests"]"
-           class="text-decoration-none">
-            <div class="text-center category-tab">
-                <div class="mb-2">
-                    <i class="bi bi-house-door h4"></i>
-                </div>
-                <div class="small">All</div>
-            </div>
-        </a>
-        @foreach (var category in ViewBag.Categories)
-        {
+    <div class="container mt-4 border-bottom">
+        <div class="d-flex gap-4 overflow-auto pb-2 scrollbar-hide">
             <a asp-controller="Home"
                asp-action="Search"
-               asp-route-categories="@category.CategoryID"
                asp-route-location="@Context.Request.Query["location"]"
                asp-route-checkIn="@Context.Request.Query["checkIn"]"
                asp-route-checkOut="@Context.Request.Query["checkOut"]"
                asp-route-guests="@Context.Request.Query["guests"]"
                class="text-decoration-none">
-                <div class="text-center category-tab @((Context.Request.Query["categories"].Count > 0 && Context.Request.Query["categories"].Any(c => c == category.CategoryID.ToString())) ? "active" : "")">
+                <div class="text-center category-tab">
                     <div class="mb-2">
-                        @switch (category.CategoryName.ToLower())
-                        {
-                            case "apartment":
-                                <i class="bi bi-building h4"></i>
-                                break;
-                            case "cabin":
-                                <i class="bi bi-house h4"></i>
-                                break;
-                            case "condo":
-                                <i class="bi bi-buildings h4"></i>
-                                break;
-                            case "hotel":
-                                <i class="bi bi-building-fill h4"></i>
-                                break;
-                            default:
-                                <i class="bi bi-house-door h4"></i>
-                                break;
-                        }
+                        <i class="bi bi-house-door h4"></i>
                     </div>
-                    <div class="small">@category.CategoryName</div>
+                    <div class="small">All</div>
                 </div>
             </a>
-        }
-    </div>
-</div>
-
-
-    <!-- Advanced Search Fields -->
-    <div class="col-12">
-        <div class="search-filters" id="advancedSearch" style="display: none;">
-            <form asp-controller="Home" asp-action="Search" method="get" class="container shadow-sm py-3" id="advancedSearchForm">
-                <!-- Hidden fields for main search parameters -->
-                <input type="hidden" name="location" value="@Context.Request.Query["location"]" />
-                <input type="hidden" name="propertyNumber" value="@Context.Request.Query["propertyNumber"]" />
-                <input type="hidden" name="checkIn" value="@Context.Request.Query["checkIn"]" />
-                <input type="hidden" name="checkOut" value="@Context.Request.Query["checkOut"]" />
-
-                <div class="container">
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <!-- Location and Guest Options -->
-                            <div class="col-md-6">
-                                <label class="form-label">State</label>
-                                <input type="text" name="state" class="form-control"
-                                       placeholder="Enter state" value="@Context.Request.Query["state"]" />
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Number of Guests</label>
-                                <input type="number" name="guests" class="form-control"
-                                       min="1" value="@Context.Request.Query["guests"]" />
-                            </div>
-
-                            <!-- Price Range -->
-                            <div class="col-md-6">
-                                <label class="form-label">Price Range (per night)</label>
-                                <div class="input-group">
-                                    <input type="number" name="minPrice" class="form-control"
-                                           placeholder="Min" min="0" value="@Context.Request.Query["minPrice"]" />
-                                    <input type="number" name="maxPrice" class="form-control"
-                                           placeholder="Max" min="0" value="@Context.Request.Query["maxPrice"]" />
-                                </div>
-                            </div>
-
-                            <!-- Bedroom Range -->
-                            <div class="col-md-6">
-                                <label class="form-label">Bedrooms Range</label>
-                                <div class="input-group">
-                                    <input type="number" name="minBedrooms" class="form-control"
-                                           placeholder="Min" min="1" value="@Context.Request.Query["minBedrooms"]" />
-                                    <input type="number" name="maxBedrooms" class="form-control"
-                                           placeholder="Max" min="1" value="@Context.Request.Query["maxBedrooms"]" />
-                                </div>
-                            </div>
-
-                            <!-- Bathroom Range -->
-                            <div class="col-md-6">
-                                <label class="form-label">Bathrooms Range</label>
-                                <div class="input-group">
-                                    <input type="number" name="minBathrooms" class="form-control"
-                                           placeholder="Min" min="1" value="@Context.Request.Query["minBathrooms"]" />
-                                    <input type="number" name="maxBathrooms" class="form-control"
-                                           placeholder="Max" min="1" value="@Context.Request.Query["maxBathrooms"]" />
-                                </div>
-                            </div>
-
-                            <!-- Rating Range -->
-                            <div class="col-md-6">
-                                <label class="form-label">Rating Range</label>
-                                <div class="input-group">
-                                    <input type="number" name="minRating" class="form-control"
-                                           placeholder="Min" min="1" max="5" step="0.1"
-                                           value="@Context.Request.Query["minRating"]" />
-                                    <input type="number" name="maxRating" class="form-control"
-                                           placeholder="Max" min="1" max="5" step="0.1"
-                                           value="@Context.Request.Query["maxRating"]" />
-                                </div>
-                            </div>
-
-                            <!-- Categories -->
-                            <div class="col-md-12">
-                                <label class="form-label">Categories</label>
-                                <div class="d-flex flex-wrap gap-2">
-                                    @foreach (var category in ViewBag.Categories)
-                                    {
-                                        <div class="form-check">
-                                            <input type="checkbox" name="categories" class="form-check-input"
-                                                   value="@category.CategoryID"
-                                            @((Context.Request.Query["categories"].Count > 0 && Context.Request.Query["categories"].Any(c => c == category.CategoryID.ToString())) ? "checked" : "") />
-                                            <label class="form-check-label">@category.CategoryName</label>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-
-                            <!-- Amenities -->
-                            <div class="col-md-12">
-                                <label class="form-label">Amenities</label>
-                                <div class="d-flex gap-4">
-                                    <div class="form-check">
-                                        <input type="checkbox" name="petsAllowed" class="form-check-input" value="true"
-                                        @(Context.Request.Query["petsAllowed"] == "true" ? "checked" : "") />
-                                        <label class="form-check-label">Pets Allowed</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" name="freeParking" class="form-check-input" value="true"
-                                        @(Context.Request.Query["freeParking"] == "true" ? "checked" : "") />
-                                        <label class="form-check-label">Free Parking</label>
-                                    </div>
-                                </div>
-                            </div>
+            @foreach (var category in ViewBag.Categories)
+            {
+                <a asp-controller="Home"
+                   asp-action="Search"
+                   asp-route-categories="@category.CategoryID"
+                   asp-route-location="@Context.Request.Query["location"]"
+                   asp-route-checkIn="@Context.Request.Query["checkIn"]"
+                   asp-route-checkOut="@Context.Request.Query["checkOut"]"
+                   asp-route-guests="@Context.Request.Query["guests"]"
+                   class="text-decoration-none">
+                    <div class="text-center category-tab @((Context.Request.Query["categories"].Count > 0 && Context.Request.Query["categories"].Any(c => c == category.CategoryID.ToString())) ? "active" : "")">
+                        <div class="mb-2">
+                            @switch (category.CategoryName.ToLower())
+                            {
+                                case "apartment":
+                                    <i class="bi bi-building h4"></i>
+                                    break;
+                                case "cabin":
+                                    <i class="bi bi-house h4"></i>
+                                    break;
+                                case "condo":
+                                    <i class="bi bi-buildings h4"></i>
+                                    break;
+                                case "hotel":
+                                    <i class="bi bi-building-fill h4"></i>
+                                    break;
+                                default:
+                                    <i class="bi bi-house-door h4"></i>
+                                    break;
+                            }
                         </div>
+                        <div class="small">@category.CategoryName</div>
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Apply Filters</button>
-                        <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
-                    </div>
-                </div>
-            </form>
+                </a>
+            }
         </div>
     </div>
 
