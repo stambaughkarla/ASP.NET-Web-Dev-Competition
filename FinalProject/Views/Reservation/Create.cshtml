@@ -41,8 +41,9 @@
                             <li>Cleaning fee: @Model.Property.CleaningFee.ToString("C")</li>
                             @if (Model.Property.DiscountRate > 0)
                             {
-                                <small class="text-success">
-                                    @Model.Property.DiscountRate.Value.ToString("P0") off for @Model.Property.MinNightsForDiscount+ nights. Will automatically apply in cart.
+                                var discountLabel = Model.Property.DiscountRate.Value / 100m;
+                                <small class="text-success d-block">
+                                    @discountLabel.ToString("P0") off for @Model.Property.MinNightsForDiscount+ nights. Will automatically apply in cart.
                                 </small>
                             }
                         </ul>
