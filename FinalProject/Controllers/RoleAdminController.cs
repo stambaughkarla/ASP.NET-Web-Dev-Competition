@@ -436,6 +436,8 @@ namespace FinalProject.Controllers
 
             var property = await _context.Properties
                 .Include(p => p.UnavailableDates)
+                .Include(p => p.Category)
+                .Include(p => p.Reviews)
                 .FirstOrDefaultAsync(p => p.PropertyID == reservation.PropertyID);
 
             if (property == null)
@@ -450,6 +452,10 @@ namespace FinalProject.Controllers
                 TempData["ErrorMessage"] = $"This property allows maximum {property.GuestsAllowed} guests.";
                 return RedirectToAction(nameof(ManageReservations));
             }
+
+            // Set the property navigation property
+            reservation.Property = property;
+
 
             // Check unavailable dates
             var reservationDates = Enumerable.Range(0, (reservation.CheckOut - reservation.CheckIn).Days + 1)

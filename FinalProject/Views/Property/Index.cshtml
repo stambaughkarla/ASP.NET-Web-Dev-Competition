@@ -93,6 +93,7 @@
                                 <strong>@property.WeekdayPrice.ToString("C")</strong> /night
                                 @if (property.DiscountRate > 0)
                                 {
+                                    var discountLabel = property.DiscountRate.Value / 100m;
                                     <small class="text-success d-block">
                                         @property.DiscountRate.Value.ToString("P0") off for @property.MinNightsForDiscount+ nights
                                     </small>
